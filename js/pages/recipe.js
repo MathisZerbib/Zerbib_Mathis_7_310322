@@ -10,13 +10,10 @@ async function getRecipes() {
         .then(res => res.json())
         .then(data => {
             obj = data
-            console.log('OBJ: ', obj);
             data.forEach(element => { recipes.push(element) })
-
         })
         .catch(error => console.log(error));
-    console.log('Recipes Array: ', recipes);
-    console.log('REcipe', recipes)
+    console.log('Recipes: ', recipes);
 
     // Penser à remplacer par les données récupérées dans le json
     // et bien retourner le tableau recipes seulement une fois

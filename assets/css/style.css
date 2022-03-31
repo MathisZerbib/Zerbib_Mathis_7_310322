@@ -11,5 +11,28 @@
 
 .placeholder {
     height: 150px;
-    width: 300px;
+    width: 100%;
+}
+
+#recipes article {
+    width: 33%;
+}
+
+#recipes li span {
+    margin: 0 0 0 10px;
+}
+
+.one-line {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
 }
