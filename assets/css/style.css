@@ -1,0 +1,15 @@
+.search-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 21px;
+    position: absolute;
+    right: 15px;
+    z-index: 2;
+}
+
+.placeholder {
+    height: 150px;
+    width: 300px;
+}
