@@ -46,7 +46,7 @@ function recipeFactory(data) {
         ulListIngredients.className = 'list-unstyled font-weight-bold col-sm';
         textDescription.className = 'col-sm truncate';
         article.className = 'card-container';
-        faTimer.className = 'fa-solid fa-timer';
+        faTimer.className = 'fa-solid fa-clock';
 
         img.className = "placeholder";
 
@@ -55,6 +55,7 @@ function recipeFactory(data) {
 
         titleRecipe.textContent = name
         textTime.textContent = time.toString();
+        // textTime.textContent += 'far fa-clock'
 
         article.appendChild(img)
         article.appendChild(headerContainerCard)
