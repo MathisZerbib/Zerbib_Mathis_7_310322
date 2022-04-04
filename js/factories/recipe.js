@@ -37,7 +37,7 @@ function recipeFactory(data) {
             }
             ulListIngredients.innerHTML += `<li> ${element.ingredient}: <span>${element.quantity}</span><span>${element.unit}</span> </li>`
         });
-        console.log("Ingedients,", ingredients)
+        // console.log("Ingredients,", ingredients)
 
 
         headerContainerCard.className = 'header-container-card d-flex flex-row';
