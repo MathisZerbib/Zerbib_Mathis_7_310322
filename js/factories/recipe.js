@@ -10,12 +10,12 @@ function recipeFactory(data) {
 
         const headerContainerCard = document.createElement('div');
         const textContainerCard = document.createElement('div');
+        const headerIconContainer = document.createElement('div');
 
 
         const titleRecipe = document.createElement('h2');
         const textTime = document.createElement('p');
-        const ulListIngredients = document.createElement('ul');
-        const liListIngredients = document.createElement('li');
+        const listIngredients = document.createElement('div');
         const spanQuantity = document.createElement('span');
         const textDescription = document.createElement('p');
         const faTimer = document.createElement('i');
@@ -24,7 +24,8 @@ function recipeFactory(data) {
         textDescription.textContent = description
 
         ingredients.forEach(element => {
-            // liListIngredients.textContent =
+            var p = document.createElement('p')
+            p.className = 'mb-0';
             if (element.quantity == undefined || element.quantity == '') {
                 element.quantity = ''
                 element.unit = ''
@@ -35,17 +36,19 @@ function recipeFactory(data) {
             if (element.unit == undefined || element.unit == '') {
                 element.unit = ''
             }
-            ulListIngredients.innerHTML += `<li> ${element.ingredient}: <span>${element.quantity}</span><span>${element.unit}</span> </li>`
+            p.innerHTML = `${element.ingredient}: <span>${element.quantity}</span><span>${element.unit}</span>`
+            listIngredients.appendChild(p);
         });
         // console.log("Ingredients,", ingredients)
 
 
-        headerContainerCard.className = 'header-container-card d-flex flex-row';
-        textContainerCard.className = 'text-container-card d-flex flex-row';
-        titleRecipe.className = 'flex-grow-1 one-line';
-        ulListIngredients.className = 'list-unstyled font-weight-bold col-sm';
-        textDescription.className = 'col-sm truncate';
-        article.className = 'card-container';
+        headerContainerCard.className = 'header-container-card d-flex justify-content-between mt-3 px-3';
+        textContainerCard.className = 'card-body d-flex justify-content-between card-content';
+        titleRecipe.className = 'card-title w-50 card-content-title';
+        listIngredients.className = 'ingredient-container';
+        textDescription.className = 'description w-50';
+        article.className = 'card recipe-card pb-3 mb-5';
+        headerIconContainer.className = 'd-flex font-weight-bold';
         faTimer.className = 'fa-solid fa-clock';
 
         img.className = "placeholder";
@@ -53,19 +56,24 @@ function recipeFactory(data) {
         img.setAttribute("src", './assets/img/placeholder.png');
         img.src = './assets/img/placeholder.png';
 
-        titleRecipe.textContent = name
-        textTime.textContent = time.toString();
+        titleRecipe.textContent = name;
+        textTime.textContent = time.toString()
+        textTime.textContent += ' minutes';
         // textTime.textContent += 'far fa-clock'
 
-        article.appendChild(img)
-        article.appendChild(headerContainerCard)
-        headerContainerCard.appendChild(titleRecipe)
-        headerContainerCard.appendChild(textTime)
-        textTime.appendChild(faTimer);
-        article.appendChild(textContainerCard)
-        textContainerCard.appendChild(ulListIngredients)
-        ulListIngredients.appendChild(spanQuantity);
-        textContainerCard.append(textDescription)
+        article.appendChild(img);
+        article.appendChild(headerContainerCard);
+        headerContainerCard.appendChild(titleRecipe);
+        headerContainerCard.appendChild(headerIconContainer);
+        headerIconContainer.appendChild(faTimer)
+        headerIconContainer.appendChild(textTime);
+
+
+        article.appendChild(textContainerCard);
+        textContainerCard.appendChild(listIngredients);
+        listIngredients.appendChild(spanQuantity);
+
+        textContainerCard.append(textDescription);
 
         return (article);
     }

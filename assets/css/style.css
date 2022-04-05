@@ -18,6 +18,51 @@
     width: 33%;
 }
 
+.recipe-card {
+    background-color: #f8f9fb;
+    border-radius: 10px;
+    min-width: 30%;
+    max-width: 30%;
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.card-title {
+    min-height: 4rem;
+    max-height: fit-content;
+    font-size: 1.5rem;
+}
+
+.card-content {
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 150px;
+}
+
+.description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    text-align: justify;
+    padding-right: 1em;
+    margin: 0 -1em -2rem 0.5rem;
+}
+
 #recipes li span {
     margin: 0 0 0 10px;
 }
