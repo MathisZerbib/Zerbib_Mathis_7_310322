@@ -25,12 +25,40 @@ async function cleanData() {
 /* Event Key principal Search*/
 searchInput.addEventListener('keyup', function() {
     const input = searchInput.value;
-    const result = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
-    console.log('Your input', input)
-    console.log('Your result: ', result);
-    cleanData();
-    result;
-    displayData(result);
+    let recipeMatchArray = [];
+    if (input.length >= 3) {
+        recipes.forEach(recipe => {
+
+            let ustensMatch = recipe.ustensils.filter(ustensil => ustensil.includes(input.toLocaleLowerCase()))
+            let recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+
+            if (ustensMatch.length !== 0) {
+                // console.log('LENGHT USTENSMATCH', ustensMatch, "ID:", recipe.id)
+                recipeMatchArray.push(recipe)
+            }
+
+            if (recipe.appliance.toLocaleLowerCase().includes(input.toLocaleLowerCase())) {
+                let applianceMatch = recipe.appliance;
+                recipeMatchArray.push(recipe)
+                    // console.log('Appliance match', applianceMatch)
+            }
+
+            if (recipeMatch.length !== 0) {
+                recipeMatch.forEach(el => {
+                    recipeMatchArray.push(el)
+                        // console.log('RecipeMatch Pushed', el)
+                })
+            }
+
+        })
+        recipeMatchArray = [...new Set(recipeMatchArray)];
+        // console.log("Array ID:", recipeMatchArray)
+
+        cleanData();
+        displayData(recipeMatchArray);
+    } else {
+        cleanData();
+    }
 });
 //ARRAYS
 // Defines Array
@@ -54,9 +82,9 @@ const uniqueUstensils = [...new Set(ustensilsArray)];
 
 
 
-console.log('Uniques Ingredients', uniqueIngredients);
-console.log("uniqueAppliances", uniqueAppliances);
-console.log("uniqueUstensils", uniqueUstensils);
+// console.log('Uniques Ingredients', uniqueIngredients);
+// console.log("uniqueAppliances", uniqueAppliances);
+// console.log("uniqueUstensils", uniqueUstensils);
 
 //Create sub search button & list
 let subsearchNames = ['Ingrédient', 'Appareils', 'Ustensiles'];
@@ -66,6 +94,7 @@ function createFiltersDOM(filters) {
     let filtersbox = document.createElement('div');
     let filterButton = document.createElement('input');
     let filterUl = document.createElement('ul');
+    // <span class="tag btn btn-primary btn-sm mb-1">Coco <i class="far fa-times-circle"></i></span>
 
     filters.forEach(el => {
         filtersbox.setAttribute('id', 'sub-search__' + el);
@@ -75,9 +104,12 @@ function createFiltersDOM(filters) {
         filterButton.setAttribute('value', el);
         filterButton.setAttribute('type', 'button');
 
-        filterUl.className = 'sub-search__taglist w-100 mw-100 dropdown-menu btn-success text-white border-0 rounded-bottom';
+        filterUl.className = 'sub-search__taglist w-100 mw-100 dropdown-menu text-white border-0 rounded-bottom';
         filterUl.setAttribute('role', 'listbox');
         filterUl.setAttribute('id', el + '__taglist');
+        uniqueUstensils.forEach(el => {
+            filterUl.innerHTML += `<li><span class="tag btn btn-primary btn-sm mb-1">${el}<i class="far fa-times-circle"></i><span></li>`
+        })
 
 
         document.getElementById('sub-searchs').append(filtersbox)
@@ -89,5 +121,6 @@ function createFiltersDOM(filters) {
 
 
 }
+
 
 createFiltersDOM(subsearchNames)
