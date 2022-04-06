@@ -81,3 +81,55 @@
     text-overflow: ellipsis;
     word-break: break-word;
 }
+
+.sub-search__taglist {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 700px;
+    max-height: 400px;
+    overflow: hidden;
+    padding-left: 0;
+    margin: -0.5rem 0 0 0;
+    padding: 0;
+}
+
+.dropdown-item {
+    display: flex;
+    width: 33%!important;
+    color: white!important;
+}
+
+#sub-search__Ingrédient,
+.Ingrédient,
+#sub-search__Ingrédient>.sub-search__button>input,
+#sub-search__Ingrédient>.sub-search__button>input::placeholder {
+    color: white!important;
+    background-color: #007bff!important;
+}
+
+#sub-search__Appareils,
+.Appareils,
+#sub-search__Appareils>.sub-search__button>input,
+#sub-search__Appareils>.sub-search__button>input::placeholder {
+    color: white!important;
+    background-color: #00dca9!important;
+}
+
+#sub-search__Ustensiles,
+.Ustensiles,
+#sub-search__Ustensiles>.sub-search__button>input,
+#sub-search__Ustensiles>.sub-search__button>input::placeholder {
+    color: white!important;
+    background-color: #ff5a47!important;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+    background-color: white!important;
+    color: black!important;
+    cursor: pointer;
+}
+
+.dropdown-item:active {
+    background-color: #f8f9fb5e!important;
+}
