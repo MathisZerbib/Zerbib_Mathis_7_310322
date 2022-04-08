@@ -34,85 +34,89 @@ async function displayData(recipes) {
 
 };
 
-async function cleanData() {
+async function cleanDOM() {
     const recipesSection = document.querySelector("#recipes");
     while (recipesSection.lastChild) {
         recipesSection.removeChild(recipesSection.lastChild);
     }
 }
 
+async function cleanData() {
+    recipeMatchArray = [];
+}
 
-function search() {
+
+const ustensMatch = (recipe, input, recipeMatchArray) => {
+    let ustensMatch = recipe.ustensils.filter(ustensil => ustensil.includes(input.toLocaleLowerCase()))
+
+    if (ustensMatch.length !== 0) {
+        recipeMatchArray.push(recipe)
+    }
+}
+
+
+const applianceMatch = (recipe, input, recipeMatchArray) => {
+    if (recipe.appliance.toLocaleLowerCase().includes(input.toLocaleLowerCase())) {
+        recipeMatchArray.push(recipe)
+    }
+}
+
+const recipeMatch = (input, recipeMatchArray) => {
+    let recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+    if (recipeMatch.length !== 0) {
+        recipeMatch.forEach(el => {
+            recipeMatchArray.push(el)
+        })
+    }
+}
+
+const ingredientMatch = (recipe, input, recipeMatchArray) => {
+    let ingredientMatch = recipe.ingredients.filter(el =>
+        el.ingredient.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+    if (ingredientMatch.length !== 0) {
+        // console.log(recipe, 'INGREDIENT MATCH')
+        // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
+        recipeMatchArray.push(recipe)
+    }
+}
+
+
+
+const descriptionMatch = (input, recipeMatchArray) => {
+    let descriptionMatch = recipes.filter(recipe => recipe.description.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+    if (descriptionMatch.length !== 0) {
+        descriptionMatch.forEach(el => {
+            recipeMatchArray.push(el)
+        })
+    }
+}
+
+function searchPrincipalInput() {
     const input = searchInput.value;
     let recipeMatchArray = [];
-    const ustensMatch = (recipe, input) => {
-        let ustensMatch = recipe.ustensils.filter(ustensil => ustensil.includes(input.toLocaleLowerCase()))
-
-        if (ustensMatch.length !== 0) {
-            recipeMatchArray.push(recipe)
-        }
-    }
-
-
-    const applianceMatch = (recipe, input) => {
-        if (recipe.appliance.toLocaleLowerCase().includes(input.toLocaleLowerCase())) {
-            recipeMatchArray.push(recipe)
-        }
-    }
-
-    const recipeMatch = (input) => {
-        let recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
-        if (recipeMatch.length !== 0) {
-            recipeMatch.forEach(el => {
-                recipeMatchArray.push(el)
-            })
-        }
-    }
-
-    const ingredientMatch = (recipe, input) => {
-        let ingredientMatch = recipe.ingredients.filter(el =>
-            el.ingredient.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
-        if (ingredientMatch.length !== 0) {
-            // console.log(recipe, 'INGREDIENT MATCH')
-            // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
-            recipeMatchArray.push(recipe)
-        }
-    }
-
-
-
-    const descriptionMatch = (input) => {
-        let descriptionMatch = recipes.filter(recipe => recipe.description.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
-        if (descriptionMatch.length !== 0) {
-            descriptionMatch.forEach(el => {
-                recipeMatchArray.push(el)
-            })
-        }
-    }
-
 
     if (input.length >= 3) {
         recipes.forEach(recipe => {
-
-            ustensMatch(recipe, input);
-            applianceMatch(recipe, input);
-            recipeMatch(input)
-            ingredientMatch(recipe, input)
-            descriptionMatch(input)
+            ustensMatch(recipe, input, recipeMatchArray);
+            applianceMatch(recipe, input, recipeMatchArray);
+            recipeMatch(input, recipeMatchArray);
+            ingredientMatch(recipe, input, recipeMatchArray);
+            descriptionMatch(input, recipeMatchArray);
 
         })
         recipeMatchArray = [...new Set(recipeMatchArray)];
-        console.log("Array ID:", recipeMatchArray)
+        // console.log("Array ID:", recipeMatchArray)
 
-        cleanData();
+        cleanDOM();
         displayData(recipeMatchArray);
     } else {
+        cleanDOM();
         cleanData();
     }
 };
 
 /* Event Key principal Search Algo A */
-searchInput.addEventListener('keyup', search);
+searchInput.addEventListener('keyup', searchPrincipalInput);
 
 
 
@@ -156,7 +160,7 @@ const createFiltersDOM = (filtersList) => {
 
         filtersbox.setAttribute('id', 'sub-search__' + el);
         filtersbox.setAttribute('data-name', el);
-        filtersbox.classList.add('sub-search__bloc', 'col-12', 'col-lg-3', 'mx-2', 'py-2', 'dropdown', 'd-flex', 'flex-column', 'justify-content-between', 'align-items-center');
+        filtersbox.classList.add('sub-search__bloc', 'col-12', 'col-lg-3', 'm-2', 'dropdown', 'd-flex', 'flex-column', 'justify-content-between', 'align-items-center');
 
         filterButton.className = 'col btn btn-lg text-black text-left font-weight-bold border-0 sub-search__button'
         filterButton.setAttribute('value', el);

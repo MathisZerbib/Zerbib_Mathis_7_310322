@@ -143,3 +143,7 @@
 .dropdown-item:active {
     background-color: #f8f9fb5e!important;
 }
+
+#sub-searchs {
+    margin-right: auto;
+}
