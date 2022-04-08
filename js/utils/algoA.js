@@ -94,14 +94,14 @@ let subsearchNames = ['Ingrédient', 'Appareils', 'Ustensiles'];
 const removeOpen = (el, filtersbox, inputField, currentButton) => {
     if (inputField.value.length >= 3) {
         currentButton.classList.remove('open');
-        filtersbox.classList.remove('col-lg-6');
+        filtersbox.classList.remove('col-lg-5');
         filtersbox.classList.add('col-lg-3');
     } else {
         currentButton.classList.remove('open');
         inputField.removeAttribute('type');
         inputField.setAttribute('type', 'button');
         inputField.setAttribute('value', el);
-        filtersbox.classList.remove('col-lg-6');
+        filtersbox.classList.remove('col-lg-5');
         filtersbox.classList.add('col-lg-3');
     }
 }
@@ -122,7 +122,7 @@ const createFiltersDOM = (filtersList) => {
 
         filtersbox.setAttribute('id', 'sub-search__' + el);
         filtersbox.setAttribute('data-name', el);
-        filtersbox.classList.add('sub-search__bloc', 'col-12', 'col-lg-3', 'mb-3', 'dropdown', 'd-flex', 'flex-column', 'justify-content-between', 'align-items-center');
+        filtersbox.classList.add('sub-search__bloc', 'col-12', 'col-lg-3', 'mx-2', 'dropdown', 'd-flex', 'flex-column', 'justify-content-between', 'align-items-center');
 
         filterButton.className = 'col btn btn-lg text-black text-left font-weight-bold border-0 sub-search__button'
         filterButton.setAttribute('value', el);
@@ -185,7 +185,7 @@ const createFiltersDOM = (filtersList) => {
                 inputField.setAttribute('placeholder', `Rechercher un ${el}`);
                 inputField.focus();
                 filtersbox.classList.remove('col-lg-3');
-                filtersbox.classList.add('col-lg-6');
+                filtersbox.classList.add('col-lg-5');
                 ul.classList.add('d-flex')
 
             };
@@ -212,6 +212,17 @@ window.addEventListener('click', function(event) {
         });
     };
 });
+let tagArea = document.querySelector('#tags');
+
+const createTag = (el, color) => {
+    let tag = document.createElement('span')
+    let tagClose = document.createElement('i')
+    tagClose.className = 'far fa-times-circle';
+    tag.innerHTML = el.innerHTML;
+    tag.className = color + ' tag btn btn-primary btn-sm mb-1';
+    tagArea.appendChild(tag);
+    tag.appendChild(tagClose)
+}
 
 
 // Add tags in susbsearch (max 30 items)
@@ -222,25 +233,34 @@ const ulLength = (array) => {
     // Create li for each tag and add it in there respective ul
 for (let i = 0; i < ulLength(uniqueIngredients); i++) {
     let ingTag = document.createElement('li');
-    ingTag.classList.add('dropdown-item');
+    ingTag.classList.add('dropdown-item', 'bg-primary');
     ingTag.setAttribute('aria-selected', 'false');
     ingTag.setAttribute('role', 'option');
     ingTag.innerHTML = uniqueIngredients[i];
+    ingTag.addEventListener('click', () => {
+        createTag(ingTag, 'bg-primary')
+    })
     document.getElementById('Ingrédient__taglist').append(ingTag);
 };
 for (let i = 0; i < ulLength(uniqueAppliances); i++) {
     let aplTag = document.createElement('li');
-    aplTag.classList.add('dropdown-item');
+    aplTag.classList.add('dropdown-item', 'bg-green');
     aplTag.setAttribute('aria-selected', 'false');
     aplTag.setAttribute('role', 'option');
     aplTag.innerHTML = uniqueAppliances[i];
+    aplTag.addEventListener('click', () => {
+        createTag(aplTag, 'bg-green')
+    })
     document.getElementById('Appareils__taglist').append(aplTag);
 };
 for (let i = 0; i < ulLength(uniqueUstensils); i++) {
     let ustTag = document.createElement('li');
-    ustTag.classList.add('dropdown-item');
+    ustTag.classList.add('dropdown-item', 'bg-red');
     ustTag.setAttribute('aria-selected', 'false');
     ustTag.setAttribute('role', 'option');
     ustTag.innerHTML = uniqueUstensils[i];
+    ustTag.addEventListener('click', () => {
+        createTag(ustTag, 'bg-red')
+    })
     document.getElementById('Ustensiles__taglist').append(ustTag);
 };

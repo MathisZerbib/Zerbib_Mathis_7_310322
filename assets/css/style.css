@@ -52,6 +52,14 @@
     max-height: 150px;
 }
 
+.bg-green {
+    background-color: #00dca9!important;
+}
+
+.bg-red {
+    background-color: #ff5a47!important;
+}
+
 .description {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -94,9 +102,11 @@
 }
 
 .dropdown-item {
-    display: flex;
     width: 33%!important;
     color: white!important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #sub-search__Ingrédient,
