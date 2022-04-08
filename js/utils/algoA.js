@@ -41,36 +41,70 @@ async function cleanData() {
     }
 }
 
+
+
 /* Event Key principal Search Algo A */
 searchInput.addEventListener('keyup', function() {
     const input = searchInput.value;
     let recipeMatchArray = [];
+    const ustensMatch = (recipe, input) => {
+        let ustensMatch = recipe.ustensils.filter(ustensil => ustensil.includes(input.toLocaleLowerCase()))
+
+        if (ustensMatch.length !== 0) {
+            recipeMatchArray.push(recipe)
+        }
+    }
+
+
+    const applianceMatch = (recipe, input) => {
+        if (recipe.appliance.toLocaleLowerCase().includes(input.toLocaleLowerCase())) {
+            recipeMatchArray.push(recipe)
+        }
+    }
+
+    const recipeMatch = (input) => {
+        let recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+        if (recipeMatch.length !== 0) {
+            recipeMatch.forEach(el => {
+                recipeMatchArray.push(el)
+            })
+        }
+    }
+
+    const ingredientMatch = (recipe, input) => {
+        let ingredientMatch = recipe.ingredients.filter(el =>
+            el.ingredient.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+        if (ingredientMatch.length !== 0) {
+            // console.log(recipe, 'INGREDIENT MATCH')
+            // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
+            recipeMatchArray.push(recipe)
+        }
+    }
+
+
+
+    const descriptionMatch = (input) => {
+        let descriptionMatch = recipes.filter(recipe => recipe.description.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+        if (descriptionMatch.length !== 0) {
+            descriptionMatch.forEach(el => {
+                recipeMatchArray.push(el)
+            })
+        }
+    }
+
+
     if (input.length >= 3) {
         recipes.forEach(recipe => {
 
-            let ustensMatch = recipe.ustensils.filter(ustensil => ustensil.includes(input.toLocaleLowerCase()))
-
-            if (ustensMatch.length !== 0) {
-                // console.log('LENGHT USTENSMATCH', ustensMatch, "ID:", recipe.id)
-                recipeMatchArray.push(recipe)
-            }
-
-            if (recipe.appliance.toLocaleLowerCase().includes(input.toLocaleLowerCase())) {
-                let applianceMatch = recipe.appliance;
-                recipeMatchArray.push(recipe)
-                    // console.log('Appliance match', applianceMatch)
-            }
-            let recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
-            if (recipeMatch.length !== 0) {
-                recipeMatch.forEach(el => {
-                    recipeMatchArray.push(el)
-                        // console.log('RecipeMatch Pushed', el)
-                })
-            }
+            ustensMatch(recipe, input);
+            applianceMatch(recipe, input);
+            recipeMatch(input)
+            ingredientMatch(recipe, input)
+            descriptionMatch(input)
 
         })
         recipeMatchArray = [...new Set(recipeMatchArray)];
-        // console.log("Array ID:", recipeMatchArray)
+        console.log("Array ID:", recipeMatchArray)
 
         cleanData();
         displayData(recipeMatchArray);
