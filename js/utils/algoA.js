@@ -49,7 +49,6 @@ searchInput.addEventListener('keyup', function() {
         recipes.forEach(recipe => {
 
             let ustensMatch = recipe.ustensils.filter(ustensil => ustensil.includes(input.toLocaleLowerCase()))
-            let recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
 
             if (ustensMatch.length !== 0) {
                 // console.log('LENGHT USTENSMATCH', ustensMatch, "ID:", recipe.id)
@@ -61,7 +60,7 @@ searchInput.addEventListener('keyup', function() {
                 recipeMatchArray.push(recipe)
                     // console.log('Appliance match', applianceMatch)
             }
-
+            let recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
             if (recipeMatch.length !== 0) {
                 recipeMatch.forEach(el => {
                     recipeMatchArray.push(el)
@@ -216,14 +215,22 @@ let tagArea = document.querySelector('#tags');
 
 const createTag = (el, color) => {
     let tag = document.createElement('span')
-    let tagClose = document.createElement('i')
-    tagClose.className = 'far fa-times-circle';
+    let tagClose = document.createElement('button')
+    tagClose.className = 'far fa-times-circle btn text-white';
+    tagClose.setAttribute('role', 'button')
+
     tag.innerHTML = el.innerHTML;
-    tag.className = color + ' tag btn btn-primary btn-sm mb-1';
+    tag.className = color + ' tag btn text-white px-2 mx-2  btn-sm mb-1';
     tagArea.appendChild(tag);
     tag.appendChild(tagClose)
+    tagClose.addEventListener('click', () => {
+        closeTag(tag)
+    })
 }
 
+const closeTag = (tag) => {
+    tag.remove()
+}
 
 // Add tags in susbsearch (max 30 items)
 // Define a maximum of 30 items
@@ -233,12 +240,19 @@ const ulLength = (array) => {
     // Create li for each tag and add it in there respective ul
 for (let i = 0; i < ulLength(uniqueIngredients); i++) {
     let ingTag = document.createElement('li');
+    let posted = false;
     ingTag.classList.add('dropdown-item', 'bg-primary');
     ingTag.setAttribute('aria-selected', 'false');
     ingTag.setAttribute('role', 'option');
     ingTag.innerHTML = uniqueIngredients[i];
     ingTag.addEventListener('click', () => {
-        createTag(ingTag, 'bg-primary')
+
+        if (posted == false) {
+            createTag(ingTag, 'bg-primary')
+            posted = true
+        } else {
+            console.log('alreaddy posted    ')
+        }
     })
     document.getElementById('Ingrédient__taglist').append(ingTag);
 };
