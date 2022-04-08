@@ -42,9 +42,7 @@ async function cleanData() {
 }
 
 
-
-/* Event Key principal Search Algo A */
-searchInput.addEventListener('keyup', function() {
+function search() {
     const input = searchInput.value;
     let recipeMatchArray = [];
     const ustensMatch = (recipe, input) => {
@@ -111,7 +109,10 @@ searchInput.addEventListener('keyup', function() {
     } else {
         cleanData();
     }
-});
+};
+
+/* Event Key principal Search Algo A */
+searchInput.addEventListener('keyup', search);
 
 
 
@@ -155,7 +156,7 @@ const createFiltersDOM = (filtersList) => {
 
         filtersbox.setAttribute('id', 'sub-search__' + el);
         filtersbox.setAttribute('data-name', el);
-        filtersbox.classList.add('sub-search__bloc', 'col-12', 'col-lg-3', 'mx-2', 'dropdown', 'd-flex', 'flex-column', 'justify-content-between', 'align-items-center');
+        filtersbox.classList.add('sub-search__bloc', 'col-12', 'col-lg-3', 'mx-2', 'py-2', 'dropdown', 'd-flex', 'flex-column', 'justify-content-between', 'align-items-center');
 
         filterButton.className = 'col btn btn-lg text-black text-left font-weight-bold border-0 sub-search__button'
         filterButton.setAttribute('value', el);
@@ -245,11 +246,16 @@ window.addEventListener('click', function(event) {
         });
     };
 });
+
+
+
+
 let tagArea = document.querySelector('#tags');
 
 const createTag = (el, color) => {
     let tag = document.createElement('span')
     let tagClose = document.createElement('button')
+
     tagClose.className = 'far fa-times-circle btn text-white';
     tagClose.setAttribute('role', 'button')
 
