@@ -42,14 +42,14 @@ function recipeFactory(data) {
         // console.log("Ingredients,", ingredients)
 
 
-        headerContainerCard.className = 'header-container-card d-flex justify-content-between mt-3 px-3';
+        headerContainerCard.className = 'header-container-card d-flex justify-content-between mt-3 px-3 align-items-center';
         textContainerCard.className = 'card-body d-flex justify-content-between card-content';
         titleRecipe.className = 'card-title w-50 card-content-title';
         listIngredients.className = 'ingredient-container';
         textDescription.className = 'description w-50';
         article.className = 'card recipe-card pb-3 mb-5';
-        headerIconContainer.className = 'd-flex font-weight-bold';
-        faTimer.className = 'fa-solid fa-clock';
+        headerIconContainer.className = 'd-flex font-weight-bold align-items-center justify-content-between';
+        faTimer.className = 'fa-solid fa-clock mx-2';
 
         img.className = "placeholder";
 
@@ -58,6 +58,7 @@ function recipeFactory(data) {
 
         titleRecipe.textContent = name;
         textTime.textContent = time.toString()
+        textTime.className = 'm-0'
         textTime.textContent += ' minutes';
         // textTime.textContent += 'far fa-clock'
 

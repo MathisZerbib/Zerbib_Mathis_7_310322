@@ -6,6 +6,7 @@ const searchInput = document.getElementById("main-search");
 let ingredientsArray = [];
 let appliancesArray = [];
 let ustensilsArray = [];
+let recipeMatchArray = [];
 
 recipes.forEach(recipe => {
     recipe.ingredients.forEach((currentIngredient) => {
@@ -97,8 +98,6 @@ function searchPrincipalInput() {
 
     if (input.length >= 3) {
         recipes.forEach(recipe => {
-            ustensMatch(recipe, input, recipeMatchArray);
-            applianceMatch(recipe, input, recipeMatchArray);
             recipeMatch(input, recipeMatchArray);
             ingredientMatch(recipe, input, recipeMatchArray);
             descriptionMatch(input, recipeMatchArray);
@@ -152,7 +151,7 @@ const createFiltersDOM = (filtersList) => {
         let filterDiv = document.createElement('div')
         let filterButton = document.createElement('input');
         let filterUl = document.createElement('ul');
-        let filterClose = document.createElement('span')
+        let filterArrow = document.createElement('i')
 
         filterDiv.setAttribute('data-bs-toggle', 'dropdown');
         filterDiv.setAttribute('aria-expended', false);
@@ -166,7 +165,7 @@ const createFiltersDOM = (filtersList) => {
         filterButton.setAttribute('value', el);
         filterButton.setAttribute('type', 'button');
         filterButton.autofocus = true;
-        filterClose.className = 'arrow col-1 end-0';
+        filterArrow.className = 'fa-solid fa-angle-down col-1 end-0 text-white';
 
         filterUl.className = 'sub-search__taglist w-100 mw-100 btn text-white border-0 rounded-bottom flex-wrap dropdown-menu ' + el;
         filterUl.setAttribute('role', 'listbox');
@@ -179,7 +178,7 @@ const createFiltersDOM = (filtersList) => {
         document.getElementById('sub-searchs').append(filtersbox);
         filtersbox.appendChild(filterDiv);
         filterDiv.appendChild(filterButton);
-        filterButton.appendChild(filterClose)
+        filterDiv.appendChild(filterArrow)
         filtersbox.appendChild(filterUl);
 
 
@@ -188,18 +187,26 @@ const createFiltersDOM = (filtersList) => {
         const currentButton = filtersbox.querySelector('.sub-search__button');
         let inputField = filtersbox.querySelector('.sub-search__button input');
         let ul = filtersbox.querySelector('.sub-search__taglist')
-            // window.addEventListener('click', function(e) {
-            //     if (document.querySelector('.sub-search__bloc').contains(e.target)) {
-            //         // Clicked in box
-            //         console.log("Clicked in box")
-            //     } else {
-            //         // Clicked outside the box
-            //         console.log("Clicked OUT box")
-            //         removeOpen(el, filtersbox, inputField, currentButton);
+        let searchTagList = [];
+        inputField.addEventListener('keyup', (e) => {
+            if (e.keyCode == 8 && searchTagList !== []) {
+                searchTagList.pop()
+            }
+            if (e.keyCode >= 65 && e.keyCode <= 90)
+                searchTagList.push(e.key)
+            console.log(searchTagList);
+            if (searchTagList.length >= 3) {
+                toggleList(ul, filterArrow, true)
+            } else {
+                toggleList(ul, filterArrow, false)
 
-        //     }
-        // });
+            }
+        });
+
+
         currentButton.addEventListener('click', () => {
+
+
             if (currentButton.classList.contains('open')) {
                 // show mode => remove open class and reset state
                 ul.classList.remove('d-flex')
@@ -224,7 +231,6 @@ const createFiltersDOM = (filtersList) => {
                 inputField.focus();
                 filtersbox.classList.remove('col-lg-3');
                 filtersbox.classList.add('col-lg-5');
-                ul.classList.add('d-flex')
 
             };
 
@@ -236,7 +242,23 @@ const createFiltersDOM = (filtersList) => {
 createFiltersDOM(subsearchNames)
 
 
-// Remove open when click outside of the button 
+function toggleList(ul, filterArrow, toggle) {
+    if (toggle == true) {
+        ul.classList.add('d-flex')
+        filterArrow.classList.remove('fa-angle-down')
+        filterArrow.classList.add('fa-angle-up')
+        toggle = true;
+    } else {
+        ul.classList.remove('d-flex')
+        filterArrow.classList.remove('fa-angle-up')
+        filterArrow.classList.add('fa-angle-down')
+        toggle = false;
+    }
+
+
+
+}
+// Remove open when click outside of the button 0
 window.addEventListener('click', function(event) {
     const clickOnBloc = event.target.closest('.sub-search__bloc');
     if (!clickOnBloc) {
@@ -253,27 +275,80 @@ window.addEventListener('click', function(event) {
 
 
 
-
+// Create a tag for advancedSearch
 let tagArea = document.querySelector('#tags');
-
 const createTag = (el, color) => {
-    let tag = document.createElement('span')
-    let tagClose = document.createElement('button')
+        let tag = document.createElement('span')
+        let tagClose = document.createElement('button')
 
-    tagClose.className = 'far fa-times-circle btn text-white';
-    tagClose.setAttribute('role', 'button')
+        tagClose.className = 'far fa-times-circle btn text-white';
+        tagClose.setAttribute('role', 'button')
 
-    tag.innerHTML = el.innerHTML;
-    tag.className = color + ' tag btn text-white px-2 mx-2  btn-sm mb-1';
-    tagArea.appendChild(tag);
-    tag.appendChild(tagClose)
-    tagClose.addEventListener('click', () => {
-        closeTag(tag)
-    })
-}
+        tag.innerHTML = el.innerHTML;
+        tag.className = color + ' tag btn text-white px-2 mx-2  btn-sm mb-1';
+        tagArea.appendChild(tag);
+        tag.appendChild(tagClose)
+        tagClose.addEventListener('click', () => {
+            closeTag(tag)
+        })
+        tagToSearch(tag.innerText)
+    }
+    // Close, remove tag from DOM
 
 const closeTag = (tag) => {
     tag.remove()
+}
+
+
+// SearchByTag
+
+const tagToSearch = (tag) => {
+
+    let tagArray = [];
+    let tagSelector = document.querySelectorAll('#tags span');
+    if (tag !== undefined) {
+        tagSelector.forEach(tag => {
+            tagArray.push(tag.innerText)
+
+        })
+        recipes.forEach(recipe => {
+            console.log('Tag Array', tagArray)
+                // tagArray.forEach(tag => {
+                //     if (tagArray.length >= 2) {
+                //         if (ustensMatch(recipe, tag, recipeMatchArray) !== undefined) {
+                //             ustensMatch(recipe, tag, recipeMatchArray)
+                //         } else if (applianceMatch(recipe, tag, recipeMatchArray) !== undefined) {
+                //             applianceMatch(recipe, tag, recipeMatchArray)
+
+            //         } else if (ingredientMatch(recipe, tag, recipeMatchArray) !== undefined) {
+            //             ingredientMatch(recipe, tag, recipeMatchArray)
+            //         } else {
+            //             recipeMatchArray = []
+            //         }
+            //     } else {
+            //         applianceMatch(recipe, tag, recipeMatchArray)
+            //         ingredientMatch(recipe, tag, recipeMatchArray)
+            //         ustensMatch(recipe, tag, recipeMatchArray)
+            //     }
+            // })
+            console.log(tag)
+
+
+        })
+        recipeMatchArray = [...new Set(recipeMatchArray)];
+        // console.log("Array ID:", recipeMatchArray)
+        cleanDOM();
+        displayData(recipeMatchArray);
+
+    } else {
+        cleanDOM();
+        cleanData();
+    }
+}
+
+const affineSearch = (ustensMatch, applianceMatch, ingredientMatch) => {
+
+
 }
 
 // Add tags in susbsearch (max 30 items)
