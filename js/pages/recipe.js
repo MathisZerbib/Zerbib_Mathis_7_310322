@@ -81,7 +81,7 @@ async function getRecipes() {
 // }
 
 
-// Hydrate DOM + calc Likes
+// Hydrate DOM
 async function displayData(recipes) {
 
     recipes.forEach((recipe) => {

@@ -7,6 +7,7 @@ let ingredientsArray = [];
 let appliancesArray = [];
 let ustensilsArray = [];
 let recipeMatchArray = [];
+let searchTagList = [];
 
 recipes.forEach(recipe => {
     recipe.ingredients.forEach((currentIngredient) => {
@@ -81,6 +82,15 @@ const ingredientMatch = (recipe, input, recipeMatchArray) => {
     }
 }
 
+const tagIngredientMatch = (recipe, input, tagArray) => {
+    let tagIngredientMatch = recipe.ingredients.filter(el =>
+        el.ingredient.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+    if (tagIngredientMatch.length !== 0) {
+        // console.log(recipe, 'INGREDIENT MATCH')
+        // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
+        tagArray.push(tag)
+    }
+}
 
 
 const descriptionMatch = (input, recipeMatchArray) => {
@@ -113,6 +123,52 @@ function searchPrincipalInput() {
         cleanData();
     }
 };
+
+
+function searchTagInput(e, ul, filterArrow, inputField) {
+    if (e.keyCode == 8 && searchTagList !== []) {
+        searchTagList.pop()
+    }
+    if (e.keyCode >= 65 && e.keyCode <= 90)
+        var buffer;
+    buffer = inputField.value
+    searchTagList.push(buffer)
+    console.log(searchTagList);
+    searchTagList
+    var final_words = searchTagList[searchTagList.length - 1];
+    console.log(final_words)
+    final_words.split(' ').forEach(el => {
+        console.log('Word:', el)
+    })
+
+    if (searchTagList.length >= 3) {
+        // tagIngredientMatch(recipe, inputField.innerText, searchTagList);
+        toggleList(ul, filterArrow, true)
+    } else {
+        toggleList(ul, filterArrow, false)
+
+    }
+    // const input = searchInput.value;
+    // let recipeMatchArray = [];
+
+    // if (input.length >= 3) {
+    //     recipes.forEach(recipe => {
+    //         recipeMatch(input, recipeMatchArray);
+    //         ingredientMatch(recipe, input, recipeMatchArray);
+    //         descriptionMatch(input, recipeMatchArray);
+
+    //     })
+    //     recipeMatchArray = [...new Set(recipeMatchArray)];
+    //     // console.log("Array ID:", recipeMatchArray)
+
+    //     cleanDOM();
+    //     displayData(recipeMatchArray);
+    // } else {
+    //     cleanDOM();
+    //     cleanData();
+    // }
+};
+
 
 /* Event Key principal Search Algo A */
 searchInput.addEventListener('keyup', searchPrincipalInput);
@@ -187,21 +243,8 @@ const createFiltersDOM = (filtersList) => {
         const currentButton = filtersbox.querySelector('.sub-search__button');
         let inputField = filtersbox.querySelector('.sub-search__button input');
         let ul = filtersbox.querySelector('.sub-search__taglist')
-        let searchTagList = [];
-        inputField.addEventListener('keyup', (e) => {
-            if (e.keyCode == 8 && searchTagList !== []) {
-                searchTagList.pop()
-            }
-            if (e.keyCode >= 65 && e.keyCode <= 90)
-                searchTagList.push(e.key)
-            console.log(searchTagList);
-            if (searchTagList.length >= 3) {
-                toggleList(ul, filterArrow, true)
-            } else {
-                toggleList(ul, filterArrow, false)
 
-            }
-        });
+        inputField.addEventListener('keyup', (e) => searchTagInput(e, ul, filterArrow, inputField));
 
 
         currentButton.addEventListener('click', () => {
