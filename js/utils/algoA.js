@@ -134,7 +134,6 @@ function searchTagInput(e, ul, filterArrow, inputField) {
     buffer = inputField.value
     searchTagList.push(buffer)
     console.log(searchTagList);
-    searchTagList
     var final_words = searchTagList[searchTagList.length - 1];
     console.log(final_words)
     final_words.split(' ').forEach(el => {
@@ -142,8 +141,23 @@ function searchTagInput(e, ul, filterArrow, inputField) {
     })
 
     if (searchTagList.length >= 3) {
+        console.log()
+        let parentInput = ul.closest('div').id
+        if (parentInput == 'sub-search__Ingrédient') {
+            console.log("Search trought ingredients")
+        } else if (parentInput == 'sub-search__Appareils') {
+            console.log("Search trought Appareils")
+
+        } else if (parentInput == 'sub-search__Ustensiles') {
+            console.log("Search trought Ustensiles")
+        }
         // tagIngredientMatch(recipe, inputField.innerText, searchTagList);
-        toggleList(ul, filterArrow, true)
+        // let tagsfiltrered = [];
+        // for (var i = 0; recipes.length < i; i++)
+        //     tagsfiltrered = recipes.filter(recipe => recipe.ingredients[i].toLocaleLowerCase().includes(final_words.toLocaleLowerCase()));
+        // console.log('tagsfiltrered by Ingredient', tagsfiltrered);
+        toggleList(ul, filterArrow, true);
+
     } else {
         toggleList(ul, filterArrow, false)
 
