@@ -147,3 +147,7 @@
 #sub-searchs {
     margin-right: auto;
 }
+
+.fa-solid {
+    cursor: pointer;
+}

@@ -8,6 +8,7 @@ let appliancesArray = [];
 let ustensilsArray = [];
 let recipeMatchArray = [];
 let searchTagList = [];
+let tagArea = document.querySelector('#tags');
 
 recipes.forEach(recipe => {
     recipe.ingredients.forEach((currentIngredient) => {
@@ -45,10 +46,6 @@ async function cleanDOM() {
 
 async function cleanData() {
     recipeMatchArray = [];
-}
-
-async function cleanDataLi(el) {
-    el.remove()
 }
 
 const ustensMatch = (recipe, input, recipeMatchArray) => {
@@ -139,39 +136,43 @@ function searchTagInput(e, ul, filterArrow, inputField) {
     console.log(searchTagList);
     var final_words = searchTagList[searchTagList.length - 1];
     console.log(final_words)
-
+    let newArrayIngredients = [];
+    let newArrayUstensils = [];
+    let newArrayAppareils = [];
 
     if (searchTagList.length >= 3) {
-        let newArrayIngredients = [];
-        let newArrayUstensils = [];
-        let newArrayAppareils = [];
-        let parentInput = ul.closest('div').id
 
-        switch (parentInput) {
-            case "sub-search__Ingrédient":
+        let parentInput = ul.closest('div').id
+        let idDiv = parentInput.replace('sub-search__', '');
+        switch (idDiv) {
+            case "Ingrédient":
                 final_words.split(' ').forEach(el => {
                     let searchTagIngredient = uniqueIngredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
-                    newArrayIngredients.push(searchTagIngredient)
+                    newArrayIngredients = [...new Set(searchTagIngredient)];
                 })
                 console.log("New Array from ingredient:", newArrayIngredients)
 
+                rebuidTag(newArrayIngredients, idDiv)
+
                 break;
-            case "sub-search__Appareils":
+            case "Appareils":
                 final_words.split(' ').forEach(el => {
                     let searchTagAppareils = uniqueAppliances.filter(appliance => appliance.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
-                    newArrayAppareils.push(searchTagAppareils)
+                    newArrayAppareils = [...new Set(searchTagAppareils)];
                 })
+                rebuidTag(newArrayAppareils, idDiv)
+
                 console.log("New Array from appareils :", newArrayAppareils)
                 break;
-            case "sub-search__Ustensiles":
+            case "Ustensiles":
                 final_words.split(' ').forEach(el => {
                     let searchTagUstensils = uniqueUstensils.filter(ustensil => ustensil.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
-                    newArrayUstensils.push(searchTagUstensils)
-                        // console.log("Search trought ingredients", searchTagIngredient)
+                    newArrayUstensils = [...new Set(searchTagUstensils)];
+                    // console.log("Search trought ingredients", searchTagIngredient)
                 })
+                rebuidTag(newArrayUstensils, idDiv)
+
                 console.log("New Array from ustensils:", newArrayUstensils)
-                break;
-            default:
                 break;
         }
         // tagIngredientMatch(recipe, inputField.innerText, searchTagList);
@@ -355,7 +356,6 @@ window.addEventListener('click', function(event) {
 
 
 // Create a tag for advancedSearch
-let tagArea = document.querySelector('#tags');
 const createTag = (el, color) => {
         let tag = document.createElement('span')
         let tagClose = document.createElement('button')
@@ -381,53 +381,86 @@ const closeTag = (tag) => {
 
 // SearchByTag
 
-const tagToSearch = (tag) => {
+// const tagToSearch = (tag) => {
 
-    let tagArray = [];
-    let tagSelector = document.querySelectorAll('#tags span');
-    if (tag !== undefined) {
-        tagSelector.forEach(tag => {
-            tagArray.push(tag.innerText)
+//     let tagArray = [];
+//     let tagSelector = document.querySelectorAll('#tags span');
+//     if (tag !== undefined) {
+//         tagSelector.forEach(tag => {
+//             tagArray.push(tag.innerText)
 
-        })
-        recipes.forEach(recipe => {
-            console.log('Tag Array', tagArray)
-                // tagArray.forEach(tag => {
-                //     if (tagArray.length >= 2) {
-                //         if (ustensMatch(recipe, tag, recipeMatchArray) !== undefined) {
-                //             ustensMatch(recipe, tag, recipeMatchArray)
-                //         } else if (applianceMatch(recipe, tag, recipeMatchArray) !== undefined) {
-                //             applianceMatch(recipe, tag, recipeMatchArray)
+//         })
+//         recipes.forEach(recipe => {
+//             console.log('Tag Array', tagArray)
+// tagArray.forEach(tag => {
+//     if (tagArray.length >= 2) {
+//         if (ustensMatch(recipe, tag, recipeMatchArray) !== undefined) {
+//             ustensMatch(recipe, tag, recipeMatchArray)
+//         } else if (applianceMatch(recipe, tag, recipeMatchArray) !== undefined) {
+//             applianceMatch(recipe, tag, recipeMatchArray)
 
-            //         } else if (ingredientMatch(recipe, tag, recipeMatchArray) !== undefined) {
-            //             ingredientMatch(recipe, tag, recipeMatchArray)
-            //         } else {
-            //             recipeMatchArray = []
-            //         }
-            //     } else {
-            //         applianceMatch(recipe, tag, recipeMatchArray)
-            //         ingredientMatch(recipe, tag, recipeMatchArray)
-            //         ustensMatch(recipe, tag, recipeMatchArray)
-            //     }
-            // })
-            console.log(tag)
+//         } else if (ingredientMatch(recipe, tag, recipeMatchArray) !== undefined) {
+//             ingredientMatch(recipe, tag, recipeMatchArray)
+//         } else {
+//             recipeMatchArray = []
+//         }
+//     } else {
+//         applianceMatch(recipe, tag, recipeMatchArray)
+//         ingredientMatch(recipe, tag, recipeMatchArray)
+//         ustensMatch(recipe, tag, recipeMatchArray)
+//     }
+// })
+//             console.log(tag)
 
 
-        })
-        recipeMatchArray = [...new Set(recipeMatchArray)];
-        // console.log("Array ID:", recipeMatchArray)
-        cleanDOM();
-        displayData(recipeMatchArray);
+//         })
+//         recipeMatchArray = [...new Set(recipeMatchArray)];
+//         // console.log("Array ID:", recipeMatchArray)
+//         cleanDOM();
+//         displayData(recipeMatchArray);
 
-    } else {
-        cleanDOM();
-        cleanData();
-    }
-}
+//     } else {
+//         cleanDOM();
+//         cleanData();
+//     }
+// }
 
 const affineSearch = (ustensMatch, applianceMatch, ingredientMatch) => {
 
 
+}
+
+const rebuidTag = (tags, id) => {
+    for (let i = 0; i < ulLength(tags); i++) {
+        let ingTag = document.createElement('li');
+        let posted = false;
+        ingTag.classList.add('dropdown-item', 'bg-primary');
+        ingTag.setAttribute('aria-selected', 'false');
+        ingTag.setAttribute('role', 'option');
+        ingTag.innerHTML = tags[i];
+        ingTag.addEventListener('click', () => {
+
+            if (posted == false) {
+                switch (id) {
+                    case '':
+
+                        break;
+                    case '':
+
+                        break;
+                    case '':
+
+                        break;
+
+                }
+                createTag(ingTag, 'bg-primary')
+                posted = true
+            } else {
+                console.log('alreaddy posted    ')
+            }
+        })
+        document.getElementById(id + '__taglist').append(ingTag);
+    };
 }
 
 // Add tags in susbsearch (max 30 items)
@@ -436,43 +469,43 @@ const ulLength = (array) => {
         return (array.length > 30 ? 30 : array.length);
     }
     // Create li for each tag and add it in there respective ul
-for (let i = 0; i < ulLength(uniqueIngredients); i++) {
-    let ingTag = document.createElement('li');
-    let posted = false;
-    ingTag.classList.add('dropdown-item', 'bg-primary');
-    ingTag.setAttribute('aria-selected', 'false');
-    ingTag.setAttribute('role', 'option');
-    ingTag.innerHTML = uniqueIngredients[i];
-    ingTag.addEventListener('click', () => {
+    // for (let i = 0; i < ulLength(uniqueIngredients); i++) {
+    //     let ingTag = document.createElement('li');
+    //     let posted = false;
+    //     ingTag.classList.add('dropdown-item', 'bg-primary');
+    //     ingTag.setAttribute('aria-selected', 'false');
+    //     ingTag.setAttribute('role', 'option');
+    //     ingTag.innerHTML = uniqueIngredients[i];
+    //     ingTag.addEventListener('click', () => {
 
-        if (posted == false) {
-            createTag(ingTag, 'bg-primary')
-            posted = true
-        } else {
-            console.log('alreaddy posted    ')
-        }
-    })
-    document.getElementById('Ingrédient__taglist').append(ingTag);
-};
-for (let i = 0; i < ulLength(uniqueAppliances); i++) {
-    let aplTag = document.createElement('li');
-    aplTag.classList.add('dropdown-item', 'bg-green');
-    aplTag.setAttribute('aria-selected', 'false');
-    aplTag.setAttribute('role', 'option');
-    aplTag.innerHTML = uniqueAppliances[i];
-    aplTag.addEventListener('click', () => {
-        createTag(aplTag, 'bg-green')
-    })
-    document.getElementById('Appareils__taglist').append(aplTag);
-};
-for (let i = 0; i < ulLength(uniqueUstensils); i++) {
-    let ustTag = document.createElement('li');
-    ustTag.classList.add('dropdown-item', 'bg-red');
-    ustTag.setAttribute('aria-selected', 'false');
-    ustTag.setAttribute('role', 'option');
-    ustTag.innerHTML = uniqueUstensils[i];
-    ustTag.addEventListener('click', () => {
-        createTag(ustTag, 'bg-red')
-    })
-    document.getElementById('Ustensiles__taglist').append(ustTag);
-};
+//         if (posted == false) {
+//             createTag(ingTag, 'bg-primary')
+//             posted = true
+//         } else {
+//             console.log('alreaddy posted    ')
+//         }
+//     })
+//     document.getElementById('Ingrédient__taglist').append(ingTag);
+// };
+// for (let i = 0; i < ulLength(uniqueAppliances); i++) {
+//     let aplTag = document.createElement('li');
+//     aplTag.classList.add('dropdown-item', 'bg-green');
+//     aplTag.setAttribute('aria-selected', 'false');
+//     aplTag.setAttribute('role', 'option');
+//     aplTag.innerHTML = uniqueAppliances[i];
+//     aplTag.addEventListener('click', () => {
+//         createTag(aplTag, 'bg-green')
+//     })
+//     document.getElementById('Appareils__taglist').append(aplTag);
+// };
+// for (let i = 0; i < ulLength(uniqueUstensils); i++) {
+//     let ustTag = document.createElement('li');
+//     ustTag.classList.add('dropdown-item', 'bg-red');
+//     ustTag.setAttribute('aria-selected', 'false');
+//     ustTag.setAttribute('role', 'option');
+//     ustTag.innerHTML = uniqueUstensils[i];
+//     ustTag.addEventListener('click', () => {
+//         createTag(ustTag, 'bg-red')
+//     })
+//     document.getElementById('Ustensiles__taglist').append(ustTag);
+// };
