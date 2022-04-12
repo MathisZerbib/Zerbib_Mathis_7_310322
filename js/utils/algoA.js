@@ -47,6 +47,9 @@ async function cleanData() {
     recipeMatchArray = [];
 }
 
+async function cleanDataLi(el) {
+    el.remove()
+}
 
 const ustensMatch = (recipe, input, recipeMatchArray) => {
     let ustensMatch = recipe.ustensils.filter(ustensil => ustensil.includes(input.toLocaleLowerCase()))
@@ -136,20 +139,40 @@ function searchTagInput(e, ul, filterArrow, inputField) {
     console.log(searchTagList);
     var final_words = searchTagList[searchTagList.length - 1];
     console.log(final_words)
-    final_words.split(' ').forEach(el => {
-        console.log('Word:', el)
-    })
+
 
     if (searchTagList.length >= 3) {
-        console.log()
+        let newArrayIngredients = [];
+        let newArrayUstensils = [];
+        let newArrayAppareils = [];
         let parentInput = ul.closest('div').id
-        if (parentInput == 'sub-search__Ingrédient') {
-            console.log("Search trought ingredients")
-        } else if (parentInput == 'sub-search__Appareils') {
-            console.log("Search trought Appareils")
 
-        } else if (parentInput == 'sub-search__Ustensiles') {
-            console.log("Search trought Ustensiles")
+        switch (parentInput) {
+            case "sub-search__Ingrédient":
+                final_words.split(' ').forEach(el => {
+                    let searchTagIngredient = uniqueIngredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
+                    newArrayIngredients.push(searchTagIngredient)
+                })
+                console.log("New Array from ingredient:", newArrayIngredients)
+
+                break;
+            case "sub-search__Appareils":
+                final_words.split(' ').forEach(el => {
+                    let searchTagAppareils = uniqueAppliances.filter(appliance => appliance.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
+                    newArrayAppareils.push(searchTagAppareils)
+                })
+                console.log("New Array from appareils :", newArrayAppareils)
+                break;
+            case "sub-search__Ustensiles":
+                final_words.split(' ').forEach(el => {
+                    let searchTagUstensils = uniqueUstensils.filter(ustensil => ustensil.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
+                    newArrayUstensils.push(searchTagUstensils)
+                        // console.log("Search trought ingredients", searchTagIngredient)
+                })
+                console.log("New Array from ustensils:", newArrayUstensils)
+                break;
+            default:
+                break;
         }
         // tagIngredientMatch(recipe, inputField.innerText, searchTagList);
         // let tagsfiltrered = [];
@@ -304,7 +327,6 @@ function toggleList(ul, filterArrow, toggle) {
         ul.classList.add('d-flex')
         filterArrow.classList.remove('fa-angle-down')
         filterArrow.classList.add('fa-angle-up')
-        toggle = true;
     } else {
         ul.classList.remove('d-flex')
         filterArrow.classList.remove('fa-angle-up')
