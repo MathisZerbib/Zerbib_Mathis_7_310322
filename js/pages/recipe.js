@@ -1,9 +1,9 @@
-//Mettre le code JavaScript lié à la page recipe.html
+// Mettre le code JavaScript lié à la page recipe.html
 var obj;
 var recipes = [];
 const recipesSection = document.getElementById("recipes");
 
-// Get recipes from {$id}
+// Get recipes
 
 async function getRecipes() {
     await fetch('./assets/data/recipes.json')
