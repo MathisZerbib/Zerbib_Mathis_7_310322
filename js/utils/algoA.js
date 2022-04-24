@@ -93,15 +93,15 @@ const ingredientMatch = (recipe, input, recipeMatchArray) => {
     }
 }
 
-const tagIngredientMatchSearch = (recipe, input, tagArray) => {
-    let tagIngredientMatch = recipe.ingredients.filter(el =>
-        el.ingredient.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
-    if (tagIngredientMatch.length !== 0) {
-        // console.log(recipe, 'INGREDIENT MATCH')
-        // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
-        tagArray.push(tag)
-    }
-}
+// const tagIngredientMatchSearch = (recipe, input, tagArray) => {
+//     let tagIngredientMatch = recipe.ingredients.filter(el =>
+//         el.ingredient.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+//     if (tagIngredientMatch.length !== 0) {
+//         // console.log(recipe, 'INGREDIENT MATCH')
+//         // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
+//         tagArray.push(tag)
+//     }
+// }
 
 
 const descriptionMatch = (input, recipeMatchArray) => {
@@ -149,7 +149,7 @@ function searchTagInput(e, ul, filterArrow, inputField) {
     // console.log(final_words)
 
 
-    if (searchTagListFromInput.length >= 3) {
+    if (buffer.length >= 3) {
         let newArrayIngredients = [];
         let newArrayUstensils = [];
         let newArrayAppareils = [];
@@ -164,7 +164,7 @@ function searchTagInput(e, ul, filterArrow, inputField) {
                     })
                     // console.log("New Array from ingredient:", newArrayIngredients)
 
-                rebuidTag(newArrayIngredients, idDiv)
+                rebuidTag(inputField, newArrayIngredients, idDiv)
 
                 break;
             case "Appareils":
@@ -175,7 +175,7 @@ function searchTagInput(e, ul, filterArrow, inputField) {
 
                 })
 
-                rebuidTag(newArrayAppareils, idDiv)
+                rebuidTag(inputField, newArrayAppareils, idDiv)
 
                 // console.log("New Array from appareils :", newArrayAppareils)
                 break;
@@ -186,42 +186,82 @@ function searchTagInput(e, ul, filterArrow, inputField) {
                     // console.log("Search trought ingredients", searchTagIngredient)
                     cleanTagList(idDiv)
                 })
-                rebuidTag(newArrayUstensils, idDiv)
+                rebuidTag(inputField, newArrayUstensils, idDiv)
 
                 // console.log("New Array from ustensils:", newArrayUstensils)
                 break;
+
         }
-        // tagIngredientMatch(recipe, inputField.innerText, searchTagListFromInput);
-        // let tagsfiltrered = [];
-        // for (var i = 0; recipes.length < i; i++)
-        //     tagsfiltrered = recipes.filter(recipe => recipe.ingredients[i].toLocaleLowerCase().includes(final_words.toLocaleLowerCase()));
-        // console.log('tagsfiltrered by Ingredient', tagsfiltrered);
         toggleList(ul, filterArrow, true);
 
     } else {
         toggleList(ul, filterArrow, false)
 
     }
-    // const input = searchInput.value;
-    // let recipeMatchArray = [];
-
-    // if (input.length >= 3) {
-    //     recipes.forEach(recipe => {
-    //         recipeMatch(input, recipeMatchArray);
-    //         ingredientMatch(recipe, input, recipeMatchArray);
-    //         descriptionMatch(input, recipeMatchArray);
-
-    //     })
-    //     recipeMatchArray = [...new Set(recipeMatchArray)];
-    //     // console.log("Array ID:", recipeMatchArray)
-
-    //     cleanDOM();
-    //     displayData(recipeMatchArray);
-    // } else {
-    //     cleanDOM();
-    //     cleanData();
-    // }
 };
+
+const rebuidTag = (inputField, tags, id) => {
+    for (let i = 0; i < ulLength(tags); i++) {
+        let ingTag = document.createElement('li');
+        let posted = false;
+        ingTag.setAttribute('aria-selected', 'false');
+        ingTag.setAttribute('role', 'option');
+        ingTag.innerHTML = tags[i];
+
+        switch (id) {
+            case 'Ingrédient':
+                ingTag.classList.add('dropdown-item', 'bg-primary');
+                ingTag.addEventListener('click', () => {
+
+
+                    if (posted == false) {
+                        createTag(ingTag, 'bg-primary')
+                        posted = true
+                        inputField.value = ''
+
+                    } else {
+                        // console.log('alreaddy posted    ')
+                    }
+                })
+                break;
+            case 'Appareils':
+                ingTag.classList.add('dropdown-item', 'bg-green');
+                ingTag.addEventListener('click', () => {
+
+                    if (posted == false) {
+                        createTag(ingTag, 'bg-green')
+                        posted = true
+                        inputField.value = ''
+
+                    } else {
+                        // console.log('alreaddy posted    ')
+                    }
+                })
+
+
+                break;
+            case 'Ustensiles':
+                ingTag.classList.add('dropdown-item', 'bg-red');
+                ingTag.addEventListener('click', () => {
+
+                    if (posted == false) {
+                        createTag(ingTag, 'bg-red')
+                        posted = true
+                        inputField.value = ''
+
+                    } else {
+                        // console.log('alreaddy posted    ')
+                    }
+                })
+
+                break;
+
+        }
+
+
+        document.getElementById(id + '__taglist').append(ingTag);
+    };
+}
 
 
 /* Event Key principal Search Algo A */
@@ -411,157 +451,42 @@ const tagArraySearch = () => {
     cleanDOM();
     cleanData();
     recipes.forEach(recipe => {
-        tagArrayToSearch.forEach(tag => {
 
-            tag = tag.toString()
-            console.log('COUCOU  1', tag)
-            ingredientMatch(recipe, tag, recipeMatchArray)
-            ustensMatch(recipe, tag, recipeMatchArray)
-            applianceMatch(recipe, tag, recipeMatchArray)
+        if (tagArrayToSearch.length >= 2) {
+            affineSearch(tagArrayToSearch)
+                // tagArrayToSearch.forEach(tag => {
+                //     tag = tag.toString()
+                //     console.log('COUCOU  1', tag)
+                // });
+        } else {
+            tagArrayToSearch.forEach(tag => {
 
-
-            // if (ustensMatch(recipe, tag, recipeMatchArray) !== undefined) {
-            //     ustensMatch(recipe, tag, recipeMatchArray)
-            //     console.log('ustensMatch ', tag)
-            // }
-
-            // } else if (applianceMatch(recipe, tag, recipeMatchArray) !== undefined) {
-            //     applianceMatch(recipe, tag, recipeMatchArray)
-            //     console.log('applianceMatch ', tag)
-
-
-            // } else if (ingredientMatch(recipe, tag, recipeMatchArray) !== undefined) {
-            //     ingredientMatch(recipe, tag, recipeMatchArray)
-            //     console.log('ingredientMatch ', tag)
-
-            // } else {
-            //     recipeMatchArray = []
-            // }
-            // } else {
-            //     applianceMatch(recipe, tag, recipeMatchArray)
-            //     ingredientMatch(recipe, tag, recipeMatchArray)
-            //     ustensMatch(recipe, tag, recipeMatchArray)
-            // }
-        })
+                    tag = tag.toString()
+                    console.log('COUCOU  2', tag)
+                    ingredientMatch(recipe, tag, recipeMatchArray)
+                    ustensMatch(recipe, tag, recipeMatchArray)
+                    applianceMatch(recipe, tag, recipeMatchArray)
+                })
+                // console.log("Array ID:", recipeMatchArray)
+        }
     })
-
-    // console.log("Array ID:", recipeMatchArray)
     recipeMatchArray = [...new Set(recipeMatchArray)];
     // console.log("Array ID:", recipeMatchArray)
 
     // cleanDOM();
     // cleanData();
     displayData(recipeMatchArray);
+}
+
+const affineSearch = (tagArrayToSearch) => {
+    console.log('tagArrayToSearch:', tagArrayToSearch)
 
 
 }
 
-
-const affineSearch = (ustensMatch, applianceMatch, ingredientMatch, tagIngredientMatch) => {
-
-
-}
-
-const rebuidTag = (tags, id) => {
-    for (let i = 0; i < ulLength(tags); i++) {
-        let ingTag = document.createElement('li');
-        let posted = false;
-        ingTag.setAttribute('aria-selected', 'false');
-        ingTag.setAttribute('role', 'option');
-        ingTag.innerHTML = tags[i];
-
-
-        switch (id) {
-            case 'Ingrédient':
-                ingTag.classList.add('dropdown-item', 'bg-primary');
-                ingTag.addEventListener('click', () => {
-
-                    if (posted == false) {
-                        createTag(ingTag, 'bg-primary')
-                        posted = true
-                    } else {
-                        // console.log('alreaddy posted    ')
-                    }
-                })
-                break;
-            case 'Appareils':
-                ingTag.classList.add('dropdown-item', 'bg-green');
-                ingTag.addEventListener('click', () => {
-
-                    if (posted == false) {
-                        createTag(ingTag, 'bg-green')
-                        posted = true
-                    } else {
-                        // console.log('alreaddy posted    ')
-                    }
-                })
-
-
-                break;
-            case 'Ustensiles':
-                ingTag.classList.add('dropdown-item', 'bg-red');
-                ingTag.addEventListener('click', () => {
-
-                    if (posted == false) {
-                        createTag(ingTag, 'bg-red')
-                        posted = true
-                    } else {
-                        // console.log('alreaddy posted    ')
-                    }
-                })
-
-                break;
-
-        }
-
-
-        document.getElementById(id + '__taglist').append(ingTag);
-    };
-}
 
 // Add tags in susbsearch (max 30 items)
 // Define a maximum of 30 items
 const ulLength = (array) => {
-        return (array.length > 30 ? 30 : array.length);
-    }
-    // Create li for each tag and add it in there respective ul
-    // for (let i = 0; i < ulLength(uniqueIngredients); i++) {
-    //     let ingTag = document.createElement('li');
-    //     let posted = false;
-    //     ingTag.classList.add('dropdown-item', 'bg-primary');
-    //     ingTag.setAttribute('aria-selected', 'false');
-    //     ingTag.setAttribute('role', 'option');
-    //     ingTag.innerHTML = uniqueIngredients[i];
-    //     ingTag.addEventListener('click', () => {
-
-//         if (posted == false) {
-//             createTag(ingTag, 'bg-primary')
-//             posted = true
-//         } else {
-//             console.log('alreaddy posted    ')
-//         }
-//     })
-//     document.getElementById('Ingrédient__taglist').append(ingTag);
-// };
-// for (let i = 0; i < ulLength(uniqueAppliances); i++) {
-//     let aplTag = document.createElement('li');
-//     aplTag.classList.add('dropdown-item', 'bg-green');
-//     aplTag.setAttribute('aria-selected', 'false');
-//     aplTag.setAttribute('role', 'option');
-//     aplTag.innerHTML = uniqueAppliances[i];
-//     aplTag.addEventListener('click', () => {
-//         createTag(aplTag, 'bg-green')
-//     })
-//     document.getElementById('Appareils__taglist').append(aplTag);
-// };
-// for (let i = 0; i < ulLength(uniqueUstensils); i++) {
-//     let ustTag = document.createElement('li');
-//     ustTag.classList.add('dropdown-item', 'bg-red');
-//     ustTag.setAttribute('aria-selected', 'false');
-//     ustTag.setAttribute('role', 'option');
-//     ustTag.innerHTML = uniqueUstensils[i];
-//     ustTag.addEventListener('click', () => {
-//         createTag(ustTag, 'bg-red')
-//     })
-//     document.getElementById('Ustensiles__taglist').append(ustTag);
-// };
+    return (array.length > 30 ? 30 : array.length);
+}
