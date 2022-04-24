@@ -60,6 +60,8 @@ const ustensMatch = (recipe, input, recipeMatchArray) => {
 
     if (ustensMatch.length !== 0) {
         recipeMatchArray.push(recipe)
+        console.log(recipe, 'Ustens MATCH')
+
     }
 }
 
@@ -67,6 +69,8 @@ const ustensMatch = (recipe, input, recipeMatchArray) => {
 const applianceMatch = (recipe, input, recipeMatchArray) => {
     if (recipe.appliance.toLocaleLowerCase().includes(input.toLocaleLowerCase())) {
         recipeMatchArray.push(recipe)
+        console.log(recipe, 'Appliance MATCH')
+
     }
 }
 
@@ -404,41 +408,49 @@ const addTagToTagArray = (tag) => {
 
 const tagArraySearch = () => {
     console.log(tagArrayToSearch)
+    cleanDOM();
+    cleanData();
     recipes.forEach(recipe => {
-            tagArrayToSearch.forEach(tag => {
-                tag = tag.toString()
-                console.log('COUCOU  1', tag)
-                ingredientMatch(recipe, tag, recipeMatchArray)
+        tagArrayToSearch.forEach(tag => {
 
-                // if (ustensMatch(recipe, tag, recipeMatchArray) !== undefined) {
-                //     ustensMatch(recipe, tag, recipeMatchArray)
-                //     console.log('ustensMatch ', tag)
-
-                // } else if (applianceMatch(recipe, tag, recipeMatchArray) !== undefined) {
-                //     applianceMatch(recipe, tag, recipeMatchArray)
-                //     console.log('applianceMatch ', tag)
+            tag = tag.toString()
+            console.log('COUCOU  1', tag)
+            ingredientMatch(recipe, tag, recipeMatchArray)
+            ustensMatch(recipe, tag, recipeMatchArray)
+            applianceMatch(recipe, tag, recipeMatchArray)
 
 
-                // } else if (ingredientMatch(recipe, tag, recipeMatchArray) !== undefined) {
-                //     ingredientMatch(recipe, tag, recipeMatchArray)
-                //     console.log('ingredientMatch ', tag)
+            // if (ustensMatch(recipe, tag, recipeMatchArray) !== undefined) {
+            //     ustensMatch(recipe, tag, recipeMatchArray)
+            //     console.log('ustensMatch ', tag)
+            // }
 
-                // } else {
-                //     recipeMatchArray = []
-                // }
-                // } else {
-                //     applianceMatch(recipe, tag, recipeMatchArray)
-                //     ingredientMatch(recipe, tag, recipeMatchArray)
-                //     ustensMatch(recipe, tag, recipeMatchArray)
-                // }
-            })
+            // } else if (applianceMatch(recipe, tag, recipeMatchArray) !== undefined) {
+            //     applianceMatch(recipe, tag, recipeMatchArray)
+            //     console.log('applianceMatch ', tag)
+
+
+            // } else if (ingredientMatch(recipe, tag, recipeMatchArray) !== undefined) {
+            //     ingredientMatch(recipe, tag, recipeMatchArray)
+            //     console.log('ingredientMatch ', tag)
+
+            // } else {
+            //     recipeMatchArray = []
+            // }
+            // } else {
+            //     applianceMatch(recipe, tag, recipeMatchArray)
+            //     ingredientMatch(recipe, tag, recipeMatchArray)
+            //     ustensMatch(recipe, tag, recipeMatchArray)
+            // }
         })
-        // console.log("Array ID:", recipeMatchArray)
+    })
+
+    // console.log("Array ID:", recipeMatchArray)
     recipeMatchArray = [...new Set(recipeMatchArray)];
     // console.log("Array ID:", recipeMatchArray)
 
-    cleanDOM();
-    cleanData();
+    // cleanDOM();
+    // cleanData();
     displayData(recipeMatchArray);
 
 
