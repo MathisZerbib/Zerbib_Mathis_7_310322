@@ -1,6 +1,7 @@
 import { recipes } from './recipes.js'
 
 const searchInput = document.getElementById("main-search");
+// searchInput.focus()
 //ARRAYS
 // Defines Array
 let ingredientsArray = [];
@@ -137,6 +138,7 @@ function searchPrincipalInput() {
 
 
 function searchTagInput(e, ul, filterArrow, inputField) {
+
     if (e.keyCode == 8 && searchTagListFromInput !== []) {
         searchTagListFromInput.pop()
     }
@@ -192,7 +194,14 @@ function searchTagInput(e, ul, filterArrow, inputField) {
                 break;
 
         }
-        toggleList(ul, filterArrow, true);
+        console.log(buffer)
+        if (buffer == "Ingrédient" || buffer == 'Appareils' || buffer == 'Ustensiles') {
+            toggleList(ul, filterArrow, false);
+
+        } else {
+            toggleList(ul, filterArrow, true);
+
+        }
 
     } else {
         toggleList(ul, filterArrow, false)
