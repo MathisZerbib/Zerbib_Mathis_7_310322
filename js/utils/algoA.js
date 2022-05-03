@@ -28,28 +28,39 @@ const uniqueUstensils = [...new Set(ustensilsArray)];
 
 // Hydrate DOM
 async function displayData(recipes) {
-
+    if (recipes.length !== 0) {
+        textWhenEmpty.style.opacity = '0';
+    }
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
         const getRecipeCardDOM = recipeModel.getRecipeCardDOM();
 
         recipesSection.appendChild(getRecipeCardDOM);
     });
-
-
 };
 
-async function cleanDOM() {
+function defaultView() {
+    displayData(recipes)
+}
+
+function cleanDOM() {
+
     const recipesSection = document.querySelector("#recipes");
     while (recipesSection.lastChild) {
         recipesSection.removeChild(recipesSection.lastChild);
+        console.log('RECIPESSS SECTION ', recipesSection)
     }
-    textWhenEmpty.style.opacity = "1";
+
+    if (recipesSection.lastChild == null) {
+        textWhenEmpty.style.opacity = "1";
+
+    }
 
 }
 
 function cleanData() {
     recipeMatchArray = [];
+
 }
 
 function cleanTagList(id) {
@@ -136,6 +147,8 @@ function searchPrincipalInput() {
     } else {
         cleanDOM();
         cleanData();
+        defaultView();
+
     }
 };
 
@@ -176,7 +189,7 @@ function searchTagInput(e, ul, filterArrow, inputField) {
                     })
                     // console.log("New Array from ingredient:", newArrayIngredients)
 
-                rebuildTag(inputField, newArrayIngredients, idDiv)
+                rebuildTagArrayDOM(inputField, newArrayIngredients, idDiv)
 
                 break;
             case "Appareils":
@@ -192,7 +205,7 @@ function searchTagInput(e, ul, filterArrow, inputField) {
 
                 })
 
-                rebuildTag(inputField, newArrayAppareils, idDiv)
+                rebuildTagArrayDOM(inputField, newArrayAppareils, idDiv)
 
                 // console.log("New Array from appareils :", newArrayAppareils)
                 break;
@@ -207,7 +220,7 @@ function searchTagInput(e, ul, filterArrow, inputField) {
                     }))]
 
                 })
-                rebuildTag(inputField, newArrayUstensils, idDiv)
+                rebuildTagArrayDOM(inputField, newArrayUstensils, idDiv)
 
                 // console.log("New Array from ustensils:", newArrayUstensils)
                 break;
@@ -228,7 +241,7 @@ function searchTagInput(e, ul, filterArrow, inputField) {
     }
 };
 
-const rebuildTag = (inputField, tags, id) => {
+const rebuildTagArrayDOM = (inputField, tags, id) => {
     for (let i = 0; i < ulLength(tags); i++) {
         let ingTag = document.createElement('li');
         let posted = false;
@@ -475,18 +488,18 @@ const addTagToTagArray = (tag) => {
 }
 
 const tagArraySearch = () => {
-    console.log(tagArrayToSearch)
+    console.log("Tag to search:", tagArrayToSearch)
     cleanDOM();
     cleanData();
     recipes.forEach(recipe => {
 
         if (tagArrayToSearch.length >= 2) {
-            affineSearch(tagArrayToSearch)
+            multiTagSearch(tagArrayToSearch)
         } else {
             tagArrayToSearch.forEach(tag => {
 
                     tag = tag.toString()
-                    console.log('COUCOU  2', tag)
+                    console.log('loop search tag: ', tag)
                     ingredientMatch(recipe, tag, recipeMatchArray)
                     ustensMatch(recipe, tag, recipeMatchArray)
                     applianceMatch(recipe, tag, recipeMatchArray)
@@ -502,13 +515,19 @@ const tagArraySearch = () => {
     displayData(recipeMatchArray);
 }
 
-const affineSearch = (tagArrayToSearch) => {
-    let newArrayTwoTag = [];
+const multiTagSearch = (tagArrayToSearch) => {
+    let newRecipeArray = [];
+    tagArrayToSearch.forEach(element => {
+        console.log(searchTagAppareils(element))
+        console.log(searchTagIngredient(element))
+        console.log(searchTagUstensils(element))
+
+    });
     newArrayTwoTag = tagArrayToSearch;
     newArrayTwoTag.forEach(tag => {
 
         tag = tag.toString()
-        console.log('AffineSearch  1', tag)
+        console.log('multiTagSearch', tag)
     });
 
     console.log('tagArrayToSearch:', tagArrayToSearch)

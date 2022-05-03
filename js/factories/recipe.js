@@ -53,8 +53,8 @@ function recipeFactory(data) {
 
         img.className = "placeholder";
 
-        img.setAttribute("src", './assets/img/placeholder2.png');
-        img.src = './assets/img/placeholder2.png';
+        img.setAttribute("src", './assets/img/placeholder.png');
+        img.src = './assets/img/placeholder.png';
 
         titleRecipe.textContent = name;
         textTime.textContent = time.toString()
