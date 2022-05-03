@@ -157,16 +157,23 @@ function searchTagInput(e, ul, filterArrow, inputField) {
         let newArrayAppareils = [];
         let parentInput = ul.closest('div').id
         let idDiv = parentInput.replace('sub-search__', '');
+
+
+
         switch (idDiv) {
             case "Ingrédient":
                 final_words.split(' ').forEach(el => {
                         let searchTagIngredient = uniqueIngredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
                         newArrayIngredients = [...new Set(searchTagIngredient)];
                         cleanTagList(idDiv)
+                        newArrayIngredients = [...new Set(newArrayIngredients.map(element => {
+                            return element.toLowerCase();
+                        }))]
+
                     })
                     // console.log("New Array from ingredient:", newArrayIngredients)
 
-                rebuidTag(inputField, newArrayIngredients, idDiv)
+                rebuildTag(inputField, newArrayIngredients, idDiv)
 
                 break;
             case "Appareils":
@@ -175,9 +182,14 @@ function searchTagInput(e, ul, filterArrow, inputField) {
                     newArrayAppareils = [...new Set(searchTagAppareils)];
                     cleanTagList(idDiv)
 
+                    newArrayAppareils = [...new Set(newArrayAppareils.map(element => {
+                        return element.toLowerCase();
+                    }))]
+
+
                 })
 
-                rebuidTag(inputField, newArrayAppareils, idDiv)
+                rebuildTag(inputField, newArrayAppareils, idDiv)
 
                 // console.log("New Array from appareils :", newArrayAppareils)
                 break;
@@ -187,14 +199,20 @@ function searchTagInput(e, ul, filterArrow, inputField) {
                     newArrayUstensils = [...new Set(searchTagUstensils)];
                     // console.log("Search trought ingredients", searchTagIngredient)
                     cleanTagList(idDiv)
+
+
+                    newArrayUstensils = [...new Set(newArrayUstensils.map(element => {
+                        return element.toLowerCase();
+                    }))]
+
                 })
-                rebuidTag(inputField, newArrayUstensils, idDiv)
+                rebuildTag(inputField, newArrayUstensils, idDiv)
 
                 // console.log("New Array from ustensils:", newArrayUstensils)
                 break;
 
         }
-        console.log(buffer)
+        // console.log(buffer)
         if (buffer == "Ingrédient" || buffer == 'Appareils' || buffer == 'Ustensiles') {
             toggleList(ul, filterArrow, false);
 
@@ -209,7 +227,7 @@ function searchTagInput(e, ul, filterArrow, inputField) {
     }
 };
 
-const rebuidTag = (inputField, tags, id) => {
+const rebuildTag = (inputField, tags, id) => {
     for (let i = 0; i < ulLength(tags); i++) {
         let ingTag = document.createElement('li');
         let posted = false;
@@ -463,10 +481,6 @@ const tagArraySearch = () => {
 
         if (tagArrayToSearch.length >= 2) {
             affineSearch(tagArrayToSearch)
-                // tagArrayToSearch.forEach(tag => {
-                //     tag = tag.toString()
-                //     console.log('COUCOU  1', tag)
-                // });
         } else {
             tagArrayToSearch.forEach(tag => {
 
@@ -488,6 +502,14 @@ const tagArraySearch = () => {
 }
 
 const affineSearch = (tagArrayToSearch) => {
+    let newArrayTwoTag = [];
+    newArrayTwoTag = tagArrayToSearch;
+    newArrayTwoTag.forEach(tag => {
+
+        tag = tag.toString()
+        console.log('AffineSearch  1', tag)
+    });
+
     console.log('tagArrayToSearch:', tagArrayToSearch)
 
 
