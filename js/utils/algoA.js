@@ -10,6 +10,7 @@ let ustensilsArray = [];
 let recipeMatchArray = [];
 let searchTagListFromInput = [];
 let tagArea = document.querySelector('#tags');
+let textWhenEmpty = document.querySelector('.title-default-search');
 
 recipes.forEach(recipe => {
     recipe.ingredients.forEach((currentIngredient) => {
@@ -43,6 +44,8 @@ async function cleanDOM() {
     while (recipesSection.lastChild) {
         recipesSection.removeChild(recipesSection.lastChild);
     }
+    textWhenEmpty.style.opacity = "1";
+
 }
 
 function cleanData() {
@@ -199,8 +202,6 @@ function searchTagInput(e, ul, filterArrow, inputField) {
                     newArrayUstensils = [...new Set(searchTagUstensils)];
                     // console.log("Search trought ingredients", searchTagIngredient)
                     cleanTagList(idDiv)
-
-
                     newArrayUstensils = [...new Set(newArrayUstensils.map(element => {
                         return element.toLowerCase();
                     }))]

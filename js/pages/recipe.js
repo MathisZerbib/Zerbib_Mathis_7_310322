@@ -83,6 +83,7 @@ async function getRecipes() {
 
 // Hydrate DOM
 async function displayData(recipes) {
+    let textWhenEmpty = document.querySelector('.title-default-search');
 
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
@@ -91,6 +92,7 @@ async function displayData(recipes) {
         recipesSection.appendChild(getRecipeCardDOM);
     });
 
+    textWhenEmpty.style.opacity = "0";
 
 };
 
