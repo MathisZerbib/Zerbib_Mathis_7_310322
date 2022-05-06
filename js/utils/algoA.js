@@ -9,7 +9,9 @@ let ustensilsArray = [];
 let recipeMatchArray = [];
 let searchTagListFromInput = [];
 let tagArea = document.querySelector('#tags');
-let textWhenEmpty = document.querySelector('.title-default-search');
+let textDefault = document.querySelector('.title-default-search');
+let textEmpty = document.querySelector('.title-empty');
+textEmpty.style.opacity = '0'
 
 
 // Loop all recipes
@@ -23,15 +25,25 @@ recipes.forEach(recipe => {
     });
 });
 
-// Filter duplicate tags
-let uniqueIngredients = [...new Set(ingredientsArray)];
-let uniqueAppliances = [...new Set(appliancesArray)];
-let uniqueUstensils = [...new Set(ustensilsArray)];
+
+
+
+// Filter duplicate tags 
+let uniqueIngredients = [...new Set(ingredientsArray.map(element => {
+    return element.toLowerCase();
+}))];
+let uniqueAppliances = [...new Set(appliancesArray.map(element => {
+    return element.toLowerCase();
+}))];
+let uniqueUstensils = [...new Set(ustensilsArray.map(element => {
+    return element.toLowerCase();
+}))];
 
 // Hydrate DOM
 async function displayData(recipes) {
     if (recipes.length !== 0) {
-        textWhenEmpty.style.opacity = '0';
+        textDefault.style.opacity = '0';
+        textEmpty.style.opacity = '0';
     }
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
@@ -50,14 +62,16 @@ function defaultView() {
 function cleanDOM() {
 
     const recipesSection = document.querySelector("#recipes");
+    if (recipesSection.lastChild == null) {
+        textDefault.style.opacity = '0';
+        textEmpty.style.opacity = '1'
+
+    }
     while (recipesSection.lastChild) {
         recipesSection.removeChild(recipesSection.lastChild);
     }
 
-    if (recipesSection.lastChild == null) {
-        textWhenEmpty.style.opacity = "1";
 
-    }
 
 }
 
@@ -153,10 +167,10 @@ function searchPrincipalInput() {
 
 
 function tagListSearch(e, ul, filterArrow, inputField) {
-    if (e.keyCode == 8 && searchTagListFromInput !== []) {
+    if (e.key == 8 && searchTagListFromInput !== []) {
         searchTagListFromInput.pop()
     }
-    if (e.keyCode >= 65 && e.keyCode <= 90)
+    if (e.key >= 65 && e.key <= 90)
         var buffer;
     buffer = inputField.value
     searchTagListFromInput.push(buffer)
@@ -230,7 +244,7 @@ function tagListSearch(e, ul, filterArrow, inputField) {
             // toggleList(ul, filterArrow, false);
 
         } else {
-            toggleList(ul, filterArrow, true);
+            // toggleList(ul, filterArrow, true);
 
         }
 
@@ -286,8 +300,7 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
                 liTag.classList.add('dropdown-item', 'bg-primary');
                 liTag.addEventListener('click', () => {
                     cleanTagListDOM(idingredient)
-
-                    // TODO REMOVE TAG FROM ARRAY
+                        // TODO REMOVE TAG FROM ARRAY
                     uniqueIngredients.splice(uniqueIngredients.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
                     uniqueIngredients = [...new Set(uniqueIngredients.map(element => {
@@ -300,7 +313,7 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
                     uniqueIngredients = uniqueIngredients.filter(e => e !== tags[i])
                     console.log('Tags ', tags)
                     createTag(liTag, 'bg-primary')
-                    inputField.innerText = ''
+                    inputField.value = ''
                 })
                 break;
                 // TODO REMOVE TAG FROM ARRAY
@@ -309,10 +322,18 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
                 liTag.classList.add('dropdown-item', 'bg-green');
                 liTag.addEventListener('click', () => {
                     cleanTagListDOM(idAppareil)
+                    uniqueAppliances.splice(uniqueAppliances.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
+                    uniqueAppliances = [...new Set(uniqueAppliances.map(element => {
+                        return element.toLowerCase();
+                    }))]
+
+                    console.log('UNIQUE INGREDIENT', uniqueAppliances)
                     liTag.setAttribute('aria-selected', 'true');
+
+                    uniqueAppliances = uniqueAppliances.filter(e => e !== tags[i])
+                    console.log('Tags ', tags)
                     createTag(liTag, 'bg-green')
-                    posted = true
                     inputField.value = ''
 
                 })
@@ -325,7 +346,17 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
                 liTag.classList.add('dropdown-item', 'bg-red');
                 liTag.addEventListener('click', () => {
                     cleanTagListDOM(idUstensil)
+                    uniqueUstensils.splice(uniqueUstensils.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
+
+                    uniqueUstensils = [...new Set(uniqueUstensils.map(element => {
+                        return element.toLowerCase();
+                    }))]
+
+                    console.log('UNIQUE INGREDIENT', uniqueUstensils)
                     liTag.setAttribute('aria-selected', 'true');
+
+                    uniqueUstensils = uniqueUstensils.filter(e => e !== tags[i])
+                    console.log('Tags ', tags)
                     createTag(liTag, 'bg-red')
                     inputField.value = ''
                 })
@@ -417,52 +448,24 @@ const createFiltersDOM = (filtersList) => {
         inputField.addEventListener('keyup', (e) => tagListSearch(e, ul, filterArrow, inputField));
 
 
-        // StackoverFlow
-        // function some_func(otherFunc, ev) {
-        //     // magic happens
-        // }
-        // someObj.addEventListener("click", some_func.bind(null, some_other_func), false);
-
 
         currentSubSearchButton.addEventListener('click', () => {
 
             let filtersboxIngredient = document.querySelector('#sub-search__Ingrédient');
-
             let ulIngredient = filtersboxIngredient.querySelector('.sub-search__taglist')
-
-
             let parentInputIngredient = ulIngredient.closest('div').id
             let idingredient = parentInputIngredient.replace('sub-search__', '');
-
-            rebuildTagArrayDOM(inputField, uniqueIngredients, idingredient);
-
-
             let filtersboxUstensil = document.querySelector('#sub-search__Ustensiles');
-
             let ulUstensil = filtersboxUstensil.querySelector('.sub-search__taglist')
-
-
             let parentInputUstensil = ulUstensil.closest('div').id
             let idUstensil = parentInputUstensil.replace('sub-search__', '');
-
-
-
-
-            rebuildTagArrayDOM(inputField, uniqueUstensils, idUstensil);
-
-
-
             let filtersboxAppliance = document.querySelector('#sub-search__Appareils');
-
             let ulAppliance = filtersboxAppliance.querySelector('.sub-search__taglist')
-
-
             let parentInputAppliance = ulAppliance.closest('div').id
             let idAppareil = parentInputAppliance.replace('sub-search__', '');
 
-
-
-
+            rebuildTagArrayDOM(inputField, uniqueIngredients, idingredient);
+            rebuildTagArrayDOM(inputField, uniqueUstensils, idUstensil);
             rebuildTagArrayDOM(inputField, uniqueAppliances, idAppareil);
 
             toggleList(ul, filterArrow, true);
@@ -528,7 +531,11 @@ window.addEventListener('click', function(event) {
             const inputField = filtersbox.querySelector('.sub-search__button input');
             let ul = filtersbox.querySelector('.sub-search__taglist')
             ul.classList.remove('d-flex')
+            let filterArrow = filtersbox.querySelector('.fa-angle-up')
             removeOpen(element, filtersbox, inputField, currentSubSearchButton);
+
+            if (filterArrow)
+                toggleList(ul, filterArrow, false)
         });
     };
 });
@@ -558,6 +565,7 @@ const createTag = (el, color) => {
     // Close, remove tag from DOM
 
 const closeTag = (tag) => {
+    // **TODO add removed tag to respective Tag Array
     tag.remove()
     console.log(tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText));
     tagArraySearch()
@@ -584,7 +592,7 @@ const tagArraySearch = () => {
     recipes.forEach(recipe => {
         uniqueIngredients
         if (tagArrayToSearch.length >= 2) {
-            multiTagSearch(recipesMatchArray, tagArrayToSearch)
+            multiTagSearch(tagArrayToSearch)
         } else {
             tagArrayToSearch.forEach(tag => {
 
@@ -606,7 +614,7 @@ const tagArraySearch = () => {
     displayData(recipeMatchArray);
 }
 
-const multiTagSearch = (recipeMatchArray, tagArrayToSearch) => {
+const multiTagSearch = (tagArrayToSearch) => {
     let newRecipeArray = [];
     tagArrayToSearch.forEach(element => {
         try {
