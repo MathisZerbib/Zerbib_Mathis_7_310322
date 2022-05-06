@@ -163,17 +163,15 @@ function tagListSearch(e, ul, filterArrow, inputField) {
         // console.log(searchTagListFromInput);
     var final_words = searchTagListFromInput[searchTagListFromInput.length - 1];
     // console.log(final_words)
+    let newArrayIngredients = [];
+    let newArrayUstensils = [];
+    let newArrayAppareils = [];
+    let parentInput = ul.closest('div').id
+    let idDiv = parentInput.replace('sub-search__', '');
+
 
 
     if (buffer.length >= 3) {
-        let newArrayIngredients = [];
-        let newArrayUstensils = [];
-        let newArrayAppareils = [];
-        let parentInput = ul.closest('div').id
-        let idDiv = parentInput.replace('sub-search__', '');
-
-
-
         switch (idDiv) {
             case "Ingrédient":
                 final_words.split(' ').forEach(el => {
@@ -229,7 +227,7 @@ function tagListSearch(e, ul, filterArrow, inputField) {
         }
         // console.log(buffer)
         if (buffer == "Ingrédient" || buffer == 'Appareils' || buffer == 'Ustensiles' && searchTagListFromInput == []) {
-            toggleList(ul, filterArrow, false);
+            // toggleList(ul, filterArrow, false);
 
         } else {
             toggleList(ul, filterArrow, true);
@@ -237,45 +235,48 @@ function tagListSearch(e, ul, filterArrow, inputField) {
         }
 
     } else {
-        toggleList(ul, filterArrow, false)
+        // toggleList(ul, filterArrow, false)
 
     }
 }
 
 const rebuildTagArrayDOM = (inputField, tags, id) => {
     for (let i = 0; i < ulLength(tags); i++) {
-        let ingTag = document.createElement('li');
-        ingTag.setAttribute('aria-selected', 'false');
-        ingTag.setAttribute('role', 'option');
-        ingTag.innerHTML = tags[i];
+        let liTag = document.createElement('li');
+        let cleanTagName = ''
+        liTag.setAttribute('aria-selected', 'false');
+        liTag.setAttribute('role', 'option');
+        liTag.innerHTML = tags[i];
+        cleanTagName = tags[i].replace(/\s/g, '_')
+        liTag.id = cleanTagName
+
+
         switch (id) {
             case 'Ingrédient':
-                ingTag.classList.add('dropdown-item', 'bg-primary');
-                ingTag.addEventListener('click', () => {
+                liTag.classList.add('dropdown-item', 'bg-primary');
+                liTag.addEventListener('click', () => {
 
                     // TODO REMOVE TAG FROM ARRAY
-                    uniqueIngredients.splice(uniqueIngredients.findIndex(e => e.toLocaleLowerCase().includes(ingTag.innerText)), 1);
+                    uniqueIngredients.splice(uniqueIngredients.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
                     uniqueIngredients = [...new Set(uniqueIngredients.map(element => {
                         return element.toLowerCase();
                     }))]
 
                     console.log('UNIQUE INGREDIENT', uniqueIngredients)
-                    ingTag.setAttribute('aria-selected', 'true');
+                    liTag.setAttribute('aria-selected', 'true');
 
-                    tags = tags.filter(e => e !== tagArrayToSearch[i])
-                    console.log('Tag To rm ', tags)
-                    createTag(ingTag, 'bg-primary')
-                    inputField.value = ''
-
-
+                    uniqueIngredients = uniqueIngredients.filter(e => e !== tags[i])
+                    console.log('Tags ', tags)
+                    createTag(liTag, 'bg-primary')
+                    inputField.innerText = ''
                 })
                 break;
             case 'Appareils':
-                ingTag.classList.add('dropdown-item', 'bg-green');
-                ingTag.addEventListener('click', () => {
-                    ingTag.setAttribute('aria-selected', 'true');
-                    createTag(ingTag, 'bg-green')
+                liTag.classList.add('dropdown-item', 'bg-green');
+                liTag.addEventListener('click', () => {
+                    liTag.setAttribute('aria-selected', 'true');
+                    createTag(liTag, 'bg-green')
                     posted = true
                     inputField.value = ''
 
@@ -284,10 +285,10 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
 
                 break;
             case 'Ustensiles':
-                ingTag.classList.add('dropdown-item', 'bg-red');
-                ingTag.addEventListener('click', () => {
-                    ingTag.setAttribute('aria-selected', 'true');
-                    createTag(ingTag, 'bg-red')
+                liTag.classList.add('dropdown-item', 'bg-red');
+                liTag.addEventListener('click', () => {
+                    liTag.setAttribute('aria-selected', 'true');
+                    createTag(liTag, 'bg-red')
                     inputField.value = ''
                 })
 
@@ -296,7 +297,7 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
         }
 
 
-        document.getElementById(id + '__taglist').append(ingTag);
+        document.getElementById(id + '__taglist').append(liTag);
     };
 }
 
@@ -315,13 +316,13 @@ let subsearchNames = ['Ingrédient', 'Appareils', 'Ustensiles'];
 
 
 // Remove open class and reset state
-const removeOpen = (el, filtersbox, inputField, currentButton) => {
+const removeOpen = (el, filtersbox, inputField, currentSubSearchButton) => {
     if (inputField.value.length >= 3) {
-        currentButton.classList.remove('open');
+        currentSubSearchButton.classList.remove('open');
         filtersbox.classList.remove('col-lg-5');
         filtersbox.classList.add('col-lg-3');
     } else {
-        currentButton.classList.remove('open');
+        currentSubSearchButton.classList.remove('open');
         inputField.removeAttribute('type');
         inputField.setAttribute('type', 'button');
         inputField.setAttribute('value', el);
@@ -371,34 +372,81 @@ const createFiltersDOM = (filtersList) => {
 
         document.getElementById('sub-searchs').append(filtersbox)
             // Show tag list in sub searchs and transform the button into search input field
-        const currentButton = filtersbox.querySelector('.sub-search__button');
+        const currentSubSearchButton = filtersbox.querySelector('.sub-search__button');
         let inputField = filtersbox.querySelector('.sub-search__button input');
         let ul = filtersbox.querySelector('.sub-search__taglist')
 
         inputField.addEventListener('keyup', (e) => tagListSearch(e, ul, filterArrow, inputField));
 
 
-        currentButton.addEventListener('click', () => {
+        // StackoverFlow
+        // function some_func(otherFunc, ev) {
+        //     // magic happens
+        // }
+        // someObj.addEventListener("click", some_func.bind(null, some_other_func), false);
 
 
-            if (currentButton.classList.contains('open')) {
+        currentSubSearchButton.addEventListener('click', () => {
+
+            let filtersboxIngredient = document.querySelector('#sub-search__Ingrédient');
+
+            let ulIngredient = filtersboxIngredient.querySelector('.sub-search__taglist')
+
+
+            let parentInputIngredient = ulIngredient.closest('div').id
+            let idingredient = parentInputIngredient.replace('sub-search__', '');
+
+            rebuildTagArrayDOM(inputField, uniqueIngredients, idingredient);
+
+
+            let filtersboxUstensil = document.querySelector('#sub-search__Ustensiles');
+
+            let ulUstensil = filtersboxUstensil.querySelector('.sub-search__taglist')
+
+
+            let parentInputUstensil = ulUstensil.closest('div').id
+            let idUstensil = parentInputUstensil.replace('sub-search__', '');
+
+
+
+
+            rebuildTagArrayDOM(inputField, uniqueUstensils, idUstensil);
+
+
+
+            let filtersboxAppliance = document.querySelector('#sub-search__Appareils');
+
+            let ulAppliance = filtersboxAppliance.querySelector('.sub-search__taglist')
+
+
+            let parentInputAppliance = ulAppliance.closest('div').id
+            let idAppliance = parentInputAppliance.replace('sub-search__', '');
+
+
+
+
+            rebuildTagArrayDOM(inputField, uniqueAppliances, idAppliance);
+
+            toggleList(ul, filterArrow, true);
+
+            if (currentSubSearchButton.classList.contains('open')) {
                 // show mode => remove open class and reset state
                 ul.classList.remove('d-flex')
 
-                removeOpen(el, filtersbox, inputField, currentButton);
+                removeOpen(el, filtersbox, inputField, currentSubSearchButton);
             } else {
                 // closed mode => add open class and transform input type in search
                 filtersList.forEach(element => {
                     let filtersbox = document.getElementById('sub-search__' + element);
-                    const currentButton = filtersbox.querySelector('.sub-search__button');
+                    const currentSubSearchButton = filtersbox.querySelector('.sub-search__button');
                     const inputField = filtersbox.querySelector('.sub-search__button input');
                     let ul = filtersbox.querySelector('.sub-search__taglist')
                     ul.classList.remove('d-flex')
 
 
-                    removeOpen(element, filtersbox, inputField, currentButton);
+                    removeOpen(element, filtersbox, inputField, currentSubSearchButton);
                 });
-                currentButton.classList.add('open');
+                currentSubSearchButton.classList.add('open');
                 inputField.removeAttribute('value');
                 inputField.setAttribute('type', 'search');
                 inputField.setAttribute('placeholder', `Rechercher un ${el}`);
@@ -406,6 +454,7 @@ const createFiltersDOM = (filtersList) => {
                 filtersbox.classList.remove('col-lg-3');
                 filtersbox.classList.add('col-lg-5');
 
+                toggleList(ul, filterArrow, true)
             };
 
         });
@@ -437,18 +486,18 @@ window.addEventListener('click', function(event) {
     if (!clickOnBloc) {
         subsearchNames.forEach(element => {
             let filtersbox = document.getElementById('sub-search__' + element);
-            const currentButton = filtersbox.querySelector('.sub-search__button');
+            const currentSubSearchButton = filtersbox.querySelector('.sub-search__button');
             const inputField = filtersbox.querySelector('.sub-search__button input');
             let ul = filtersbox.querySelector('.sub-search__taglist')
             ul.classList.remove('d-flex')
-            removeOpen(element, filtersbox, inputField, currentButton);
+            removeOpen(element, filtersbox, inputField, currentSubSearchButton);
         });
     };
 });
 
 
 
-// Create a tag for advancedSearch
+// Create a tag in advancedSearch field
 const createTag = (el, color) => {
         let tag = document.createElement('span')
         let tagClose = document.createElement('button')
@@ -465,12 +514,14 @@ const createTag = (el, color) => {
         })
         addTagToTagArray(tag)
         tagArraySearch()
+
+
     }
     // Close, remove tag from DOM
 
 const closeTag = (tag) => {
     tag.remove()
-    tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText);
+    console.log(tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText));
     tagArraySearch()
 }
 
