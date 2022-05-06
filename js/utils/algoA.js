@@ -178,9 +178,9 @@ function tagListSearch(e, ul, filterArrow, inputField) {
                         let searchTagIngredient = uniqueIngredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
 
 
-                        newArrayIngredients = [...new Set(searchTagIngredient)];
+                        // newArrayIngredients = [...new Set(searchTagIngredient)];
                         cleanTagListDOM(idDiv)
-                        newArrayIngredients = [...new Set(newArrayIngredients.map(element => {
+                        newArrayIngredients = [...new Set(searchTagIngredient.map(element => {
                             return element.toLowerCase();
                         }))]
 
@@ -251,10 +251,41 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
         liTag.id = cleanTagName
 
 
+        let filtersboxIngredient = document.querySelector('#sub-search__Ingrédient');
+
+        let ulIngredient = filtersboxIngredient.querySelector('.sub-search__taglist')
+
+
+        let parentInputIngredient = ulIngredient.closest('div').id
+        let idingredient = parentInputIngredient.replace('sub-search__', '');
+
+
+        let filtersboxUstensil = document.querySelector('#sub-search__Ustensiles');
+
+        let ulUstensil = filtersboxUstensil.querySelector('.sub-search__taglist')
+
+
+        let parentInputUstensil = ulUstensil.closest('div').id
+        let idUstensil = parentInputUstensil.replace('sub-search__', '');
+
+
+        let filtersboxAppliance = document.querySelector('#sub-search__Appareils');
+
+        let ulAppliance = filtersboxAppliance.querySelector('.sub-search__taglist')
+
+
+        let parentInputAppliance = ulAppliance.closest('div').id
+        let idAppareil = parentInputAppliance.replace('sub-search__', '');
+
+
+
+
+
         switch (id) {
             case 'Ingrédient':
                 liTag.classList.add('dropdown-item', 'bg-primary');
                 liTag.addEventListener('click', () => {
+                    cleanTagListDOM(idingredient)
 
                     // TODO REMOVE TAG FROM ARRAY
                     uniqueIngredients.splice(uniqueIngredients.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
@@ -272,9 +303,13 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
                     inputField.innerText = ''
                 })
                 break;
+                // TODO REMOVE TAG FROM ARRAY
+
             case 'Appareils':
                 liTag.classList.add('dropdown-item', 'bg-green');
                 liTag.addEventListener('click', () => {
+                    cleanTagListDOM(idAppareil)
+
                     liTag.setAttribute('aria-selected', 'true');
                     createTag(liTag, 'bg-green')
                     posted = true
@@ -284,9 +319,12 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
 
 
                 break;
+                // TODO REMOVE TAG FROM ARRAY
+
             case 'Ustensiles':
                 liTag.classList.add('dropdown-item', 'bg-red');
                 liTag.addEventListener('click', () => {
+                    cleanTagListDOM(idUstensil)
                     liTag.setAttribute('aria-selected', 'true');
                     createTag(liTag, 'bg-red')
                     inputField.value = ''
@@ -420,12 +458,12 @@ const createFiltersDOM = (filtersList) => {
 
 
             let parentInputAppliance = ulAppliance.closest('div').id
-            let idAppliance = parentInputAppliance.replace('sub-search__', '');
+            let idAppareil = parentInputAppliance.replace('sub-search__', '');
 
 
 
 
-            rebuildTagArrayDOM(inputField, uniqueAppliances, idAppliance);
+            rebuildTagArrayDOM(inputField, uniqueAppliances, idAppareil);
 
             toggleList(ul, filterArrow, true);
 
