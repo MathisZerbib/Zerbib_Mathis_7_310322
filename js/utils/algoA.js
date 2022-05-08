@@ -128,6 +128,7 @@ const ingredientMatch = (recipe, input, recipeMatchArray) => {
         // console.log(recipe, 'INGREDIENT MATCH')
         // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
         recipeMatchArray.push(recipe)
+        return recipeMatchArray
     }
 }
 
@@ -175,8 +176,9 @@ function tagListSearch(e, ul, filterArrow, inputField) {
     buffer = inputField.value
     searchTagListFromInput.push(buffer)
         // console.log(searchTagListFromInput);
-    var final_words = searchTagListFromInput[searchTagListFromInput.length - 1];
-    // console.log(final_words)
+    var final_words = []
+    final_words.push(searchTagListFromInput[searchTagListFromInput.length - 1]);
+    console.log(final_words)
     let newArrayIngredients = [];
     let newArrayUstensils = [];
     let newArrayAppareils = [];
@@ -188,7 +190,7 @@ function tagListSearch(e, ul, filterArrow, inputField) {
     if (buffer.length >= 3) {
         switch (idDiv) {
             case "Ingrédient":
-                final_words.split(' ').forEach(el => {
+                final_words.forEach(el => {
                         let searchTagIngredient = uniqueIngredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
 
 
@@ -208,7 +210,7 @@ function tagListSearch(e, ul, filterArrow, inputField) {
 
                 break;
             case "Appareils":
-                final_words.split(' ').forEach(el => {
+                final_words.forEach(el => {
                     let searchTagAppareils = uniqueAppliances.filter(appliance => appliance.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
                     newArrayAppareils = [...new Set(searchTagAppareils)];
                     cleanTagListDOM(idDiv)
@@ -223,7 +225,7 @@ function tagListSearch(e, ul, filterArrow, inputField) {
                 // console.log("New Array from appareils :", newArrayAppareils)
                 break;
             case "Ustensiles":
-                final_words.split(' ').forEach(el => {
+                final_words.forEach(el => {
                     let searchTagUstensils = uniqueUstensils.filter(ustensil => ustensil.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
                     newArrayUstensils = [...new Set(searchTagUstensils)];
                     // console.log("Search trought ingredients", searchTagIngredient)
@@ -307,11 +309,11 @@ const rebuildTagArrayDOM = (inputField, tags, id) => {
                         return element.toLowerCase();
                     }))]
 
-                    console.log('UNIQUE INGREDIENT', uniqueIngredients)
+                    // console.log('UNIQUE INGREDIENT', uniqueIngredients)
                     liTag.setAttribute('aria-selected', 'true');
 
                     uniqueIngredients = uniqueIngredients.filter(e => e !== tags[i])
-                    console.log('Tags ', tags)
+                        // console.log('Tags ', tags)
                     createTag(liTag, 'bg-primary')
                     inputField.value = ''
                 })
@@ -567,7 +569,7 @@ const createTag = (el, color) => {
 const closeTag = (tag) => {
     // **TODO add removed tag to respective Tag Array
     tag.remove()
-    console.log(tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText));
+    console.log("Filter Close tag: ", tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText));
     tagArraySearch()
 }
 
@@ -589,23 +591,22 @@ const tagArraySearch = () => {
     console.log("Tag to search:", tagArrayToSearch)
     cleanDOM();
     cleanData();
-    recipes.forEach(recipe => {
-        uniqueIngredients
-        if (tagArrayToSearch.length >= 2) {
-            multiTagSearch(tagArrayToSearch)
-        } else {
+    // lenght for search
+    if (tagArrayToSearch.length >= 2) {
+        multiTagSearch(tagArrayToSearch)
+    } else {
+        recipes.forEach(recipe => {
+
+
             tagArrayToSearch.forEach(tag => {
 
-                    tag = tag.toString()
-                        // console.log('loop search tag: ', tag)
-
-                    ingredientMatch(recipe, tag, recipeMatchArray)
-                    ustensMatch(recipe, tag, recipeMatchArray)
-                    applianceMatch(recipe, tag, recipeMatchArray)
-                })
-                // console.log("Array ID:", recipeMatchArray)
-        }
-    })
+                tag = tag.toString()
+                ingredientMatch(recipe, tag, recipeMatchArray)
+                ustensMatch(recipe, tag, recipeMatchArray)
+                applianceMatch(recipe, tag, recipeMatchArray)
+            })
+        })
+    }
     recipeMatchArray = [...new Set(recipeMatchArray)];
     // console.log("Array ID:", recipeMatchArray)
 
@@ -614,21 +615,154 @@ const tagArraySearch = () => {
     displayData(recipeMatchArray);
 }
 
-const multiTagSearch = (tagArrayToSearch) => {
-    let newRecipeArray = [];
-    tagArrayToSearch.forEach(element => {
-        try {
-            ingredientMatch(recipe, element, recipeMatchArray)
-            ustensMatch(recipe, element, recipeMatchArray)
-            applianceMatch(recipe, element, recipeMatchArray)
+const MultiMatch = (ingredientMatchArray, ustensMatchArray, applianceMatchArray) => {
 
-        } catch (error) {
+    console.log('Ingredient Match Array', ingredientMatchArray, 'ustensMatchArray', ustensMatchArray, 'applianceMatchArray', applianceMatchArray)
+        // const results = arrayOne.filter(({ ingredient: ig1 }) => !arrayTwo.some(({ ingredient: ig2 }) => ig2 === ig1));
+
+    console.log(results);
+    // let multiMatch = recipeMatchArray.filter(recipe => recipe.description.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+    // if (descriptionMatch.length !== 0) {
+    //     descriptionMatch.forEach(el => {
+    //         recipeMatchArray.push(el)
+    //     })
+}
+
+const multiTagSearch = (tagArrayToSearch) => {
+
+    let newRecipeArrayOne = []
+    let recipeMatchOne = []
+
+    for (let i = 0; i < tagArrayToSearch.length; i++) {
+
+        recipes.forEach(recipe => {
+
+
+            if (ingredientMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
+                // console.log('TAG: ', tagArrayToSearch[i])
+                newRecipeArrayOne.push(recipe)
+
+            }
+            // ustensMatch(recipe, tag, recipeMatchArray)
+            // applianceMatch(recipe, tag, recipeMatchArray)       
+
+        })
+        newRecipeArrayOne = [...new Set(newRecipeArrayOne)];
+
+        // let fusionArray = [...new Set(newRecipeArrayOne, newRecipeArrayTwo)];
+
+        // const newArray = fusionArray[i].ingredients
+        //     .filter(ingredient => ingredient == tagArrayToSearch[0] && ingredient == tagArrayToSearch[1])
+
+        // console.log("NEW ARRAY RECIPES",
+        //     fusionArray,
+        //     "New array", newArray)
+
+
+        for (let i = 0; newRecipeArrayOne.length > i; i++) {
+            let match1 = false
+            let match2 = false
+            newRecipeArrayOne[i].ingredients.forEach(element => {
+                // console.log(element.ingredient, 'newRecipeArrayOne', newRecipeArrayOne[i])
+
+                // console.log('ingredient :', element.ingredient);
+
+                if (element.ingredient.toLocaleLowerCase().includes(tagArrayToSearch[0].toLocaleLowerCase())) {
+                    // console.log(element.ingredient, 'MATCH [0]', element)
+                    match1 = true
+                } else if (element.ingredient.toLocaleLowerCase().includes(tagArrayToSearch[1].toLocaleLowerCase())) {
+                    // console.log(element.ingredient, 'MATCH [1]', tagArrayToSearch[1])
+
+                    match2 = true
+                }
+                // && !recipeMatchOne.includes(element)
+                else {
+                    // console.log(element.ingredient, ' !==', tagArrayToSearch[0], '&&', tagArrayToSearch[1])
+                    return false
+                }
+
+
+            });
+            if (match1 == true && match2 == true) {
+                recipeMatchOne.push(newRecipeArrayOne[i]);
+                recipeMatchOne = [...new Set(recipeMatchOne)];
+                console.log('recipePushed', newRecipeArrayOne[i])
+
+            }
 
         }
 
-    });
+        console.log('recipes Both conditions', recipeMatchOne)
 
-    // console.log('tagArrayToSearch:', tagArrayToSearch)
+
+        // newRecipeArrayTwo[0].ingredients.forEach(element => {
+        //     // console.log('ingredient :', element.ingredient);
+
+        //     if (element.ingredient.toLocaleLowerCase() == tagArrayToSearch[0].toLocaleLowerCase()) {
+        //         console.log(element.ingredient, 'MATCH [0]', tagArrayToSearch[0])
+        //     }
+        //     if (element.ingredient.toLocaleLowerCase() == tagArrayToSearch[1].toLocaleLowerCase()) {
+        //         console.log(element.ingredient, 'MATCH [1]', tagArrayToSearch[1])
+        //     }
+
+        // });
+
+        // let res = newRecipeArrayOne.length === newRecipeArrayTwo.length && newRecipeArrayOne.every((value, index) => value === newRecipeArrayTwo[index])
+        // console.log('res:', res)
+
+        // console.log("newRecipeArrayOneArray,", newRecipeArrayOne, "newRecipeArrayTwo", newRecipeArrayTwo);
+
+        // newRecipeArrayOne.forEach(element => {
+        //     for (let i = 0; element.ingredients.length > i; i++)
+        //         console.log("Recette:", element.name, 'Ingrédients:', element.ingredients[y]);
+        // });
+
+        // newRecipeArrayTwo.forEach(element => {
+        //     console.log("Recette:", element.name, 'Ingrédients:', element.ingredients);
+        // });
+
+
+
+
+
+        // const filterArray = (array, fields, value) => {
+        //     fields = Array.isArray(fields) ? fields : [fields];
+
+        //     return array.filter((item) => fields.some((field) => item[field] === value));
+        // };
+
+
+
+
+        // const allEqual = arr => arr.every(v => v === arr[0])
+
+
+        // matchTwoConditions = newRecipeArrayOne.forEach(recipe => {
+        //     recipe.ingredients.filter(el =>
+        //         el.ingredient.toLocaleLowerCa""se().findIndex(tagArrayToSearch[0].toLocaleLowerCase() && el.ingredient.toLocaleLowerCase().findIndex(tagArrayToSearch[1].toLocaleLowerCase())));
+        //     console.log("After Recipe Array,", newRecipeArrayOne, matchTwoConditions)
+
+        //     matchTwoConditions = [...new Set(matchTwoConditions.map(element => {
+        //         return element.toLowerCase();
+        //     }))];
+        //     resultTwoconditions.push(matchTwoConditions)
+        //     return resultTwoconditions
+        //         // ustensMatch(recipe, tag, recipeMatchArray)
+        //         // applianceMatch(recipe, tag, recipeMatchArray)       
+
+        // console.log('resultTwoconditions    :', resultTwoconditions)
+
+
+    }
+    // let matchTwoConditions = newRecipeArrayOne.ingredients.filter(el => {
+    //     el.toLocaleLowerCase().includes(tagArrayToSearch[0].toLocaleLowerCase() && el.toLocaleLowerCase().includes(tagArrayToSearch[1].toLocaleLowerCase()))
+    //         // recipeMatchArray.push(recipe)
+    // });
+
+    cleanDOM();
+    cleanData();
+    displayData(recipeMatchOne)
+
 
 
 }
