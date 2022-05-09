@@ -176,7 +176,7 @@ function searchPrincipalInput() {
 }
 
 
-function tagListSearch(e, ul, filterArrow, inputField) {
+function tagListSearch(e, ul, inputField) {
     if (e.key == 8 && searchTagListFromInput !== []) {
         searchTagListFromInput.pop()
     }
@@ -261,6 +261,8 @@ function tagListSearch(e, ul, filterArrow, inputField) {
 
     } else {
         // toggleList(ul, filterArrow, false)
+        displayData(recipeMatchArray);
+
 
     }
 }
@@ -385,12 +387,6 @@ const buildTagArrayDOM = (inputField, tags, id) => {
 /* Event Key principal Search Algo A */
 searchInput.addEventListener('keyup', searchPrincipalInput);
 
-
-
-// console.log('Uniques Ingredients', uniqueIngredients);
-// console.log("uniqueAppliances", uniqueAppliances);
-// console.log("uniqueUstensils", uniqueUstensils);
-
 //Create sub search button & list
 let subsearchNames = ['Ingrédient', 'Appareils', 'Ustensiles'];
 
@@ -456,7 +452,7 @@ const createFiltersDOM = (filtersList) => {
         let inputField = filtersbox.querySelector('.sub-search__button input');
         let ul = filtersbox.querySelector('.sub-search__taglist')
 
-        inputField.addEventListener('keyup', (e) => tagListSearch(e, ul, filterArrow, inputField));
+        inputField.addEventListener('keyup', (e) => tagListSearch(e, ul, inputField));
 
 
         // First click on input Tag

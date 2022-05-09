@@ -40,9 +40,8 @@
 }
 
 .card-title {
-    min-height: 4rem;
     max-height: fit-content;
-    font-size: 1.5rem;
+    font-size: 0.8rem;
 }
 
 .card-content {

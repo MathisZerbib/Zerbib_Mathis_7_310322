@@ -26,17 +26,39 @@ function recipeFactory(data) {
         ingredients.forEach(element => {
             var p = document.createElement('p')
             p.className = 'mb-0';
-            if (element.quantity == undefined || element.quantity == '') {
-                element.quantity = ''
-                element.unit = ''
-            }
-            if (element.unit == 'cuillière à soupe' || element.unit == 'cuillères à soupe') {
-                element.unit = 'Càs'
-            }
-            if (element.unit == undefined || element.unit == '') {
-                element.unit = ''
-            }
-            p.innerHTML = `${element.ingredient}: <span>${element.quantity}</span><span>${element.unit}</span>`
+
+            // switch (element.unit) {
+            //     case 'cuillère à soupe':
+            //         element.unit = 'Càs'
+            //         break;
+            //     case 'cuillères à soupe':
+            //         element.unit = 'Càs'
+            //         break
+            //     case undefined:
+            //         element.unit = 'undefined'
+
+            //         break;
+
+            //     case '':
+            //         element.unit = ''
+
+            //         break;
+            //     case 'grammes':
+            //         element.unit = 'g'
+
+            //         break;
+
+            //     default:
+
+            //         break;
+            // }
+            // if (element.quantity == undefined || element.quantity == '') {
+            //     element.quantity = ''
+            //     element.unit = ''
+            // }
+            p.innerHTML = `<span class="font-weight-bold">${element.ingredient}</span> <span>${element.quantity==undefined ? '1': element.quantity }</span><span>${element.unit == 'grammes' ?'g' : element.unit== 'cl'? element.unit:  element.unit== 'ml'? element.unit:  element.unit == 'cuillère à soupe'? ' Càs': element.unit == 'cuillères à soupe'? ' Càs': '' }</span>`
+                //p.innerHTML = ` <span class="font-weight-bold">${element.ingredient}</span> <span>${element.quantity}</span><span>${element.unit}</span>`
+
             listIngredients.appendChild(p);
         });
         // console.log("Ingredients,", ingredients)
@@ -48,7 +70,7 @@ function recipeFactory(data) {
         listIngredients.className = 'ingredient-container';
         textDescription.className = 'description w-50';
         article.className = 'card recipe-card pb-3 mb-5';
-        headerIconContainer.className = 'd-flex font-weight-bold align-items-center justify-content-between';
+        headerIconContainer.className = 'card-title d-flex font-weight-bold align-items-baseline justify-content-between';
         faTimer.className = 'fa-solid fa-clock mx-2';
 
         img.className = "placeholder";
@@ -58,7 +80,7 @@ function recipeFactory(data) {
 
         titleRecipe.textContent = name;
         textTime.textContent = time.toString()
-        textTime.className = 'm-0'
+        textTime.className = 'm-0 one-line'
         textTime.textContent += ' minutes';
         // textTime.textContent += 'far fa-clock'
 
