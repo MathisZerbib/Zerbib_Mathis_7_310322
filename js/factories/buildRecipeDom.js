@@ -3,8 +3,8 @@ var counter = 0;
 function recipeFactory(data) {
     const { id, name, servings, ingredients, time, description, appliance, ustensils } = data;
 
-
-    function getRecipeCardDOM() {
+    // Build Recipes DOM
+    function buildRecipeCardDOM() {
         const article = document.createElement('article');
         const img = document.createElement('img');
 
@@ -101,5 +101,5 @@ function recipeFactory(data) {
         return (article);
     }
 
-    return { id, name, servings, ingredients, time, description, appliance, ustensils, getRecipeCardDOM }
+    return { id, name, servings, ingredients, time, description, appliance, ustensils, buildRecipeCardDOM }
 }

@@ -1,5 +1,3 @@
-import { recipes } from './recipes.js'
-
 const searchInput = document.getElementById("main-search");
 // searchInput.focus()
 // Defines Array
@@ -14,7 +12,20 @@ let textEmpty = document.querySelector('.title-empty');
 textEmpty.style.opacity = '0'
 
 
+
+// TODO: Faire deux array RECIPES, une array originale (mother),et une array pour l'affichage du DOM 
 // Loop all recipes
+
+// [User]filtre (Array Affichage) => {Courgette Carotte view des elements correspondants 
+//if(no filter)
+//return array mother
+//  si modifications => return ArrayAffichage
+//
+//}
+
+
+
+
 recipes.forEach(recipe => {
     recipe.ingredients.forEach((currentIngredient) => {
         ingredientsArray.push(currentIngredient.ingredient);
@@ -56,7 +67,7 @@ async function displayData(recipes) {
     }
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
-        const getRecipeCardDOM = recipeModel.getRecipeCardDOM();
+        const getRecipeCardDOM = recipeModel.buildRecipeCardDOM();
 
         recipesSection.appendChild(getRecipeCardDOM);
     });
@@ -598,7 +609,7 @@ const tagArraySearch = () => {
     cleanData();
     // lenght for search
     if (tagArrayToSearch.length <= 0) {
-        defaultView()
+        defaultView();
     }
     if (tagArrayToSearch.length >= 2) {
         multiTagSearch(tagArrayToSearch)
@@ -700,9 +711,6 @@ const multiTagSearch = (tagArrayToSearch) => {
     cleanDOM();
     cleanData();
     displayData(recipeMatchOne)
-
-
-
 }
 
 
