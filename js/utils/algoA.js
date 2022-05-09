@@ -261,7 +261,6 @@ function tagListSearch(e, ul, inputField) {
 
     } else {
         // toggleList(ul, filterArrow, false)
-        displayData(recipeMatchArray);
 
 
     }
@@ -598,6 +597,9 @@ const tagArraySearch = () => {
     cleanDOM();
     cleanData();
     // lenght for search
+    if (tagArrayToSearch.length <= 0) {
+        defaultView()
+    }
     if (tagArrayToSearch.length >= 2) {
         multiTagSearch(tagArrayToSearch)
     } else {
