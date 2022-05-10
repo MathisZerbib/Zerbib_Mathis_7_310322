@@ -23,27 +23,7 @@ async function getRecipesFromJson() {
 }
 
 
-// Hydrate DOM
-async function displayData(recipes) {
-    let textWhenEmpty = document.querySelector('.title-default-search');
 
-    recipes.forEach((recipe) => {
-        const recipeModel = recipeFactory(recipe);
-        const getRecipeCardDOM = recipeModel.buildRecipeCardDOM();
 
-        recipesSection.appendChild(getRecipeCardDOM);
-    });
-
-    textWhenEmpty.style.opacity = "0";
-
-};
-
-// First init
-async function init() {
-    const { motherArrayRecipe } = await getRecipesFromJson();
-    // Récupère les datas des photographes
-    displayData(motherArrayRecipe)
-
-};
 
 init();
