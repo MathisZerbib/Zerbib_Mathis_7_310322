@@ -12,6 +12,20 @@ const multiTagSearch = (tagArrayToSearch) => {
                 newRecipeArrayOne.push(recipe)
 
             }
+
+
+            // else if (ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
+            //     // console.log('TAG: ', tagArrayToSearch[i])
+            //     newRecipeArrayOne.push(recipe)
+
+            // }
+
+
+            //  else if (applianceMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
+            //     // console.log('TAG: ', tagArrayToSearch[i])
+            //     newRecipeArrayOne.push(recipe)
+
+            // }
             // ustensMatch(recipe, tag, recipeMatchArray)
             // applianceMatch(recipe, tag, recipeMatchArray)       
 
@@ -37,7 +51,7 @@ const multiTagSearch = (tagArrayToSearch) => {
 
                 // console.log('ingredient :', element.ingredient);
                 tagArrayToSearch.forEach(el => {
-                    if (element.ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase())) {
+                    if (element.ingredient.toLocaleLowerCase() === el.toLocaleLowerCase()) {
                         // console.log(element.ingredient, 'MATCH [0]', element)
                         trueArray.push(element.ingredient)
                     }
@@ -51,15 +65,24 @@ const multiTagSearch = (tagArrayToSearch) => {
 
                 recipeMatchOne.push(newRecipeArrayOne[y]);
                 recipeMatchOne = [...new Set(recipeMatchOne)];
-                console.log('Recipe Pushed', newRecipeArrayOne[y].ingredients)
+                console.log('Ingredient Pushed', newRecipeArrayOne[y].ingredients)
             }
 
         }
     }
-    console.log('recipes Both conditions', recipeMatchOne)
+
+    if (recipeMatchOne.length !== 0) {
+        console.log('recipes Both conditions', recipeMatchOne)
+
+        cleanDOM();
+        displayData(recipeMatchOne)
+    } else {
+        cleanDOM();
+        textEmpty.style.opacity = '1';
+        textEmpty.style.display = 'block';
+        console.log('Dont match conditions', recipeMatchOne)
+
+    }
 
 
-    cleanDOM();
-    cleanData();
-    displayData(recipeMatchOne)
 }

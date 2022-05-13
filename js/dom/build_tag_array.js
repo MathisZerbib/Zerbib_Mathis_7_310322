@@ -36,6 +36,9 @@ const buildTagArrayDOM = (inputField, tags, id) => {
         let strAppareil = parentInputAppliance.replace('sub-search__', '');
 
 
+        let uniqueIngredientsClone = [];
+        let uniqueUstensilesClone = [];
+        let uniqueAppliancesClone = [];
 
 
 
@@ -45,16 +48,16 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                 liTag.addEventListener('click', () => {
                     cleanTagListDOM(strIngredient)
                         // TODO REMOVE TAG FROM ARRAY
-                    uniqueIngredients.splice(uniqueIngredients.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
+                    uniqueIngredientsClone.splice(uniqueIngredientsClone.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
-                    uniqueIngredients = [...new Set(uniqueIngredients.map(element => {
+                    uniqueIngredientsClone = [...new Set(uniqueIngredientsClone.map(element => {
                         return element.toLowerCase();
                     }))]
 
-                    // console.log('UNIQUE INGREDIENT', uniqueIngredients)
+                    // console.log('UNIQUE INGREDIENT', uniqueIngredientsClone)
                     liTag.setAttribute('aria-selected', 'true');
 
-                    uniqueIngredients = uniqueIngredients.filter(e => e !== tags[i])
+                    uniqueIngredientsClone = uniqueIngredientsClone.filter(e => e !== tags[i])
                         // console.log('Tags ', tags)
                     createTag(liTag, 'bg-primary')
                     inputField.value = ''
@@ -66,16 +69,16 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                 liTag.classList.add('dropdown-item', 'bg-green');
                 liTag.addEventListener('click', () => {
                     cleanTagListDOM(strAppareil)
-                    uniqueAppliances.splice(uniqueAppliances.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
+                    uniqueAppliancesClone.splice(uniqueAppliancesClone.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
-                    uniqueAppliances = [...new Set(uniqueAppliances.map(element => {
+                    uniqueAppliancesClone = [...new Set(uniqueAppliancesClone.map(element => {
                         return element.toLowerCase();
                     }))]
 
-                    console.log('UNIQUE INGREDIENT', uniqueAppliances)
+                    console.log('UNIQUE INGREDIENT', uniqueAppliancesClone)
                     liTag.setAttribute('aria-selected', 'true');
 
-                    uniqueAppliances = uniqueAppliances.filter(e => e !== tags[i])
+                    uniqueAppliancesClone = uniqueAppliancesClone.filter(e => e !== tags[i])
                     console.log('Tags ', tags)
                     createTag(liTag, 'bg-green')
                     inputField.value = ''
@@ -90,16 +93,16 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                 liTag.classList.add('dropdown-item', 'bg-red');
                 liTag.addEventListener('click', () => {
                     cleanTagListDOM(strUstensil)
-                    uniqueUstensils.splice(uniqueUstensils.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
+                    uniqueUstensilesClone.splice(uniqueUstensilesClone.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
-                    uniqueUstensils = [...new Set(uniqueUstensils.map(element => {
+                    uniqueUstensilesClone = [...new Set(uniqueUstensilesClone.map(element => {
                         return element.toLowerCase();
                     }))]
 
-                    console.log('UNIQUE INGREDIENT', uniqueUstensils)
+                    console.log('UNIQUE INGREDIENT', uniqueUstensilesClone)
                     liTag.setAttribute('aria-selected', 'true');
 
-                    uniqueUstensils = uniqueUstensils.filter(e => e !== tags[i])
+                    uniqueUstensilesClone = uniqueUstensilesClone.filter(e => e !== tags[i])
                     console.log('Tags ', tags)
                     createTag(liTag, 'bg-red')
                     inputField.value = ''

@@ -9,21 +9,24 @@ let searchTagListFromInput = [];
 let tagArea = document.querySelector('#tags');
 let textDefault = document.querySelector('.title-default-search');
 let textEmpty = document.querySelector('.title-empty');
-textEmpty.style.opacity = '0'
+textEmpty.style.opacity = '0';
+textEmpty.style.display = 'none';
 
 
 
-// TODO: Faire deux array RECIPES, une array originale (mother),et une array pour l'affichage du DOM 
+
+// TODO: Faire deux array RECIPES, une array originale (mother),et une arrayDOM pour l'affichage du DOM 
+
 // Loop all recipes
 
-// [User]filtre (Array Affichage) => {Courgette Carotte view des elements correspondants 
+// [User]filtre (ArrayDOM) => {Courgette Carotte view des elements correspondants 
 //if(no filter)
 //return array mother
-//  si modifications => return ArrayAffichage
+//  si modifications => return ArrayDOM
 //
 //}
 
-recipes.forEach(recipe => {
+recipesDOM.forEach(recipe => {
     recipe.ingredients.forEach((currentIngredient) => {
         ingredientsArray.push(currentIngredient.ingredient);
     });

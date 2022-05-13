@@ -1,4 +1,4 @@
-export default function loadJSON(callback) {
+const loadJSON = (callback) => {
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', './assets/data/recipes.json', true); // Replace 'my_data' with the path to your file

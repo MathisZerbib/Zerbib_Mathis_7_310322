@@ -1,7 +1,7 @@
 // Appliance Match 
-const applianceMatch = (recipe, input, recipeMatchArray) => {
+const applianceMatch = (recipe, input, recipeMatch) => {
     if (recipe.appliance.toLocaleLowerCase().includes(input.toLocaleLowerCase())) {
-        recipeMatchArray.push(recipe)
+        recipeMatch.push(recipe)
             // console.log(recipe, 'Appliance MATCH')
     }
 }

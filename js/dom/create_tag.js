@@ -8,6 +8,7 @@ const createTag = (el, color) => {
 
     tag.innerHTML = el.innerHTML;
     tag.className = color + ' tag btn text-white px-2 mx-2  btn-sm mb-1';
+
     tagArea.appendChild(tag);
     tag.appendChild(tagClose)
     tagClose.addEventListener('click', () => {

@@ -1,23 +1,38 @@
-function searchPrincipalInput() {
+function searchPrincipalInput(e) {
     const input = searchInput.value;
-    let recipeMatchArray = [];
+    let searchMatchArray = [];
 
-    if (input.length >= 3) {
-        recipes.forEach(recipe => {
-            recipeMatch(input, recipeMatchArray);
-            ingredientMatch(recipe, input, recipeMatchArray);
-            descriptionMatch(input, recipeMatchArray);
+    if (e.target.value.length >= 3 || e.target.value.length >= 3 && e.inputType === "deleteContentBackward") {
 
-        })
-        recipeMatchArray = [...new Set(recipeMatchArray)];
-        // console.log("Array ID:", recipeMatchArray)
+        if (tagArrayToSearch.length > 0) {
+            console.log("TagArray is not Empty", tagArrayToSearch), 'principal search', searchInput;
+            // ArrayToUse
+            searchMatchArray.forEach(recipe => {
+                recipeMatchName(input, searchMatchArray);
+                ingredientMatch(recipe, input, searchMatchArray);
+                descriptionMatch(input, searchMatchArray);
+
+            })
+
+        } else {
+            recipesDOM.forEach(recipe => {
+                recipeMatchName(input, searchMatchArray);
+                ingredientMatch(recipe, input, searchMatchArray);
+                descriptionMatch(input, searchMatchArray);
+
+            })
+        }
+
+        searchMatchArray = [...new Set(searchMatchArray)];
+        console.log("Principal search Match ID:", searchMatchArray)
 
         cleanDOM();
-        displayData(recipeMatchArray);
+        displayData(searchMatchArray);
+    } else if (input.length == 0 && tagArrayToSearch.lenght == 0) {
+        console.log('no filters', )
     } else {
         cleanDOM();
-        cleanData();
         defaultView();
-
+        console.log('Default?', input)
     }
 }

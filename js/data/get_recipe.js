@@ -5,7 +5,7 @@ const recipesSection = document.getElementById("recipes");
 
 // Get recipes
 
-async function getRecipesFromJson() {
+const getRecipesFromJson = async() => {
     await fetch('./assets/data/recipes.json')
         .then(res => res.json())
         .then(data => {

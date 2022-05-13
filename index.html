@@ -42,28 +42,29 @@
         <section id="sub-searchs" class="row justify-content-between justify-content-lg-start align-items-start mb-5">
             <!-- Generate in js -->
         </section>
+        <h2 class="title-empty">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson »</h2>
 
         <!-- RECIPES SECTION -->
         <section id="recipes" class="row gy-3 justify-content-between mb-3">
             <!-- Generate in js -->
         </section>
-        <h2 class="title-default-search">Recherchez votre recette ! </h2>
-        <h2 class="title-empty">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson »</h2>
 
 
     </main>
+
+    <script src="js/pages/init.js"></script>
+
     <!-- data -->
     <script src="js/data/clean_data.js"></script>
+    <script src="js/data/get_recipe.js"></script>
 
     <!-- DOM -->
 
     <script src="js/factories/buildRecipeDom.js"></script>
     <script src="js/dom/build_tag_array.js"></script>
     <script src="js/dom/create_filter_dom.js"></script>
-    <script src="js/pages/init.js"></script>
 
-    <script src="js/pages/get_recipe.js"></script>
-    <script src="js/pages/display_data.js"></script>
+    <script src="js/data/display_data.js"></script>
     <script src="js/dom/default_view.js"></script>
     <script src="js/dom/clean_dom.js"></script>
     <script src="js/dom/clean_tag_list.js"></script>
@@ -75,15 +76,18 @@
     <script src="js/dom/add_tag_to_tag_array.js"></script>
 
     <!-- search -->
+    <script src="js/search/multi_match_search.js"></script>
+
     <script src="js/search/princpal_search.js"></script>
     <script src="js/search/appliance_search.js"></script>
     <script src="js/search/description_search.js"></script>
     <script src="js/search/ingredient_search.js"></script>
     <script src="js/search/recipe_name_search.js"></script>
-    <script src="js/search/ustensil_match.js"></script>
+    <script src="js/search/ustensile_match.js"></script>
+    <script src="js/search/single_tag_search.js"></script>
+
     <script src="js/search/taglist_search.js"></script>
-    <script src="js/search/tag_array_search.js"></script>
-    <script src="js/search/multi_match_search.js"></script>
+    <script src="js/search/help_search.js"></script>
 
 
 
@@ -99,7 +103,6 @@
     <script src="js/utils/algoA.js"></script>
 
     <script src="js/utils/filter_duplicate_tag.js"></script>
-    <script src="js/utils/sort_array.js"></script>
     <script src="js/utils/ul_length.js"></script>
 
     <!-- Events -->

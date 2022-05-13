@@ -10,13 +10,13 @@ const createFiltersDOM = (filtersList) => {
 
         filterDiv.setAttribute('data-bs-toggle', 'dropdown');
         filterDiv.setAttribute('aria-expended', false);
-        filterDiv.className = "sub-search__button d-flex w-100 mw-100 col btn btn-lg justify-content-between align-items-center"
+        filterDiv.className = "sub-search__button d-flex w-100 mw-100 col btn  justify-content-between align-items-center"
 
         filtersbox.setAttribute('id', 'sub-search__' + el);
         filtersbox.setAttribute('data-name', el);
-        filtersbox.classList.add('sub-search__bloc', 'col-12', 'col-lg-3', 'm-2', 'dropdown', 'd-flex', 'flex-column', 'justify-content-between', 'align-items-center');
+        filtersbox.classList.add('sub-search__bloc', 'col-12', 'col-lg-2', 'm-2', 'dropdown', 'd-flex', 'flex-column', 'justify-content-between', 'align-items-center');
 
-        filterButton.className = 'col btn btn-lg text-black text-left font-weight-bold border-0 sub-search__button'
+        filterButton.className = 'col btn  text-black text-left font-weight-bold border-0 sub-search__button'
         filterButton.setAttribute('value', el);
         filterButton.setAttribute('type', 'button');
         filterButton.autofocus = true;
@@ -63,9 +63,9 @@ const createFiltersDOM = (filtersList) => {
             let strAppareil = parentInputAppliance.replace('sub-search__', '');
 
             // build DOM tag
-            buildTagArrayDOM(inputField, uniqueIngredients, strIngredient);
-            buildTagArrayDOM(inputField, uniqueUstensils, strUstensil);
-            buildTagArrayDOM(inputField, uniqueAppliances, strAppareil);
+            buildTagArrayDOM(inputField, uniqueIngredientsClone, strIngredient);
+            buildTagArrayDOM(inputField, uniqueUstensilsClone, strUstensil);
+            buildTagArrayDOM(inputField, uniqueAppliancesClone, strAppareil);
 
             toggleList(ul, filterArrow, true);
 
@@ -91,7 +91,7 @@ const createFiltersDOM = (filtersList) => {
                 inputField.setAttribute('type', 'search');
                 inputField.setAttribute('placeholder', `Rechercher un ${el}`);
                 inputField.focus();
-                filtersbox.classList.remove('col-lg-3');
+                filtersbox.classList.remove('col-lg-2');
                 filtersbox.classList.add('col-lg-5');
 
                 toggleList(ul, filterArrow, true)

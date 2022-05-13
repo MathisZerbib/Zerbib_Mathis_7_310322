@@ -1,4 +1,4 @@
-function toggleList(ul, filterArrow, toggle) {
+const toggleList = (ul, filterArrow, toggle) => {
     if (toggle == true) {
         ul.classList.add('d-flex')
         filterArrow.classList.remove('fa-angle-down')

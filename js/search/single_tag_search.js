@@ -1,11 +1,10 @@
 const tagArraySearch = () => {
     console.log("Tag to search:", tagArrayToSearch)
     cleanDOM();
-    cleanData();
     // lenght for search
-    if (tagArrayToSearch.length <= 0) {
-        defaultView();
-    }
+    // if (tagArrayToSearch.length <= 0) {
+    //     defaultView();
+    // }
     if (tagArrayToSearch.length >= 2) {
         multiTagSearch(tagArrayToSearch)
     } else {
@@ -16,7 +15,7 @@ const tagArraySearch = () => {
 
                 tag = tag.toString()
                 ingredientMatch(recipe, tag, recipeMatchArray)
-                ustensMatch(recipe, tag, recipeMatchArray)
+                ustensileMatch(recipe, tag, recipeMatchArray)
                 applianceMatch(recipe, tag, recipeMatchArray)
             })
         })
@@ -26,5 +25,6 @@ const tagArraySearch = () => {
 
     // cleanDOM();
     // cleanData();
-    displayData(recipeMatchArray);
+    if (tagArrayToSearch.length == 1)
+        displayData(recipeMatchArray);
 }
