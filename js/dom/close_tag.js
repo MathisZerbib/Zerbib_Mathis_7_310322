@@ -8,12 +8,14 @@ const closeTag = (tag) => {
 
     // tag.visible = true
     // tag.classList.remove('already-selected');
-    if (tagArrayToSearch.lenght == 0 && searchInput.value == '') {
+    if (tagArrayToSearch == [] && searchInput.value == '') {
         cleanDOM()
         defaultView()
+
     } else {
         cleanDOM()
-        tagArraySearch()
+        console.log('On close tag tagArrayToSearch', tagArrayToSearch)
+        tagArraySearch(tagArrayToSearch)
             // console.log('IF TAGGGG', tagArrayToSearch)
     }
     console.log('Default TAGGGG', tagArrayToSearch)

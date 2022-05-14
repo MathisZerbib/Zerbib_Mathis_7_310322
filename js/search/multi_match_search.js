@@ -14,20 +14,20 @@ const multiTagSearch = (tagArrayToSearch) => {
             }
 
 
-            // else if (ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
+            // if (ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
             //     // console.log('TAG: ', tagArrayToSearch[i])
             //     newRecipeArrayOne.push(recipe)
 
             // }
 
 
-            //  else if (applianceMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
+            // if (applianceMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
             //     // console.log('TAG: ', tagArrayToSearch[i])
             //     newRecipeArrayOne.push(recipe)
 
             // }
             // ustensMatch(recipe, tag, recipeMatchArray)
-            // applianceMatch(recipe, tag, recipeMatchArray)       
+            // applianceMatch(recipe, tag, recipeMatchArray)
 
         })
         newRecipeArrayOne = [...new Set(newRecipeArrayOne)];
@@ -73,6 +73,8 @@ const multiTagSearch = (tagArrayToSearch) => {
 
     if (recipeMatchOne.length !== 0) {
         console.log('recipes Both conditions', recipeMatchOne)
+        textEmpty.style.opacity = '0';
+        textEmpty.style.display = 'none';
 
         cleanDOM();
         displayData(recipeMatchOne)

@@ -1,14 +1,25 @@
-const tagArraySearch = () => {
+const tagArraySearch = (tagArrayToSearch) => {
     console.log("Tag to search:", tagArrayToSearch)
     cleanDOM();
     // lenght for search
-    // if (tagArrayToSearch.length <= 0) {
-    //     defaultView();
-    // }
+    if (tagArrayToSearch.length == 0 && searchInput.value == '') {
+        recipes.forEach(recipe => {
+
+
+            tagArrayToSearch.forEach(tag => {
+
+                tag = tag.toString()
+                ingredientMatch(recipe, tag, recipeMatchArray)
+                ustensileMatch(recipe, tag, recipeMatchArray)
+                applianceMatch(recipe, tag, recipeMatchArray)
+            })
+        })
+    }
+
     if (tagArrayToSearch.length >= 2) {
         multiTagSearch(tagArrayToSearch)
     } else {
-        recipes.forEach(recipe => {
+        recipesDOM.forEach(recipe => {
 
 
             tagArrayToSearch.forEach(tag => {
@@ -25,6 +36,14 @@ const tagArraySearch = () => {
 
     // cleanDOM();
     // cleanData();
-    if (tagArrayToSearch.length == 1)
+    if (tagArrayToSearch.length == 1) {
         displayData(recipeMatchArray);
+
+    }
+
+    if (tagArrayToSearch.length == 0) {
+        console.log('default View')
+        defaultView()
+
+    }
 }

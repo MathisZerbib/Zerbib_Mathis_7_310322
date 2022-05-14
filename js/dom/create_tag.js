@@ -15,7 +15,7 @@ const createTag = (el, color) => {
         closeTag(tag)
     })
     addTagToTagArray(tag)
-    tagArraySearch()
+    tagArraySearch(tagArrayToSearch)
 
 
 }
