@@ -72,12 +72,14 @@ const multiTagSearch = (tagArrayToSearch) => {
     }
 
     if (recipeMatchOne.length !== 0) {
-        console.log('recipes Both conditions', recipeMatchOne)
+        console.log('recipes :', recipeMatchOne, 'Conditions:', tagArrayToSearch)
         textEmpty.style.opacity = '0';
         textEmpty.style.display = 'none';
 
         cleanDOM();
         displayData(recipeMatchOne)
+        recipeMatchArray = recipeMatchOne
+        return recipeMatchOne
     } else {
         cleanDOM();
         textEmpty.style.opacity = '1';

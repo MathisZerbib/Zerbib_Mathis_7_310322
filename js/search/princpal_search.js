@@ -5,9 +5,9 @@ function searchPrincipalInput(e) {
     if (e.target.value.length >= 3 || e.target.value.length >= 3 && e.inputType === "deleteContentBackward") {
 
         if (tagArrayToSearch.length > 0) {
-            console.log("TagArray is not Empty", tagArrayToSearch), 'principal search', searchInput;
+            console.log("Search In recipes:", recipeMatchArray, "Tag not Empty", tagArrayToSearch), 'principal search', searchInput;
             // ArrayToUse
-            searchMatchArray.forEach(recipe => {
+            recipeMatchArray.forEach(recipe => {
                 recipeMatchName(input, searchMatchArray);
                 ingredientMatch(recipe, input, searchMatchArray);
                 descriptionMatch(input, searchMatchArray);
@@ -28,11 +28,10 @@ function searchPrincipalInput(e) {
 
         cleanDOM();
         displayData(searchMatchArray);
-    } else if (input.length == 0 && tagArrayToSearch.lenght == 0) {
-        console.log('no filters', )
     } else {
-        cleanDOM();
-        defaultView();
-        console.log('Default?', input)
+        tagArraySearch(tagArrayToSearch)
+            // cleanDOM();
+            // defaultView();
+        console.log('Min char 3', input)
     }
 }
