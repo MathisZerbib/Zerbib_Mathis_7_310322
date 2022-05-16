@@ -73,8 +73,7 @@ const multiTagSearch = (tagArrayToSearch) => {
 
     if (recipeMatchOne.length !== 0) {
         console.log('recipes :', recipeMatchOne, 'Conditions:', tagArrayToSearch)
-        textEmpty.style.opacity = '0';
-        textEmpty.style.display = 'none';
+        hideError()
 
         cleanDOM();
         displayData(recipeMatchOne)
@@ -82,8 +81,7 @@ const multiTagSearch = (tagArrayToSearch) => {
         return recipeMatchOne
     } else {
         cleanDOM();
-        textEmpty.style.opacity = '1';
-        textEmpty.style.display = 'block';
+        displayError();
         console.log('Dont match conditions', recipeMatchOne)
 
     }
