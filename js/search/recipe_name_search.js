@@ -1,6 +1,14 @@
 // Title match
 const recipeMatchName = (input, recipeMatchArray) => {
-    let recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+    // To do If filter is active 
+    // if active recipesDOM
+    let recipeMatch = []
+    if (!recipesDOM.lenght > 50) {
+        recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+
+    }
+    recipeMatch = recipesDOM.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+
     if (recipeMatch.length !== 0) {
         recipeMatch.forEach(el => {
             recipeMatchArray.push(el)
