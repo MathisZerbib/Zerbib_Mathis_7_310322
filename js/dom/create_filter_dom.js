@@ -63,9 +63,6 @@ const createFiltersDOM = (filtersList) => {
             let strAppareil = parentInputAppliance.replace('sub-search__', '');
 
 
-            if (recipesDOM !== recipes) {
-                console.log('recipes !== recipesDOM', recipesDOM, recipes)
-            }
             // build DOM tag
             buildTagArrayDOM(inputField, uniqueIngredientsClone, strIngredient);
             buildTagArrayDOM(inputField, uniqueUstensilsClone, strUstensil);
