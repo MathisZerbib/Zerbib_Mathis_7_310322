@@ -44,7 +44,7 @@ const buildTagArrayDOM = (inputField, tags, id) => {
 
         // if (recipesDOM.length !== 50)
 
-        if (0 == 0) {
+        document.addEventListener('click', () => {
             // let uniqueIngredientsClone = matchArray.map(e => e.ingredients)
             // uniqueIngredientsClone = matchArray.map(recipe => (recipe.ingredients));
             // uniqueIngredientsClone = uniqueIngredientsClone.map(ingredients => (ingredients));
@@ -72,7 +72,7 @@ const buildTagArrayDOM = (inputField, tags, id) => {
 
             // console.log('uniqueIngredient If recipes DOM', uniqueIngredientsClone)
             console.log('uniqueIngredient =>', uniqueIngredientsClone, 'Ustensiles => ', uniqueUstensilesClone, 'Appliance', uniqueAppliancesClone)
-        }
+        })
 
         switch (id) {
             case 'Ingrédient':
