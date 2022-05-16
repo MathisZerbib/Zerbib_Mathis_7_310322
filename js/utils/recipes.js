@@ -1674,4 +1674,5 @@ const recipes = [{
     }
 ]
 
-const recipesDOM = recipes
+let recipesDOM = recipes
+let matchArray = []

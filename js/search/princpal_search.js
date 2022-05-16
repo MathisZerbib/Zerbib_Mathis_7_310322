@@ -25,7 +25,6 @@ function searchPrincipalInput(e) {
 
         searchMatchArray = [...new Set(searchMatchArray)];
         console.log("Principal search Match ID:", searchMatchArray)
-
         cleanDOM();
         displayData(searchMatchArray);
     } else {
