@@ -1,2 +1,2 @@
 /* Event Key principal Search Algo A */
-searchInput.addEventListener('input', (e) => { searchPrincipalInput(e) });
+searchInput.addEventListener('keyup', (e) => { searchPrincipalInput(e) });

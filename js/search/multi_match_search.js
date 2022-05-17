@@ -73,15 +73,15 @@ const multiTagSearch = (tagArrayToSearch) => {
 
     if (recipeMatchOne.length !== 0) {
         console.log('recipes :', recipeMatchOne, 'Conditions:', tagArrayToSearch)
-        hideError()
 
         cleanDOM();
         displayData(recipeMatchOne)
         recipeMatchArray = recipeMatchOne
         return recipeMatchOne
     } else {
-        cleanDOM();
-        displayError();
+        displayData([])
+
+        // cleanDOM();
         console.log('Dont match conditions', recipeMatchOne)
 
     }
