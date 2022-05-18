@@ -64,9 +64,16 @@ const createFiltersDOM = (filtersList) => {
 
 
             // build DOM tag
+
+            cleanTagListDOM(strIngredient)
+            cleanTagListDOM(strUstensil)
+            cleanTagListDOM(strAppareil)
+
             buildTagArrayDOM(inputField, uniqueIngredientsClone, strIngredient);
-            buildTagArrayDOM(inputField, uniqueUstensilsClone, strUstensil);
+            buildTagArrayDOM(inputField, uniqueUstensilesClone, strUstensil);
             buildTagArrayDOM(inputField, uniqueAppliancesClone, strAppareil);
+
+
 
             toggleList(ul, filterArrow, true);
 

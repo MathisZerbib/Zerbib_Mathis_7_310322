@@ -14,8 +14,11 @@ const createTag = (el, color) => {
     tagClose.addEventListener('click', () => {
         closeTag(tag)
     })
-    addTagToTagArray(tag)
+    addTagToTagArray(tag, color)
     tagArraySearch(tagArrayToSearch)
+}
 
+const addTagToTagArray = (tag) => {
 
+    tagArrayToSearch.push(tag.innerText)
 }

@@ -18,7 +18,7 @@ uniqueUstensils.sort((a, b) => a.localeCompare(b))
 
 let uniqueIngredientsClone = uniqueIngredients;
 let uniqueAppliancesClone = uniqueAppliances;
-let uniqueUstensilsClone = uniqueUstensils;
+let uniqueUstensilesClone = uniqueUstensils;
 
 
 // if (recipesDOM.length !== 50)
@@ -29,24 +29,29 @@ document.addEventListener('click', () => {
     // uniqueIngredientsClone = uniqueIngredientsClone.map(ingredients => (ingredients));
     let currentIngredientsArray = [];
     let currentUstensilesArray = [];
-    let uniqueAppliancesArrray = [];
+    let currentAppliancesArrray = [];
 
 
     matchArray.forEach(el => {
         el.ustensils.forEach(cUstensiles => {
-            currentUstensilesArray.push(cUstensiles.toLocaleLowerCase())
+            if (currentUstensilesArray.indexOf(cUstensiles) == -1)
+
+                currentUstensilesArray.push(cUstensiles)
         })
         el.ingredients.forEach(cIngredient => {
-            currentIngredientsArray.push(cIngredient.ingredient.toLocaleLowerCase())
+            if (currentIngredientsArray.indexOf(cIngredient) == -1)
+                currentIngredientsArray.push(cIngredient.ingredient.toLocaleLowerCase())
         })
-        uniqueAppliancesArrray.push(el.appliance)
+
+        if (currentAppliancesArrray.indexOf(el.appliance) == -1)
+            currentAppliancesArrray.push(el.appliance)
     })
 
 
 
     uniqueIngredientsClone = [...new Set(currentIngredientsArray)];
     uniqueUstensilesClone = [...new Set(currentUstensilesArray)];
-    uniqueAppliancesClone = [...new Set(uniqueAppliancesArrray)];
+    uniqueAppliancesClone = [...new Set(currentAppliancesArrray)];
 
 
     // console.log('uniqueIngredient If recipes DOM', uniqueIngredientsClone)
