@@ -77,12 +77,14 @@ const multiTagSearch = (tagArrayToSearch) => {
         cleanDOM();
         displayData(recipeMatchOne)
         recipeMatchArray = recipeMatchOne
+        isMatching = true;
         return recipeMatchOne
     } else {
 
         // A voir comportement si recette pas trouvé eg: lait beurre far[...]
         displayError()
             // cleanDOM();
+        isMatching = false;
         console.log('Dont match conditions', recipeMatchOne)
 
     }

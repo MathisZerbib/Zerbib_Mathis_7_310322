@@ -70,16 +70,35 @@ function searchPrincipalInput(e) {
         cleanDOM();
         displayData(searchMatchArray);
     }
+    let recipesCardDOM = document.querySelectorAll('.recipe-card')
 
-    if (searchMatchArray.length == 0 && recipesDOM.length == 50 && input.length >= 3) {
-        // cleanDOM();
-        // defaultView();
-        // displayError()
+    if (searchMatchArray.length == 0 && recipesCardDOM.length == 0 && input.length >= 3) {
+        if (isMatching = false && searchMatchArray.length == 0) {
+            cleanDOM();
+            defaultView();
+            displayError();
+            console.log(recipesCardDOM.length, 'ERROR DISPLAYED')
+        }
+        cleanDOM();
+        defaultView();
+        displayError()
+        console.log(recipesCardDOM.length, 'ERROR DISPLAYED')
+
         console.log('Min char 3', input)
     } else if (bufferFromInput.length == 0) {
-        cleanDOM();
-        defaultView()
+        if (searchMatchArray.length == 0 && tagArrayToSearch.length >= 1) {
+
+            console.log("searchMatchArray.length", searchMatchArray.length, 'tagArrayToSearch.length', tagArrayToSearch.length)
+
+        } else if (searchMatchArray.length == 0) {
+            console.log('searMatch Array', searchMatchArray.length)
+            displayError()
+            cleanDOM();
+            defaultView()
+        }
+
     } else {
-        hideError()
+        console.log('Hide Error')
+            // hideError()
     }
 }

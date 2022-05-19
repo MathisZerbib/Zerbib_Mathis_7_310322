@@ -23,7 +23,7 @@ let uniqueUstensilesClone = uniqueUstensils;
 
 // if (recipesDOM.length !== 50)
 
-document.addEventListener('click', () => {
+document.addEventListener('change', () => {
     // let uniqueIngredientsClone = matchArray.map(e => e.ingredients)
     // uniqueIngredientsClone = matchArray.map(recipe => (recipe.ingredients));
     // uniqueIngredientsClone = uniqueIngredientsClone.map(ingredients => (ingredients));
