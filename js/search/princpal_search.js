@@ -8,8 +8,7 @@ function searchPrincipalInput(e) {
     if (e.key == 8 && searchFromInput !== []) {
         searchFromInput.pop()
     }
-    if (e.key >= 65 && e.key <= 90)
-        console.log('COUCOU')
+
     let bufferFromInput;
 
     bufferFromInput = e.target.value
