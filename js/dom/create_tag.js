@@ -16,6 +16,15 @@ const createTag = (el, color) => {
     })
     addTagToTagArray(tag, color)
     tagArraySearch(tagArrayToSearch)
+    removeTagFromList(tag, uniqueIngredientsClone)
+    removeTagFromList(tag, uniqueUstensilesClone)
+    removeTagFromList(tag, uniqueAppliancesClone)
+    if (!uniqueIngredientsClone.includes(tag.innerText)) {
+        console.log(uniqueIngredientsClone.includes(tag.innerText), tag.innerText, 'HEEEEEEEEEEEEEEEEEEEEEEEEEERE')
+
+    }
+
+
 }
 
 const addTagToTagArray = (tag) => {

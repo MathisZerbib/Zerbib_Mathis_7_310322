@@ -6,11 +6,24 @@ const closeTag = (tag) => {
     tag.remove()
     tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText)
 
+    // if (uniqueIngredients.includes(tag.innerText)) {
+    //     console.log('On close ingrédients includes', tag.innerText)
+    //     uniqueIngredientsClone.push(tag.innerText)
+    // } else if (uniqueUstensils.includes(tag.innerText)) {
+    //     console.log('On close  ustensils includes', tag.innerText)
+
+    //     uniqueUstensilesClone.push(tag.innerText)
+    // } else if (uniqueAppliances.includes(tag.innerText)) {
+    //     console.log('On close  appliance includes', tag.innerText)
+
+    //     uniqueAppliancesClone.push(tag.innerText)
+    // }
     // tag.visible = true
     // tag.classList.remove('already-selected');
     if (tagArrayToSearch == [] && searchInput.value == '') {
         cleanDOM()
         defaultView()
+        console.log('Tag Array emtpy', 'searchInput empty')
 
     } else {
         cleanDOM()
