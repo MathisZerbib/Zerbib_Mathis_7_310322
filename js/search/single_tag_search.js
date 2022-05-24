@@ -3,31 +3,35 @@ const tagArraySearch = (tagArrayToSearch) => {
     cleanDOM();
     // lenght for search
     if (tagArrayToSearch.length == 0 && searchInput.value == '') {
-        recipes.forEach(recipe => {
+        // recipes.forEach(recipe => {
 
 
-            tagArrayToSearch.forEach(tag => {
+        //     tagArrayToSearch.forEach(tag => {
 
-                tag = tag.toString()
-                ingredientMatch(recipe, tag, recipeMatchArray)
-                ustensileMatch(recipe, tag, recipeMatchArray)
-                applianceMatch(recipe, tag, recipeMatchArray)
-            })
-        })
+        //         tag = tag.toString();
+        //         ingredientMatch(recipe, tag, recipeMatchArray);
+        //         ustensileMatch(recipe, tag, recipeMatchArray);
+        //         applianceMatch(recipe, tag, recipeMatchArray);
+        //     })
+        // })
+        console.log("All Empty fields")
+
+        defaultView();
     }
 
     if (tagArrayToSearch.length >= 2) {
         multiTagSearch(tagArrayToSearch)
-    } else {
+    }
+
+    if (searchInput.length >= 1 && tagArrayToSearch.length >= 1) {
+        console.log('Input search + Match at least One Tag')
         recipesDOM.forEach(recipe => {
-
-
             tagArrayToSearch.forEach(tag => {
 
-                tag = tag.toString()
-                ingredientMatch(recipe, tag, recipeMatchArray)
-                ustensileMatch(recipe, tag, recipeMatchArray)
-                applianceMatch(recipe, tag, recipeMatchArray)
+                tag = tag.toString();
+                ingredientMatch(recipe, tag, recipeMatchArray);
+                ustensileMatch(recipe, tag, recipeMatchArray);
+                applianceMatch(recipe, tag, recipeMatchArray);
             })
         })
     }
@@ -37,13 +41,14 @@ const tagArraySearch = (tagArrayToSearch) => {
     // cleanDOM();
     // cleanData();
     if (tagArrayToSearch.length == 1) {
+        console.log('tagArrayToSearch lenght =  1')
         displayData(recipeMatchArray);
-
     }
 
     if (tagArrayToSearch.length == 0) {
-        console.log('default View')
-        defaultView()
+        console.log('default View');
+        defaultView();
+
 
     }
 }

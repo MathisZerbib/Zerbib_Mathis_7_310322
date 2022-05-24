@@ -16,14 +16,14 @@ const multiTagSearch = (tagArrayToSearch) => {
 
 
             if (ingredientMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
-                console.log('Ingredients to match: ', tagArrayToSearch[i])
+                // console.log('Ingredients to match: ', tagArrayToSearch[i])
                 newRecipeArrayIngredients.push(recipe)
 
             }
 
 
             if (ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
-                console.log('Ustensils to match:', ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray))
+                // console.log('Ustensils to match:', ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray))
                 newRecipeArrayUstensiles.push(recipe)
                     // console.log('TAG: ', tagArrayToSearch[i], 'newRecipeArrayIngredients', newRecipeArrayUstensiles)
 
@@ -34,7 +34,7 @@ const multiTagSearch = (tagArrayToSearch) => {
             if (applianceMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
                 // console.log('TAG: ', tagArrayToSearch[i])
                 newRecipeArrayAppliances.push(recipe)
-                console.log('Appliances to match:'), newRecipeArrayAppliances
+                    // console.log('Appliances to match:'), newRecipeArrayAppliances
 
             }
             // ustensMatch(recipe, tag, recipeMatchArray)
@@ -66,7 +66,7 @@ const multiTagSearch = (tagArrayToSearch) => {
 
                     // console.log('ingredient :', element.ingredient);
                     tagArrayToSearch.forEach(el => {
-                        if (element.ingredient.toLocaleLowerCase() === el.toLocaleLowerCase()) {
+                        if (element.ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase())) {
                             // console.log(element.ingredient, 'MATCH [0]', element)
                             trueArray.push(element.ingredient)
                         }
@@ -96,8 +96,8 @@ const multiTagSearch = (tagArrayToSearch) => {
 
                     // console.log('ingredient :', element.ingredient);
                     tagArrayToSearch.forEach(el => {
-                        console.log('EL=======', el)
-                        if (element.toLocaleLowerCase() === el.toLocaleLowerCase()) {
+                        // console.log('EL=======', el)
+                        if (element.toLocaleLowerCase().includes(el.toLocaleLowerCase())) {
                             // console.log(element.ustensils, 'MATCH [0]', element)
                             trueArray.push(element.ustensils)
                         }
@@ -128,8 +128,8 @@ const multiTagSearch = (tagArrayToSearch) => {
 
                     // console.log('ingredient :', element.ingredient);
                     tagArrayToSearch.forEach(el => {
-                        console.log('EL=======', el)
-                        if (element.toLocaleLowerCase() === el.toLocaleLowerCase()) {
+                        // console.log('EL=======', el)
+                        if (element.toLocaleLowerCase().includes(el.toLocaleLowerCase())) {
                             // console.log(element.ustensils, 'MATCH [0]', element)
                             trueArray.push(element.ustensils)
                         }

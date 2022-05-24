@@ -4,7 +4,7 @@ function searchPrincipalInput(e) {
     let searchFromInput = [];
     // TODO Match Multiple ingrédients recipe name and descritpion at the same time. 
 
-    console.log('e Input ', e)
+    // console.log('e Input ', e)
     if (e.key == 8 && searchFromInput !== []) {
         searchFromInput.pop()
     }
@@ -43,9 +43,9 @@ function searchPrincipalInput(e) {
 
     if (e.target.value.length >= 3 && bufferFromInput.length == 1 || e.target.value.length >= 3 && e.inputType === "deleteContentBackward") {
 
-        if (tagArrayToSearch.length > 0) {
+        if (tagArrayToSearch.length >= 1) {
             console.log("Search In recipes:", recipeMatchArray, "Tag not Empty", tagArrayToSearch), 'principal search', searchInput;
-            // ArrayToUse
+            // ArrayToUse if One Tag
             recipeMatchArray.forEach(recipe => {
                 recipeMatchName(input, searchMatchArray);
                 ingredientMatch(recipe, input, searchMatchArray);
@@ -74,12 +74,12 @@ function searchPrincipalInput(e) {
     if (searchMatchArray.length == 0 && recipesCardDOM.length == 0 && input.length >= 3) {
         if (isMatching = false && searchMatchArray.length == 0) {
             cleanDOM();
-            defaultView();
+            defaultViewDOM();
             displayError();
             console.log(recipesCardDOM.length, 'ERROR DISPLAYED')
         }
         cleanDOM();
-        defaultView();
+        defaultViewDOM();
         displayError()
         console.log(recipesCardDOM.length, 'ERROR DISPLAYED')
 

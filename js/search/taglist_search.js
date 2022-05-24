@@ -1,6 +1,8 @@
 const tagListSearch = (e, ul, inputField) => {
     if (e.key == 8 && searchTagListFromInput !== []) {
         searchTagListFromInput.pop()
+    } else if (e.key == 8 && searchTagListFromInput == []) {
+        console.log('Afficheles bon ingrédients MERDE !')
     }
     if (e.key >= 65 && e.key <= 90)
         var buffer;

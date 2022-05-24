@@ -21,8 +21,11 @@ const closeTag = (tag) => {
     // tag.visible = true
     // tag.classList.remove('already-selected');
     if (tagArrayToSearch == [] && searchInput.value == '') {
-        cleanDOM()
-        defaultView()
+        cleanDOM();
+        defaultView();
+        // uniqueIngredientsClone = uniqueIngredients
+        // uniqueAppliancesClone = uniqueAppliances
+        // uniqueUstensilesClone = uniqueUstensils
         console.log('Tag Array emtpy', 'searchInput empty')
 
     } else {
