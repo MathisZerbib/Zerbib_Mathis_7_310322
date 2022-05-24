@@ -12,4 +12,5 @@ const defaultView = () => {
 
     cleanDOM()
     displayData(recipes)
+    recipesDOM = recipes
 }

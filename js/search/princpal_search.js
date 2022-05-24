@@ -2,6 +2,8 @@ function searchPrincipalInput(e) {
     const input = searchInput.value;
     let searchMatchArray = [];
     let searchFromInput = [];
+    tagArrayToSearch = [...new Set(tagArrayToSearch)]
+
     // TODO Match Multiple ingrédients recipe name and descritpion at the same time. 
 
     // console.log('e Input ', e)
@@ -45,6 +47,7 @@ function searchPrincipalInput(e) {
 
         if (tagArrayToSearch.length >= 1) {
             console.log("Search In recipes:", recipeMatchArray, "Tag not Empty", tagArrayToSearch), 'principal search', searchInput;
+
             // ArrayToUse if One Tag
             recipeMatchArray.forEach(recipe => {
                 recipeMatchName(input, searchMatchArray);
