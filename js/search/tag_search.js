@@ -34,7 +34,7 @@ const tagArraySearch = (tagArrayToSearch) => {
     }
 
 
-    // console.log("Array ID:", recipeMatchArray)
+    console.log("Recipes single Match:", recipeMatchArray)
 
     // cleanDOM();
     // cleanData();

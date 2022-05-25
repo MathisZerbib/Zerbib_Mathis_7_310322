@@ -5,7 +5,7 @@ const ustensileMatch = (recipe, input, recipeMatchArray) => {
 
     if (ustensMatch.length !== 0) {
         recipeMatchArray.push(recipe)
-            // console.log(recipe, 'Ustens MATCH')
+        console.log(ustensMatch, 'Ustens MATCH')
     }
     return recipeMatchArray
 }

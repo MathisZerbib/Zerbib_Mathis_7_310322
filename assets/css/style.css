@@ -16,6 +16,7 @@
 
 #recipes article {
     width: 33%;
+    min-height: 370px;
 }
 
 .recipe-card {

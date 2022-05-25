@@ -65,11 +65,11 @@ function recipeFactory(data) {
 
 
         headerContainerCard.className = 'header-container-card d-flex justify-content-between mt-3 px-3 align-items-center';
-        textContainerCard.className = 'card-body d-flex justify-content-between card-content';
+        textContainerCard.className = 'card-body d-flex justify-content-between card-content  py-0 my-5';
         titleRecipe.className = 'card-title w-50 card-content-title';
         listIngredients.className = 'ingredient-container';
         textDescription.className = 'description w-50';
-        article.className = 'card recipe-card pb-3 mb-5';
+        article.className = 'card recipe-card mb-3';
         headerIconContainer.className = 'card-title d-flex font-weight-bold align-items-baseline justify-content-between';
         faTimer.className = 'fa-solid fa-clock mx-2';
 

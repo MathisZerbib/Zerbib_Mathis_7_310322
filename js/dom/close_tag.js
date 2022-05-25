@@ -34,7 +34,13 @@ const closeTag = (tag) => {
             // tagArraySearch(tagArrayToSearch)
             // console.log('IF TAGGGG', tagArrayToSearch)
     }
-    console.log('Default TAGGGG', tagArrayToSearch)
+    console.log('Default TAGGGG', tagArrayToSearch, 'searchInput', searchInput.value)
+    if (tagArrayToSearch == [] && searchInput.value !== '') {
+
+        console.log('TODO AFFICHER LA RECHERCHE PRINCIPALE')
+    } else {
+        defaultView();
+    }
     tagArraySearch(tagArrayToSearch)
 
 }
