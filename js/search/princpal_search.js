@@ -89,8 +89,15 @@ function searchPrincipalInput(e) {
         console.log('Min char 3', input)
     } else if (bufferFromInput.length == 0) {
         if (searchMatchArray.length == 0 && tagArrayToSearch.length >= 1) {
+            // cleanDOM();
 
+            // tagArraySearch(tagArrayToSearch)
+
+            // displayData(searchMatchArray);
+
+            hideError()
             console.log("searchMatchArray.length", searchMatchArray.length, 'tagArrayToSearch.length', tagArrayToSearch.length)
+
 
         } else if (searchMatchArray.length == 0) {
             console.log('searMatch Array', searchMatchArray.length)

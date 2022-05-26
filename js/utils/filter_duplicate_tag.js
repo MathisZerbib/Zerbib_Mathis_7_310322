@@ -55,5 +55,5 @@ document.addEventListener('change', () => {
 
 
     // console.log('uniqueIngredient If recipes DOM', uniqueIngredientsClone)
-    console.log('uniqueIngredient =>', uniqueIngredientsClone, 'Ustensiles => ', uniqueUstensilesClone, 'Appliance', uniqueAppliancesClone)
+    console.log('CLONE CLONE CLONE CLONE', 'uniqueIngredient =>', uniqueIngredientsClone, 'Ustensiles => ', uniqueUstensilesClone, 'Appliance', uniqueAppliancesClone)
 })

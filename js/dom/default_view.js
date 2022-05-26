@@ -9,6 +9,7 @@ const defaultViewDOM = () => {
 // Display default Data
 const defaultView = () => {
     console.log('//////////////////////VIEW/////////////////////////')
+    console.log('recipesDOM:', recipesDOM)
 
     cleanDOM()
     displayData(recipes)

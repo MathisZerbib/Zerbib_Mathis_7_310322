@@ -1,5 +1,26 @@
 const multiTagSearch = (tagArrayToSearch) => {
 
+
+    // TODO SEARCH IF WORD EXIST IN BASE
+
+    // tagArrayToSearch.forEach(el => {
+    //     if (!strExists(uniqueIngredients, el)) {
+    //         console.log('Dont Exist:', strExists(uniqueIngredients, el), el)
+    //         tagArrayToSearch = tagArrayToSearch.filter(e => e !== el); // will return ['A', 'C']
+    //     }
+
+
+    //     if (!strExists(uniqueUstensils, el)) {
+    //         tagArrayToSearch = tagArrayToSearch.filter(e => e !== el); // will return ['A', 'C']
+    //     }
+
+
+    //     if (!strExists(uniqueAppliances, el)) {
+    //         tagArrayToSearch = tagArrayToSearch.filter(e => e !== el); // will return ['A', 'C']
+    //     }
+
+    // })
+
     let newRecipeArrayIngredients = []
     let newRecipeArrayAppliances = []
     let newRecipeArrayUstensiles = []
