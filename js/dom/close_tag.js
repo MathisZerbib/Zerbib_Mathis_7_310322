@@ -3,21 +3,29 @@
 const closeTag = (tag) => {
 
     // **TODO add removed tag to respective Tag Array
+
     tag.remove()
     tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText)
 
-    // if (uniqueIngredients.includes(tag.innerText)) {
-    //     console.log('On close ingrédients includes', tag.innerText)
-    //     uniqueIngredientsClone.push(tag.innerText)
-    // } else if (uniqueUstensils.includes(tag.innerText)) {
-    //     console.log('On close  ustensils includes', tag.innerText)
+    if (uniqueIngredients.includes(tag.innerText) && !uniqueIngredientsClone.includes(tag.innerText)) {
+        console.log('Dont contains On close ingrédient', tag.innerText)
+        uniqueIngredientsClone.push(tag.innerText)
 
-    //     uniqueUstensilesClone.push(tag.innerText)
-    // } else if (uniqueAppliances.includes(tag.innerText)) {
-    //     console.log('On close  appliance includes', tag.innerText)
+        console.log('Ingrédients after CLOSE', uniqueIngredientsClone)
 
-    //     uniqueAppliancesClone.push(tag.innerText)
-    // }
+    } else if (uniqueUstensils.includes(tag.innerText) && !uniqueUstensilesClone.includes(tag.innerText)) {
+        console.log('On close  ustensils includes', tag.innerText)
+        console.log('Ustensiles after CLOSE', uniqueUstensilesClone)
+
+
+        uniqueUstensilesClone.push(tag.innerText)
+    } else if (uniqueAppliances.includes(tag.innerText) && !uniqueAppliancesClone.includes(tag.innerText)) {
+        console.log('Dont contains On close Appliance', tag.innerText)
+        console.log('Appliance  after CLOSE', uniqueAppliancesClone)
+
+
+        uniqueAppliancesClone.push(tag.innerText)
+    }
     // tag.visible = true
     // tag.classList.remove('already-selected');
     if (tagArrayToSearch == [] && searchInput.value == '') {
