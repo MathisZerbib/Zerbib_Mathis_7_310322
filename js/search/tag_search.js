@@ -9,11 +9,33 @@ const tagArraySearch = (tagArrayToSearch) => {
         defaultView();
     }
 
-    // if multi tags
+    // multi tags
     if (tagArrayToSearch.length >= 2) {
-        console.log("Multi search:", tagArrayToSearch)
+        console.log("Multitag Multi search:", tagArrayToSearch)
         multiTagSearch(tagArrayToSearch)
     }
+
+    // if multi multi tags 
+
+    // if (tagArrayToSearch.length >= 2) {
+    //     console.log("Multitag Multi search:", multiTagSearch(tagArrayToSearch))
+    //     cleanDOM()
+    //     let recipesFromMulti = recipeMatchBothIngredients
+    //     recipesFromMulti
+    //         .forEach(recipe => {
+    //             tagArrayToSearch.forEach(tag => {
+    //                 console.log("EEEEEEEEEEEEEEEEE", tag)
+    //                 if (uniqueUstensils.includes(tag) !== -1) {
+    //                     ustensileMatch(recipe, tag, recipeMatchArray);
+    //                     // ustensileMatch(multiTagSearch(tagArrayToSearch), e, recipeMatchArr,ay)
+    //                 }
+    //             })
+
+    //         })
+    //     recipeMatchArray = [...new Set(recipeMatchArray)];
+    //     displayData(recipeMatchArray);
+    // }
+
 
     // if input is empty and tags not emtpy
     if (tagArrayToSearch.length === 1) {
@@ -33,6 +55,8 @@ const tagArraySearch = (tagArrayToSearch) => {
                 } else if (tagArrayToSearch.length == 1 && searchInput.value.length >= 3) {
 
                     console.log("Neither in INGREDIENTS", uniqueIngredients.includes(tag), "USTENSILES", uniqueUstensils.includes(tag), "APPLIANCES", uniqueAppliances.includes(tag))
+                } else if (ingredientMatch(recipe, tag, recipeMatchArray)) {
+                    console.log('IF ||||| IngredientMatch(recipe, tag, recipeMatchArray)')
                 }
             })
         })
@@ -43,8 +67,6 @@ const tagArraySearch = (tagArrayToSearch) => {
 
     console.log("Recipes single Match:", recipeMatchArray)
 
-    // cleanDOM();
-    // cleanData();
     if (tagArrayToSearch.length === 1 && searchInput.value.length >= 1) {
         tagArrayToSearch.push(searchInput.value)
         console.log('tagArrayToSearch lenght is 1', searchInput.value, tagArrayToSearch)
@@ -56,7 +78,6 @@ const tagArraySearch = (tagArrayToSearch) => {
     if (tagArrayToSearch.length === 0) {
         console.log('default View');
         defaultView();
-
 
     }
 }

@@ -27,7 +27,7 @@ const closeTag = (tag) => {
         uniqueAppliancesClone.push(tag.innerText)
     }
     // tag.visible = true
-    // tag.classList.remove('already-selected');
+    tag.classList.remove('tag-posted');
     if (tagArrayToSearch == [] && searchInput.value == '') {
         cleanDOM();
         defaultView();

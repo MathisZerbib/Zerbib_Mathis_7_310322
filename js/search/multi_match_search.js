@@ -187,13 +187,14 @@ const multiTagSearch = (tagArrayToSearch) => {
         displayError()
             // cleanDOM();
         isMatching = false;
-        console.log('Dont match conditions', recipeMatchBothIngredients)
+        console.log('Dont match conditions Ingredient', recipeMatchBothIngredients)
 
     }
 
 
     if (recipeMatchBothUstensiles.length !== 0) {
         console.log('recipes :', recipeMatchBothUstensiles, 'Conditions:', tagArrayToSearch)
+        console.log('§!!!!!!!!!!!!!!!!!!!!!§§§§§§§§§§§§§§§§§§§§§ ', recipeMatchBothAppliances)
 
         cleanDOM();
         displayData(recipeMatchBothUstensiles)
@@ -206,7 +207,7 @@ const multiTagSearch = (tagArrayToSearch) => {
         displayError()
             // cleanDOM();
         isMatching = false;
-        console.log('Dont match conditions', recipeMatchBothUstensiles)
+        console.log('Dont match conditions Ustensile', recipeMatchBothUstensiles)
 
     }
 
@@ -225,9 +226,20 @@ const multiTagSearch = (tagArrayToSearch) => {
         displayError()
             // cleanDOM();
         isMatching = false;
-        console.log('Dont match conditions', recipeMatchBothAppliances)
+        console.log('Dont match condition Appliance', recipeMatchBothAppliances)
 
     }
 
+
+    // if (newRecipeArrayIngredients !== -1) {
+    //     displayData(recipeMatchBothIngredients)
+    // }
+    // if (newRecipeArrayUstensiles !== -1) {
+    //     displayData(newRecipeArrayUstensiles)
+    // }
+    // if (newRecipeArrayAppliances !== -1) {
+    //     displayData(newRecipeArrayAppliances)
+
+    // }
 
 }
