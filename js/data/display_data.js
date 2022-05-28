@@ -1,3 +1,5 @@
+let textEmpty = document.querySelector('.title-empty');
+
 // Hydrate DOM
 const displayData = (recipes) => {
     // let uniqueIngredientsClone = matchArray.map(e => e.ingredients)

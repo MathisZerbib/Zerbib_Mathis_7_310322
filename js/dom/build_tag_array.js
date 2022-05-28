@@ -43,7 +43,6 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                     uniqueIngredientsClone = uniqueIngredientsClone.filter(e => e !== cleanTagName)
                     console.log('Litag', uniqueIngredientsClone, cleanTagName)
                     cleanTagListDOM(strIngredient)
-                        // TODO REMOVE TAG FROM ARRAY
 
                     uniqueIngredientsClone = [...new Set(uniqueIngredientsClone.map(element => {
                         return element.toLowerCase();
@@ -58,7 +57,6 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                     inputField.value = ''
                 })
                 break;
-                // TODO REMOVE TAG FROM ARRAY
 
             case 'Appareils':
                 liTag.classList.add('dropdown-item', 'bg-green');
@@ -82,7 +80,6 @@ const buildTagArrayDOM = (inputField, tags, id) => {
 
 
                 break;
-                // TODO REMOVE TAG FROM ARRAY
 
             case 'Ustensiles':
                 liTag.classList.add('dropdown-item', 'bg-red');

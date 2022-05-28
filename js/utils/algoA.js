@@ -8,7 +8,6 @@ let recipeMatchArray = [];
 let searchTagListFromInput = [];
 let tagArea = document.querySelector('#tags');
 let textDefault = document.querySelector('.title-default-search');
-let textEmpty = document.querySelector('.title-empty');
 let isMatching;
 textEmpty.style.opacity = '0';
 textEmpty.style.display = 'none';

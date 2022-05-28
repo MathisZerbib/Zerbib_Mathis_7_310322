@@ -1,25 +1,36 @@
 const multiTagSearch = (tagArrayToSearch) => {
 
+    let matchingUstensil = [];
+    let matchingAppliance = [];
 
     // TODO SEARCH IF WORD EXIST IN BASE
 
-    // tagArrayToSearch.forEach(el => {
-    //     if (!strExists(uniqueIngredients, el)) {
-    //         console.log('Dont Exist:', strExists(uniqueIngredients, el), el)
-    //         tagArrayToSearch = tagArrayToSearch.filter(e => e !== el); // will return ['A', 'C']
-    //     }
+    tagArrayToSearch.forEach(el => {
+        //     if (!strExists(uniqueIngredients, el)) {
+        //         console.log('Dont Exist:', strExists(uniqueIngredients, el), el)
+        //         tagArrayToSearch = tagArrayToSearch.filter(e => e !== el);
+        //     }
 
 
-    //     if (!strExists(uniqueUstensils, el)) {
-    //         tagArrayToSearch = tagArrayToSearch.filter(e => e !== el); // will return ['A', 'C']
-    //     }
+        if (strExists(uniqueUstensils, el)) {
+            matchingUstensil = recipeMatchArray.filter(e => e.ustensils.includes(el));
+
+            console.log('matchingUstensil', matchingUstensil)
+
+            cleanDOM();
+            displayData(recipeMatchArray)
+                // tagArrayToSearch = tagArrayToSearch.filter(e => e !== el);
+
+        }
 
 
-    //     if (!strExists(uniqueAppliances, el)) {
-    //         tagArrayToSearch = tagArrayToSearch.filter(e => e !== el); // will return ['A', 'C']
-    //     }
+        if (strExists(uniqueAppliances, el)) {
+            matchingAppliance = recipeMatchArray.filter(e => e.appliance.includes(el));
+            cleanDOM();
+            displayData(recipeMatchArray)
+        }
 
-    // })
+    })
 
     let newRecipeArrayIngredients = []
     let newRecipeArrayAppliances = []
@@ -27,8 +38,6 @@ const multiTagSearch = (tagArrayToSearch) => {
 
 
     let recipeMatchBothIngredients = []
-    let recipeMatchBothUstensiles = []
-    let recipeMatchBothAppliances = []
 
 
     for (let i = 0; i < tagArrayToSearch.length; i++) {
@@ -43,37 +52,28 @@ const multiTagSearch = (tagArrayToSearch) => {
             }
 
 
-            if (ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
-                // console.log('Ustensils to match:', ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray))
-                newRecipeArrayUstensiles.push(recipe)
-                    // console.log('TAG: ', tagArrayToSearch[i], 'newRecipeArrayIngredients', newRecipeArrayUstensiles)
+            // if (ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
+            //     // console.log('Ustensils to match:', ustensileMatch(recipe, tagArrayToSearch[i], recipeMatchArray))
+            //     newRecipeArrayUstensiles.push(recipe)
+            //         // console.log('TAG: ', tagArrayToSearch[i], 'newRecipeArrayIngredients', newRecipeArrayUstensiles)
 
 
-            }
+            // }
 
 
-            if (applianceMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
-                // console.log('TAG: ', tagArrayToSearch[i])
-                newRecipeArrayAppliances.push(recipe)
-                    // console.log('Appliances to match:'), newRecipeArrayAppliances
+            // if (applianceMatch(recipe, tagArrayToSearch[i], recipeMatchArray) !== undefined) {
+            //     // console.log('TAG: ', tagArrayToSearch[i])
+            //     newRecipeArrayAppliances.push(recipe)
+            //         // console.log('Appliances to match:'), newRecipeArrayAppliances
 
-            }
+            // }
             // ustensMatch(recipe, tag, recipeMatchArray)
             // applianceMatch(recipe, tag, recipeMatchArray)
 
         })
         newRecipeArrayIngredients = [...new Set(newRecipeArrayIngredients)];
-        newRecipeArrayUstensiles = [...new Set(newRecipeArrayUstensiles)];
-        newRecipeArrayAppliances = [...new Set(newRecipeArrayAppliances)];
-
-        // let fusionArray = [...new Set(newRecipeArrayIngredients, newRecipeArrayTwo)];
-
-        // const newArray = fusionArray[i].ingredients
-        //     .filter(ingredient => ingredient == tagArrayToSearch[0] && ingredient == tagArrayToSearch[1])
-
-        // console.log("NEW ARRAY RECIPES",
-        //     fusionArray,
-        //     "New array", newArray)
+        // newRecipeArrayUstensiles = [...new Set(newRecipeArrayUstensiles)];
+        // newRecipeArrayAppliances = [...new Set(newRecipeArrayAppliances)];
 
         if (newRecipeArrayIngredients.length !== 0 || newRecipeArrayIngredients.length !== undefined) {
 
@@ -106,69 +106,69 @@ const multiTagSearch = (tagArrayToSearch) => {
 
             }
         }
-        if (newRecipeArrayUstensiles.length !== 0 || newRecipeArrayUstensiles.length !== undefined) {
+        // if (newRecipeArrayUstensiles.length !== 0 || undefined) {
 
-            for (let j = 0; newRecipeArrayUstensiles.length > j; j++) {
-                let trueArray = [];
+        //     for (let j = 0; newRecipeArrayUstensiles.length > j; j++) {
+        //         let trueArray = [];
 
-                newRecipeArrayUstensiles[j].ustensils.forEach(element => {
+        //         newRecipeArrayUstensiles[j].ustensils.forEach(element => {
 
-                    // console.log(element.ingredient, 'newRecipeArrayUstensiles', newRecipeArrayUstensiles[j])
+        //             // console.log(element.ingredient, 'newRecipeArrayUstensiles', newRecipeArrayUstensiles[j])
 
-                    // console.log('ingredient :', element.ingredient);
-                    tagArrayToSearch.forEach(el => {
-                        // console.log('EL=======', el)
-                        if (element.toLocaleLowerCase().includes(el.toLocaleLowerCase())) {
-                            // console.log(element.ustensils, 'MATCH [0]', element)
-                            trueArray.push(element.ustensils)
-                        }
+        //             // console.log('ingredient :', element.ingredient);
+        //             tagArrayToSearch.forEach(el => {
+        //                 // console.log('EL=======', el)
+        //                 if (element.toLocaleLowerCase().includes(el.toLocaleLowerCase())) {
+        //                     // console.log(element.ustensils, 'MATCH [0]', element)
+        //                     trueArray.push(element.ustensils)
+        //                 }
 
-                    })
+        //             })
 
-                });
+        //         });
 
-                if (trueArray.length === tagArrayToSearch.length) {
-                    // console.log('TRUE ARRAY', trueArray, 'execpted', tagArrayToSearch.length)
+        //         if (trueArray.length === tagArrayToSearch.length) {
+        //             // console.log('TRUE ARRAY', trueArray, 'execpted', tagArrayToSearch.length)
 
-                    recipeMatchBothUstensiles.push(newRecipeArrayUstensiles[j]);
-                    recipeMatchBothUstensiles = [...new Set(recipeMatchBothUstensiles)];
-                    // console.log('Ingredient Pushed', newRecipeArrayUstensiles[y].ingredients)
-                }
+        //             matchingUstensil.push(newRecipeArrayUstensiles[j]);
+        //             matchingUstensil = [...new Set(matchingUstensil)];
+        //             // console.log('Ingredient Pushed', newRecipeArrayUstensiles[y].ingredients)
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
-        if (newRecipeArrayAppliances.length !== 0 || newRecipeArrayAppliances.length !== undefined) {
+        // if (newRecipeArrayAppliances.length !== 0 || newRecipeArrayAppliances.length !== undefined) {
 
-            for (let j = 0; newRecipeArrayAppliances.length > j; j++) {
-                let trueArray = [];
+        //     for (let j = 0; newRecipeArrayAppliances.length > j; j++) {
+        //         let trueArray = [];
 
-                newRecipeArrayAppliances[j].appliance.forEach(element => {
+        //         newRecipeArrayAppliances[j].appliance.forEach(element => {
 
-                    // console.log(element.ingredient, 'newRecipeArrayAppliances', newRecipeArrayAppliances[j])
+        //             // console.log(element.ingredient, 'newRecipeArrayAppliances', newRecipeArrayAppliances[j])
 
-                    // console.log('ingredient :', element.ingredient);
-                    tagArrayToSearch.forEach(el => {
-                        // console.log('EL=======', el)
-                        if (element.toLocaleLowerCase().includes(el.toLocaleLowerCase())) {
-                            // console.log(element.ustensils, 'MATCH [0]', element)
-                            trueArray.push(element.ustensils)
-                        }
+        //             // console.log('ingredient :', element.ingredient);
+        //             tagArrayToSearch.forEach(el => {
+        //                 // console.log('EL=======', el)
+        //                 if (element.toLocaleLowerCase().includes(el.toLocaleLowerCase())) {
+        //                     // console.log(element.ustensils, 'MATCH [0]', element)
+        //                     trueArray.push(element.ustensils)
+        //                 }
 
-                    })
+        //             })
 
-                });
+        //         });
 
-                if (trueArray.length === tagArrayToSearch.length) {
-                    // console.log('TRUE ARRAY', trueArray, 'execpted', tagArrayToSearch.length)
+        //         if (trueArray.length === tagArrayToSearch.length) {
+        //             // console.log('TRUE ARRAY', trueArray, 'execpted', tagArrayToSearch.length)
 
-                    recipeMatchBothAppliances.push(newRecipeArrayAppliances[j]);
-                    recipeMatchBothAppliances = [...new Set(recipeMatchBothAppliances)];
-                    // console.log('Ingredient Pushed', newRecipeArrayAppliances[y].ingredients)
-                }
+        //             matchingAppliance.push(newRecipeArrayAppliances[j]);
+        //             matchingAppliance = [...new Set(matchingAppliance)];
+        //             // console.log('Ingredient Pushed', newRecipeArrayAppliances[y].ingredients)
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
 
     }
@@ -183,7 +183,7 @@ const multiTagSearch = (tagArrayToSearch) => {
         return recipeMatchBothIngredients
     } else {
 
-        // A voir comportement si recette pas trouvé eg: lait beurre far[...]
+        // Ccomportement si recette pas trouvé eg: lait beurre far[...]
         displayError()
             // cleanDOM();
         isMatching = false;
@@ -192,43 +192,43 @@ const multiTagSearch = (tagArrayToSearch) => {
     }
 
 
-    if (recipeMatchBothUstensiles.length !== 0) {
-        console.log('recipes :', recipeMatchBothUstensiles, 'Conditions:', tagArrayToSearch)
-        console.log('§!!!!!!!!!!!!!!!!!!!!!§§§§§§§§§§§§§§§§§§§§§ ', recipeMatchBothAppliances)
+    if (matchingUstensil.length !== 0) {
+        console.log('recipes :', matchingUstensil, 'Conditions:', tagArrayToSearch)
+        console.log('§!!!!!!!!!!!!!!!!!!!!!§§§§§§§§§§§§§§§§§§§§§ ', matchingAppliance)
 
         cleanDOM();
-        displayData(recipeMatchBothUstensiles)
-        recipeMatchArray = recipeMatchBothUstensiles
+        displayData(matchingUstensil)
+        recipeMatchArray = matchingUstensil
         isMatching = true;
-        return recipeMatchBothUstensiles
+        return matchingUstensil
     } else {
 
-        // A voir comportement si recette pas trouvé eg: lait beurre far[...]
+        // Comportement si recette pas trouvé eg: lait beurre far[...]
         displayError()
             // cleanDOM();
         isMatching = false;
-        console.log('Dont match conditions Ustensile', recipeMatchBothUstensiles)
+        console.log('Dont match conditions Ustensile', matchingUstensil)
 
     }
 
 
-    if (recipeMatchBothAppliances.length !== 0) {
-        console.log('recipes :', recipeMatchBothAppliances, 'Conditions:', tagArrayToSearch)
+    // if (matchingAppliance.length !== 0) {
+    //     console.log('recipes :', matchingAppliance, 'Conditions:', tagArrayToSearch)
 
-        cleanDOM();
-        displayData(recipeMatchBothAppliances)
-        recipeMatchArray = recipeMatchBothAppliances
-        isMatching = true;
-        return recipeMatchBothAppliances
-    } else {
+    //     cleanDOM();
+    //     displayData(matchingAppliance)
+    //     recipeMatchArray = matchingAppliance
+    //     isMatching = true;
+    //     return matchingAppliance
+    // } else {
 
-        // A voir comportement si recette pas trouvé eg: lait beurre far[...]
-        displayError()
-            // cleanDOM();
-        isMatching = false;
-        console.log('Dont match condition Appliance', recipeMatchBothAppliances)
+    //     // Comportement si recette pas trouvé eg: lait beurre far[...]
+    //     displayError()
+    //         // cleanDOM();
+    //     isMatching = false;
+    //     console.log('Dont match condition Appliance', matchingAppliance)
 
-    }
+    // }
 
 
     // if (newRecipeArrayIngredients !== -1) {

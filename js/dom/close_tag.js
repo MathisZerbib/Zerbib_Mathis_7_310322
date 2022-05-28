@@ -2,7 +2,7 @@
 
 const closeTag = (tag) => {
 
-    // **TODO add removed tag to respective Tag Array
+    // add removed tag to respective Tag Array
 
     tag.remove()
     tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText)

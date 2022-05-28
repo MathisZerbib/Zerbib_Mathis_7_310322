@@ -38,10 +38,10 @@ const tagArraySearch = (tagArrayToSearch) => {
 
 
     // if input is empty and tags not emtpy
-    if (tagArrayToSearch.length === 1) {
+    if (tagArrayToSearch.length == 1) {
         // tagArrayToSearch = tagArrayToSearch.push(searchInput.value)
         // multiTagSearch(tagArrayToSearch)
-        console.log('tagArrayToSearch.length == 1')
+        console.log('tagArrayToSearch.length == 1', tagArrayToSearch)
         recipesDOM.forEach(recipe => {
             tagArrayToSearch.forEach(tag => {
                 tag = tag.toString();
@@ -63,9 +63,6 @@ const tagArraySearch = (tagArrayToSearch) => {
         recipeMatchArray = [...new Set(recipeMatchArray)];
         displayData(recipeMatchArray);
     }
-
-
-    console.log("Recipes single Match:", recipeMatchArray)
 
     if (tagArrayToSearch.length === 1 && searchInput.value.length >= 1) {
         tagArrayToSearch.push(searchInput.value)
