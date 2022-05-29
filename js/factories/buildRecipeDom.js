@@ -69,7 +69,7 @@ function recipeFactory(data) {
         titleRecipe.className = 'card-title w-50 card-content-title';
         listIngredients.className = 'ingredient-container';
         textDescription.className = 'description w-50';
-        article.className = 'card recipe-card mb-3';
+        article.className = 'card recipe-card mb-5';
         headerIconContainer.className = 'card-title d-flex font-weight-bold align-items-baseline justify-content-between';
         faTimer.className = 'fa-solid fa-clock mx-2';
 

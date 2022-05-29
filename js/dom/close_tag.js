@@ -39,7 +39,7 @@ const closeTag = (tag) => {
     } else {
         cleanDOM()
         console.log('On close tag tagArrayToSearch', tagArrayToSearch)
-            // tagArraySearch(tagArrayToSearch)
+        tagArraySearch(tagArrayToSearch)
             // console.log('IF TAGGGG', tagArrayToSearch)
     }
     console.log('Default TAGGGG', tagArrayToSearch, 'searchInput', searchInput.value)
@@ -50,5 +50,9 @@ const closeTag = (tag) => {
         defaultView();
     }
     tagArraySearch(tagArrayToSearch)
+
+    if (tagFilters.innerText == '') {
+        recipeMatchArray = []
+    }
 
 }

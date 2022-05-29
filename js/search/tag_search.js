@@ -41,7 +41,7 @@ const tagArraySearch = (tagArrayToSearch) => {
     if (tagArrayToSearch.length == 1) {
         // tagArrayToSearch = tagArrayToSearch.push(searchInput.value)
         // multiTagSearch(tagArrayToSearch)
-        console.log('tagArrayToSearch.length == 1', tagArrayToSearch)
+        console.log('tagArrayToSearch', tagArrayToSearch, 'lenght:', tagArrayToSearch.length)
         recipesDOM.forEach(recipe => {
             tagArrayToSearch.forEach(tag => {
                 tag = tag.toString();
@@ -64,9 +64,9 @@ const tagArraySearch = (tagArrayToSearch) => {
         displayData(recipeMatchArray);
     }
 
-    if (tagArrayToSearch.length === 1 && searchInput.value.length >= 1) {
+    if (tagArrayToSearch.length == 1 && searchInput.value.length >= 1) {
         tagArrayToSearch.push(searchInput.value)
-        console.log('tagArrayToSearch lenght is 1', searchInput.value, tagArrayToSearch)
+        console.log('tagArrayToSearch', tagArrayToSearch, 'lenght is', tagArrayToSearch.length, 'Search Input value', searchInput.value)
         multiTagSearch(tagArrayToSearch)
 
         // displayData(recipeMatchArray);

@@ -5,6 +5,7 @@ const displayData = (recipes) => {
     // let uniqueIngredientsClone = matchArray.map(e => e.ingredients)
     // uniqueIngredientsClone = matchArray.map(recipe => (recipe.ingredients));
     // uniqueIngredientsClone = uniqueIngredientsClone.map(ingredients => (ingredients));
+    console.log("Display:", recipes)
     matchArray = recipes
     if (matchArray.lenght <= 0 || matchArray == undefined) {
         displayError();

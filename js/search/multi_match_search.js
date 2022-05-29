@@ -28,13 +28,14 @@ const multiTagSearch = (tagArrayToSearch) => {
             matchingAppliance = recipeMatchArray.filter(e => e.appliance.includes(el));
             cleanDOM();
             displayData(recipeMatchArray)
+            console.log('EXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIST APPLIANCE', el)
         }
 
     })
 
     let newRecipeArrayIngredients = []
-    let newRecipeArrayAppliances = []
-    let newRecipeArrayUstensiles = []
+        // let newRecipeArrayAppliances = []
+        // let newRecipeArrayUstensiles = []
 
 
     let recipeMatchBothIngredients = []
@@ -181,19 +182,9 @@ const multiTagSearch = (tagArrayToSearch) => {
         recipeMatchArray = recipeMatchBothIngredients
         isMatching = true;
         return recipeMatchBothIngredients
-    } else {
-
-        // Ccomportement si recette pas trouvé eg: lait beurre far[...]
-        displayError()
-            // cleanDOM();
-        isMatching = false;
-        console.log('Dont match conditions Ingredient', recipeMatchBothIngredients)
-
-    }
-
-
+    } else
     if (matchingUstensil.length !== 0) {
-        console.log('recipes :', matchingUstensil, 'Conditions:', tagArrayToSearch)
+        console.log('matchingUstensil :', matchingUstensil, 'Conditions:', tagArrayToSearch)
         console.log('§!!!!!!!!!!!!!!!!!!!!!§§§§§§§§§§§§§§§§§§§§§ ', matchingAppliance)
 
         cleanDOM();
@@ -201,34 +192,24 @@ const multiTagSearch = (tagArrayToSearch) => {
         recipeMatchArray = matchingUstensil
         isMatching = true;
         return matchingUstensil
+    } else if (matchingAppliance.length !== 0) {
+        console.log('matchingAppliance :', matchingAppliance, 'Conditions:', tagArrayToSearch)
+
+        cleanDOM();
+        displayData(matchingAppliance)
+        recipeMatchArray = matchingAppliance
+        isMatching = true;
+        return matchingAppliance
     } else {
+
 
         // Comportement si recette pas trouvé eg: lait beurre far[...]
         displayError()
             // cleanDOM();
         isMatching = false;
-        console.log('Dont match conditions Ustensile', matchingUstensil)
-
+        console.log('Dont match NONE:', 'Ustensiles', matchingUstensil, 'Appliance', matchingAppliance)
     }
 
-
-    // if (matchingAppliance.length !== 0) {
-    //     console.log('recipes :', matchingAppliance, 'Conditions:', tagArrayToSearch)
-
-    //     cleanDOM();
-    //     displayData(matchingAppliance)
-    //     recipeMatchArray = matchingAppliance
-    //     isMatching = true;
-    //     return matchingAppliance
-    // } else {
-
-    //     // Comportement si recette pas trouvé eg: lait beurre far[...]
-    //     displayError()
-    //         // cleanDOM();
-    //     isMatching = false;
-    //     console.log('Dont match condition Appliance', matchingAppliance)
-
-    // }
 
 
     // if (newRecipeArrayIngredients !== -1) {
