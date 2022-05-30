@@ -2,7 +2,7 @@ const multiTagSearch = (tagArrayToSearch) => {
 
     let matchingUstensil = [];
     let matchingAppliance = [];
-
+    let matchingIngredients = [];
     // TODO SEARCH IF WORD EXIST IN BASE
 
     tagArrayToSearch.forEach(el => {
@@ -15,7 +15,7 @@ const multiTagSearch = (tagArrayToSearch) => {
         if (strExists(uniqueUstensils, el)) {
             matchingUstensil = recipeMatchArray.filter(e => e.ustensils.includes(el));
 
-            console.log('matchingUstensil', matchingUstensil)
+            console.log('Exist in Unique Ustensile', el)
 
             cleanDOM();
             displayData(recipeMatchArray)
@@ -28,7 +28,16 @@ const multiTagSearch = (tagArrayToSearch) => {
             matchingAppliance = recipeMatchArray.filter(e => e.appliance.includes(el));
             cleanDOM();
             displayData(recipeMatchArray)
-            console.log('EXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIST APPLIANCE', el)
+            console.log('Exist in Unique APPLIANCE', el)
+        }
+
+
+
+        if (strExists(uniqueIngredients, el)) {
+            matchingIngredients = recipeMatchArray.filter(e => e.ingredients.includes(el));
+            cleanDOM();
+            displayData(recipeMatchArray)
+            console.log('Exist in Unique INDREDIENT', el)
         }
 
     })

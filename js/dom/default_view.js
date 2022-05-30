@@ -8,19 +8,19 @@ const defaultViewDOM = () => {
 
 // Display default Data
 const defaultView = () => {
-        console.log('//////////////////////VIEW/////////////////////////')
-        console.log('Before Clean recipesDOM:', recipesDOM)
+    console.log('//////////////////////VIEW/////////////////////////')
+    console.log('Before Clean recipesDOM:', recipesDOM)
 
-        cleanDOM()
-        displayData(recipes)
-        recipesDOM = recipes
-        console.log('AFTER Clean recipesDOM:', recipesDOM)
+    cleanDOM()
+    displayData(recipes)
+    recipesDOM = recipes
+    console.log('AFTER Clean recipesDOM:', recipesDOM)
 
-    }
-    // const tagFilters = document.querySelector('#tags-container');
-    // const searchInput = document.getElementById("main-search");
-    // if (searchInput.innerText == '' && tagFilters.innerText == '') {
-    //     recipesDOM = recipes
+}
+const tagFilters = document.querySelector('#tags-container');
+const searchInputSelector = document.getElementById("main-search");
+// if (searchInput.innerText == '' && tagFilters.innerText == '') {
+//     recipesDOM = recipes
 
 //     cleanDOM()
 //     displayData(recipes)

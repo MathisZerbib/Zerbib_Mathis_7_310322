@@ -48,7 +48,7 @@ function searchPrincipalInput(e) {
         if (tagArrayToSearch.length >= 1) {
             console.log("Search In recipes:", recipeMatchArray, "Tag not Empty", tagArrayToSearch), 'principal search', searchInput;
 
-            // ArrayToUse if Multisearch with at least one tag
+            // Use "recipeMatchArray" if Multisearch with at least one tag
             recipeMatchArray.forEach(recipe => {
                 recipeMatchName(input, searchMatchArray);
                 ingredientMatch(recipe, input, searchMatchArray);
