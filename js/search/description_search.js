@@ -5,5 +5,7 @@ const descriptionMatch = (input, recipeMatch) => {
         descriptionMatch.forEach(el => {
             recipeMatch.push(el)
         })
+        console.log(descriptionMatch, 'DESCRIPTION SEARCH MATCH')
+
     }
 }

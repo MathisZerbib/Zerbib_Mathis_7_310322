@@ -5,7 +5,4 @@ const cleanDOM = () => {
     while (recipesSection.lastChild) {
         recipesSection.removeChild(recipesSection.lastChild);
     }
-
-
-
 }

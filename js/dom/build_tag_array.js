@@ -40,9 +40,9 @@ const buildTagArrayDOM = (inputField, tags, id) => {
             case 'Ingrédient':
                 liTag.classList.add('dropdown-item', 'bg-primary');
                 liTag.addEventListener('click', () => {
+                    uniqueIngredientsClone = uniqueIngredientsClone.filter(e => e !== cleanTagName)
+                    console.log('Litag', uniqueIngredientsClone, cleanTagName)
                     cleanTagListDOM(strIngredient)
-                        // TODO REMOVE TAG FROM ARRAY
-                    uniqueIngredientsClone.splice(uniqueIngredientsClone.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
                     uniqueIngredientsClone = [...new Set(uniqueIngredientsClone.map(element => {
                         return element.toLowerCase();
@@ -57,13 +57,12 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                     inputField.value = ''
                 })
                 break;
-                // TODO REMOVE TAG FROM ARRAY
 
             case 'Appareils':
                 liTag.classList.add('dropdown-item', 'bg-green');
                 liTag.addEventListener('click', () => {
+                    uniqueAppliancesClone = uniqueAppliancesClone.filter(e => e !== cleanTagName)
                     cleanTagListDOM(strAppareil)
-                    uniqueAppliancesClone.splice(uniqueAppliancesClone.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
                     uniqueAppliancesClone = [...new Set(uniqueAppliancesClone.map(element => {
                         return element.toLowerCase();
@@ -81,13 +80,14 @@ const buildTagArrayDOM = (inputField, tags, id) => {
 
 
                 break;
-                // TODO REMOVE TAG FROM ARRAY
 
             case 'Ustensiles':
                 liTag.classList.add('dropdown-item', 'bg-red');
                 liTag.addEventListener('click', () => {
+
+                    uniqueUstensilesClone = uniqueUstensilesClone.filter(e => e !== cleanTagName)
+
                     cleanTagListDOM(strUstensil)
-                    uniqueUstensilesClone.splice(uniqueUstensilesClone.findIndex(e => e.toLocaleLowerCase().includes(liTag.innerText)), 1);
 
                     uniqueUstensilesClone = [...new Set(uniqueUstensilesClone.map(element => {
                         return element.toLowerCase();

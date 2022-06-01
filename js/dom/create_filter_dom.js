@@ -64,9 +64,23 @@ const createFiltersDOM = (filtersList) => {
 
 
             // build DOM tag
-            buildTagArrayDOM(inputField, uniqueIngredientsClone, strIngredient);
-            buildTagArrayDOM(inputField, uniqueUstensilsClone, strUstensil);
-            buildTagArrayDOM(inputField, uniqueAppliancesClone, strAppareil);
+
+            cleanTagListDOM(strIngredient)
+            cleanTagListDOM(strUstensil)
+            cleanTagListDOM(strAppareil)
+            if (tagFilters.innerText == '' && searchInputSelector.value == '') {
+                buildTagArrayDOM(inputField, uniqueIngredients, strIngredient);
+                buildTagArrayDOM(inputField, uniqueUstensils, strUstensil);
+                buildTagArrayDOM(inputField, uniqueAppliances, strAppareil);
+                // console.log('TAGFILTERSS ============================ :§:;!:;!.:!;!:', tagFilters.innerText, searchInputSelector.value)
+            } else {
+                buildTagArrayDOM(inputField, uniqueIngredientsClone, strIngredient);
+                buildTagArrayDOM(inputField, uniqueUstensilesClone, strUstensil);
+                buildTagArrayDOM(inputField, uniqueAppliancesClone, strAppareil);
+            }
+
+
+
 
             toggleList(ul, filterArrow, true);
 

@@ -1,3 +1,3 @@
-function removeTagFromList(tag, tagListSection) {
-    tagListSection = tagListSection.filter(e => e !== tag.innerText);
+function removeElementFromArray(element, array) {
+    array = array.filter(e => e !== element);
 }

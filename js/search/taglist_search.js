@@ -1,6 +1,8 @@
 const tagListSearch = (e, ul, inputField) => {
     if (e.key == 8 && searchTagListFromInput !== []) {
         searchTagListFromInput.pop()
+    } else if (e.key == 8 && searchTagListFromInput == []) {
+        console.log('Afficheles bon ingrédients MERDE !')
     }
     if (e.key >= 65 && e.key <= 90)
         var buffer;
@@ -22,7 +24,7 @@ const tagListSearch = (e, ul, inputField) => {
         switch (idDiv) {
             case "Ingrédient":
                 final_words.forEach(el => {
-                        let searchTagIngredient = uniqueIngredients.filter(ingredient => ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
+                        let searchTagIngredient = uniqueIngredientsClone.filter(ingredient => ingredient.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
 
 
                         // newArrayIngredients = [...new Set(searchTagIngredient)];
@@ -42,7 +44,7 @@ const tagListSearch = (e, ul, inputField) => {
                 break;
             case "Appareils":
                 final_words.forEach(el => {
-                    let searchTagAppareils = uniqueAppliances.filter(appliance => appliance.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
+                    let searchTagAppareils = uniqueAppliancesClone.filter(appliance => appliance.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
                     newArrayAppareils = [...new Set(searchTagAppareils)];
                     cleanTagListDOM(idDiv)
 
@@ -57,7 +59,7 @@ const tagListSearch = (e, ul, inputField) => {
                 break;
             case "Ustensiles":
                 final_words.forEach(el => {
-                    let searchTagUstensils = uniqueUstensils.filter(ustensil => ustensil.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
+                    let searchTagUstensils = uniqueUstensilesClone.filter(ustensil => ustensil.toLocaleLowerCase().includes(el.toLocaleLowerCase()))
                     newArrayUstensils = [...new Set(searchTagUstensils)];
                     // console.log("Search trought ingredients", searchTagIngredient)
                     cleanTagListDOM(idDiv)
