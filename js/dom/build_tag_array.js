@@ -1,5 +1,5 @@
 const buildTagArrayDOM = (inputField, tags, id) => {
-    for (let i = 0; i < ulLength(tags); i++) {
+    for (let i = 0; ulLength(tags) > i; i++) {
         let liTag = document.createElement('li');
         let cleanTagName = ''
         liTag.setAttribute('aria-selected', 'false');
