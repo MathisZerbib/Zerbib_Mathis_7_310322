@@ -7,6 +7,8 @@ const displayData = (recipes) => {
     // uniqueIngredientsClone = uniqueIngredientsClone.map(ingredients => (ingredients));
     console.log("Display:", recipes)
     matchArray = recipes
+    matchArray = [...new Set(matchArray)]
+
     if (matchArray.lenght <= 0 || matchArray == undefined) {
         displayError();
     } else {

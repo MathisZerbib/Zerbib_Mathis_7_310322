@@ -28,6 +28,7 @@ const closeTag = (tag) => {
     }
     // tag.visible = true
     tag.classList.remove('tag-posted');
+    tag = '';
     if (tagArrayToSearch == [] && searchInput.value == '') {
         cleanDOM();
         defaultView();

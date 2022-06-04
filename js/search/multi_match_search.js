@@ -3,6 +3,8 @@ const multiTagSearch = (tagArrayToSearch) => {
     let matchingUstensil = [];
     let matchingAppliance = [];
     let matchingIngredients = [];
+    let arrayFromInputSearch = searchInput.value.split(' ')
+
     // TODO SEARCH IF WORD EXIST IN BASE
 
     tagArrayToSearch.forEach(el => {
@@ -41,6 +43,61 @@ const multiTagSearch = (tagArrayToSearch) => {
         }
 
     })
+
+
+
+    arrayFromInputSearch.forEach(element => {
+        //     if (!strExists(uniqueIngredients, element)) {
+        //         console.log('Dont Exist:', strExists(uniqueIngredients, element), element)
+        //         tagArrayToSearch = tagArrayToSearch.filter(e => e !== element);
+        //     }
+
+
+        if (strExists(uniqueUstensils, element)) {
+            matchingUstensil = recipeMatchArray.filter(e => e.ustensils.includes(element));
+
+            console.log('arrayFromInputSearch  Exist in Unique Ustensile', element)
+
+            cleanDOM();
+            displayData(recipeMatchArray)
+                // tagArrayToSearch = tagArrayToSearch.filter(e => e !== element);
+        }
+
+
+        if (strExists(uniqueAppliances, element)) {
+            matchingAppliance = recipeMatchArray.filter(e => e.appliance.includes(element));
+            cleanDOM();
+            displayData(recipeMatchArray)
+            console.log('arrayFromInputSearchExist in Unique APPLIANCE', element)
+        }
+
+
+
+        if (strExists(uniqueIngredients, element) && matchingUstensil.length >= 1) {
+            let recipeMatchArray = []
+            for (let y = 0; matchingUstensil.length > y; y++) {
+
+                let resIngredient = ingredientMatch(matchingUstensil[y], element, recipeMatchArray)
+                if (resIngredient == true) {
+                    // matchingIngredients = matchingIngredients.push(recipeMatchArray)
+                    console.log('recipesMatchArray', recipeMatchArray)
+                }
+                console.log('Pass threw matchingIngredients ', matchingIngredients)
+            }
+            matchingIngredients = recipeMatchArray
+            console.log('matchingIngredients', matchingIngredients)
+
+
+            cleanDOM();
+            displayData(recipeMatchArray)
+            console.log('arrayFromInputSearch Exist in Unique INDREDIENT', element)
+        }
+
+    })
+
+    if (matchingIngredients.length >= 1 && matchingUstensil.length >= 1) {
+        console.log('matchingIngredients :', matchingIngredients, 'matchingUstensil', matchingUstensil)
+    }
 
     let newRecipeArrayIngredients = []
         // let newRecipeArrayAppliances = []
@@ -192,16 +249,18 @@ const multiTagSearch = (tagArrayToSearch) => {
         isMatching = true;
         return recipeMatchBothIngredients
     } else
-    if (matchingUstensil.length !== 0) {
+    if (matchingUstensil.length !== 0 && matchingAppliance.length == 0 && matchingIngredients.length == 0) {
         console.log('matchingUstensil :', matchingUstensil, 'Conditions:', tagArrayToSearch)
         console.log('§!!!!!!!!!!!!!!!!!!!!!§§§§§§§§§§§§§§§§§§§§§ ', matchingAppliance)
-
+        if (matchingIngredients.length !== 0) {
+            console.log('Coucou ingredient', matchingIngredients)
+        }
         cleanDOM();
         displayData(matchingUstensil)
         recipeMatchArray = matchingUstensil
         isMatching = true;
         return matchingUstensil
-    } else if (matchingAppliance.length !== 0) {
+    } else if (matchingAppliance.length !== 0 && matchingUstensil.length == 0 && matchingIngredients.length == 0) {
         console.log('matchingAppliance :', matchingAppliance, 'Conditions:', tagArrayToSearch)
 
         cleanDOM();
@@ -209,6 +268,10 @@ const multiTagSearch = (tagArrayToSearch) => {
         recipeMatchArray = matchingAppliance
         isMatching = true;
         return matchingAppliance
+    } else if (matchingIngredients.length !== 0 && matchingUstensil.length !== 0 && matchingAppliance.length == 0) {
+        cleanDOM();
+        displayData(matchingIngredients)
+        isMatching = true;
     } else {
 
 
