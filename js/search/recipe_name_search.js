@@ -13,9 +13,8 @@ const recipeMatchName = (input, recipeMatchArray) => {
         recipeMatch.forEach(el => {
             recipeMatchArray.push(el)
         })
-
+        
         console.log(recipeMatchArray, 'NAME SEARCH MATCH')
-
         return recipeMatchArray
     }
 }

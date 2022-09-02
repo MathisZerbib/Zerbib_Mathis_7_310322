@@ -26,7 +26,7 @@ textEmpty.style.display = 'none';
 //
 //}
 
-recipesDOM.forEach(recipe => {
+recipes.forEach(recipe => {
     recipe.ingredients.forEach((currentIngredient) => {
         ingredientsArray.push(currentIngredient.ingredient);
     });

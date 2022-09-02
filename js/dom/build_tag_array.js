@@ -40,18 +40,18 @@ const buildTagArrayDOM = (inputField, tags, id) => {
             case 'Ingrédient':
                 liTag.classList.add('dropdown-item', 'bg-primary');
                 liTag.addEventListener('click', () => {
-                    uniqueIngredientsClone = uniqueIngredientsClone.filter(e => e !== cleanTagName)
-                    console.log('Litag', uniqueIngredientsClone, cleanTagName)
+                    allIngredients = allIngredients.filter(e => e !== cleanTagName)
+                    console.log('Litag', allIngredients, cleanTagName)
                     cleanTagListDOM(strIngredient)
 
-                    uniqueIngredientsClone = [...new Set(uniqueIngredientsClone.map(element => {
+                    allIngredients = [...new Set(allIngredients.map(element => {
                         return element.toLowerCase();
                     }))]
 
-                    // console.log('UNIQUE INGREDIENT', uniqueIngredientsClone)
+                    // console.log('UNIQUE INGREDIENT', allIngredients)
                     liTag.setAttribute('aria-selected', 'true');
 
-                    uniqueIngredientsClone = uniqueIngredientsClone.filter(e => e !== tags[i])
+                    allIngredients = allIngredients.filter(e => e !== tags[i])
                         // console.log('Tags ', tags)
                     createTag(liTag, 'bg-primary')
                     inputField.value = ''
@@ -68,7 +68,7 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                         return element.toLowerCase();
                     }))]
 
-                    console.log('UNIQUE INGREDIENT', uniqueAppliancesClone)
+                    // console.log('UNIQUE APPLIANCE', uniqueAppliancesClone)
                     liTag.setAttribute('aria-selected', 'true');
 
                     uniqueAppliancesClone = uniqueAppliancesClone.filter(e => e !== tags[i])
@@ -93,7 +93,7 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                         return element.toLowerCase();
                     }))]
 
-                    console.log('UNIQUE INGREDIENT', uniqueUstensilesClone)
+                    // console.log('UNIQUE USTENSILES', uniqueUstensilesClone)
                     liTag.setAttribute('aria-selected', 'true');
 
                     uniqueUstensilesClone = uniqueUstensilesClone.filter(e => e !== tags[i])

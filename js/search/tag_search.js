@@ -15,32 +15,8 @@ const tagArraySearch = (tagArrayToSearch) => {
         multiTagSearch(tagArrayToSearch)
     }
 
-    // if multi multi tags 
-
-    // if (tagArrayToSearch.length >= 2) {
-    //     console.log("Multitag Multi search:", multiTagSearch(tagArrayToSearch))
-    //     cleanDOM()
-    //     let recipesFromMulti = recipeMatchBothIngredients
-    //     recipesFromMulti
-    //         .forEach(recipe => {
-    //             tagArrayToSearch.forEach(tag => {
-    //                 console.log("EEEEEEEEEEEEEEEEE", tag)
-    //                 if (uniqueUstensils.includes(tag) !== -1) {
-    //                     ustensileMatch(recipe, tag, recipeMatchArray);
-    //                     // ustensileMatch(multiTagSearch(tagArrayToSearch), e, recipeMatchArr,ay)
-    //                 }
-    //             })
-
-    //         })
-    //     recipeMatchArray = [...new Set(recipeMatchArray)];
-    //     displayData(recipeMatchArray);
-    // }
-
-
-    // if input is empty and tags not emtpy
     if (tagArrayToSearch.length == 1) {
-        // tagArrayToSearch = tagArrayToSearch.push(searchInput.value)
-        // multiTagSearch(tagArrayToSearch)
+        
         console.log('tagArrayToSearch', tagArrayToSearch, 'lenght:', tagArrayToSearch.length)
         recipesDOM.forEach(recipe => {
             tagArrayToSearch.forEach(tag => {
