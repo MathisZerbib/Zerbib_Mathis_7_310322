@@ -18,13 +18,13 @@ const createTag = (el, color) => {
     addTagToTagArray(tag, color)
     tagArraySearch(tagArrayToSearch)
 
-    tagArrayToSearch.forEach(el => {
+    tagArrayToSearch.map(el => {
         removeElementFromArray(el, uniqueIngredientsClone)
         removeElementFromArray(el, uniqueUstensilesClone)
         removeElementFromArray(el, uniqueAppliancesClone)
     })
     if (uniqueIngredientsClone.includes(tag.innerText) == -1) {
-        console.log("Unique ingredient", uniqueIngredientsClone.includes(tag.innerText), 'dont match', tag.innerText, 'HEEEEEEEEEEEEEEEEEEEEEEEEEERE')
+        // console.log("Unique ingredient", uniqueIngredientsClone.includes(tag.innerText), 'dont match', tag.innerText, 'HEEEEEEEEEEEEEEEEEEEEEEEEEERE')
 
     }
 }

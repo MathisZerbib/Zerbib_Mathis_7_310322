@@ -23,7 +23,7 @@ function recipeFactory(data) {
 
         textDescription.textContent = description
 
-        ingredients.forEach(element => {
+        ingredients.map(element => {
             var p = document.createElement('p')
             p.className = 'mb-0';
 

@@ -3,9 +3,7 @@ const tagArraySearch = (tagArrayToSearch) => {
 
     // Default View if no filters
     if (tagArrayToSearch.length == 0 && searchInput.value == '' && tagArrayToSearch.length == 0) {
-
         console.log("All Empty fields")
-
         defaultView();
     }
 
@@ -16,21 +14,18 @@ const tagArraySearch = (tagArrayToSearch) => {
     }
 
     if (tagArrayToSearch.length == 1) {
-        
         console.log('tagArrayToSearch', tagArrayToSearch, 'lenght:', tagArrayToSearch.length)
-        recipesDOM.forEach(recipe => {
-            tagArrayToSearch.forEach(tag => {
+        recipesDOM.map(recipe => {
+            tagArrayToSearch.map(tag => {
                 tag = tag.toString();
                 if (uniqueIngredients.includes(tag)) {
                     ingredientMatch(recipe, tag, recipeMatchArray);
-                } else if (uniqueUstensils.includes(tag)) {
+                } else if (uniqueUstensiles.includes(tag)) {
                     ustensileMatch(recipe, tag, recipeMatchArray);
-
                 } else if (uniqueAppliances.includes(tag)) {
                     applianceMatch(recipe, tag, recipeMatchArray);
                 } else if (tagArrayToSearch.length == 1 && searchInput.value.length >= 3) {
-
-                    console.log("Neither in INGREDIENTS", uniqueIngredients.includes(tag), "USTENSILES", uniqueUstensils.includes(tag), "APPLIANCES", uniqueAppliances.includes(tag))
+                    console.log("Neither in INGREDIENTS", uniqueIngredients.includes(tag), "USTENSILES", uniqueUstensiles.includes(tag), "APPLIANCES", uniqueAppliances.includes(tag))
                 } else if (ingredientMatch(recipe, tag, recipeMatchArray)) {
                     console.log('IF ||||| IngredientMatch(recipe, tag, recipeMatchArray)')
                 }
@@ -44,7 +39,6 @@ const tagArraySearch = (tagArrayToSearch) => {
         // tagArrayToSearch.push(searchInput.value)
         console.log('tagArrayToSearch', tagArrayToSearch, 'lenght is', tagArrayToSearch.length, 'Search Input value', searchInput.value)
         multiTagSearch(tagArrayToSearch)
-
         // displayData(recipeMatchArray);
     }
 
@@ -69,7 +63,7 @@ const tagArraySearch = (tagArrayToSearch) => {
                 descriptionMatch(searchInput.value, searchMatchArray);
             }
             searchMatchArray = [...new Set(searchMatchArray)];
-            console.log("Principal search Match ID:", searchMatchArray);
+            console.table(searchMatchArray);
 
 
             cleanDOM();

@@ -1,9 +1,9 @@
 
 
     let recipes = [];
-    const allIngredients = [];
-    const allAppliances = [];
-    const allUstensils = [];
+    let allIngredients = [];
+    let allAppliances = [];
+    let allUstensils = [];
 
     
     /**
@@ -15,7 +15,7 @@
             throw "Données momentanément indisponible";
         }
         const data = await req.json();
-        console.log(data)
+        // console.log(data)
         recipes = data;
         displayData(recipes)
     }
@@ -27,7 +27,7 @@
     const getAllIngredients = () => {
 
         if (allIngredients.length === 0) {
-            recipes.forEach(recipe => {
+            recipes.map(recipe => {
                 recipe.ingredients.map( ingredients => {
                     const ingredient =  ingredients.ingredient;
 
@@ -38,7 +38,7 @@
             })
         }
 
-        return allIngredients;
+        return allIngredients.sort((a, b) => a.localeCompare(b));
     }
 
     /**
@@ -48,14 +48,14 @@
     const getAllAppliances = () => {
 
         if (allAppliances.length === 0) {
-            recipes.forEach(recipe => {
+            recipes.map(recipe => {
                 if (!allAppliances.includes(recipe.appliance.toLowerCase())) {
                     allAppliances = [...allAppliances, recipe.appliance.toLowerCase()];
                 }
             })
         }
-
-        return allAppliances;
+        
+        return allAppliances.sort((a, b) => a.localeCompare(b));
     }
 
     /**
@@ -64,7 +64,7 @@
      */
     const getAllUstensils = () => {
         if (allUstensils.length === 0) {
-            recipes.forEach(recipe => {
+            recipes.map(recipe => {
                 recipe.ustensils.map( ustensile => {
 
                     if (!allUstensils.includes(ustensile.toLowerCase())) {
@@ -74,7 +74,7 @@
             })
         }
 
-        return allUstensils;
+        return allUstensils.sort((a, b) => a.localeCompare(b));
     }
 
     /**
@@ -98,3 +98,5 @@
         }
         return recipe[0];
     }
+
+    

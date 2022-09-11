@@ -4,13 +4,13 @@ const recipeMatchName = (input, recipeMatchArray) => {
     // if active recipesDOM
     let recipeMatch = []
     if (!recipesDOM.lenght > 50) {
-        recipeMatch = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+        recipeMatch = recipes.filter(recipe => cleanString(recipe.name).includes(cleanString(input)))
 
     }
-    recipeMatch = recipesDOM.filter(recipe => recipe.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+    recipeMatch = recipesDOM.filter(recipe => cleanString(recipe.name).includes(cleanString(input)))
 
     if (recipeMatch.length !== 0) {
-        recipeMatch.forEach(el => {
+        recipeMatch.map(el => {
             recipeMatchArray.push(el)
         })
         

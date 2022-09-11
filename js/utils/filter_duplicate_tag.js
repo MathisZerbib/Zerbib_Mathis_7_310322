@@ -1,24 +1,18 @@
 // Filter duplicate tags 
-let uniqueIngredients = [...new Set(ingredientsArray.map(element => {
+let uniqueIngredients = [...new Set(getAllIngredients().map(element => {
     element = element.replace('.', '')
-    return element.toLowerCase();
 }))];
-let uniqueAppliances = [...new Set(appliancesArray.map(element => {
+let uniqueAppliances = [...new Set(getAllAppliances().map(element => {
     element = element.replace('.', '')
-    return element.toLowerCase();
 }))];
-let uniqueUstensils = [...new Set(ustensilsArray.map(element => {
+let uniqueUstensiles = [...new Set(getAllUstensils().map(element => {
     element = element.replace('.', '')
-    return element.toLowerCase();
 }))];
 
-uniqueIngredients.sort((a, b) => a.localeCompare(b))
-uniqueAppliances.sort((a, b) => a.localeCompare(b))
-uniqueUstensils.sort((a, b) => a.localeCompare(b))
 
 let uniqueIngredientsClone = uniqueIngredients;
 let uniqueAppliancesClone = uniqueAppliances;
-let uniqueUstensilesClone = uniqueUstensils;
+let uniqueUstensilesClone = uniqueUstensiles;
 
 
 // if (recipesDOM.length !== 50)
@@ -32,15 +26,15 @@ document.addEventListener('change', () => {
     let currentAppliancesArrray = [];
 
 
-    matchArray.forEach(el => {
-        el.ustensils.forEach(cUstensiles => {
-            if (currentUstensilesArray.indexOf(cUstensiles) == -1)
+    matchArray.map(el => {
+        el.ustensils.map(current => {
+            if (currentUstensilesArray.indexOf(current) == -1)
 
-                currentUstensilesArray.push(cUstensiles)
+                currentUstensilesArray.push(current)
         })
-        el.ingredients.forEach(cIngredient => {
-            if (currentIngredientsArray.indexOf(cIngredient) == -1)
-                currentIngredientsArray.push(cIngredient.ingredient.toLocaleLowerCase())
+        el.ingredients.map(current => {
+            if (currentIngredientsArray.indexOf(current) == -1)
+                currentIngredientsArray.push(current.ingredient.toLocaleLowerCase())
         })
 
         if (currentAppliancesArrray.indexOf(el.appliance) == -1)
@@ -55,5 +49,5 @@ document.addEventListener('change', () => {
 
 
     // console.log('uniqueIngredient If recipes DOM', uniqueIngredientsClone)
-    console.log('CLONE CLONE CLONE CLONE', 'uniqueIngredient =>', uniqueIngredientsClone, 'Ustensiles => ', uniqueUstensilesClone, 'Appliance', uniqueAppliancesClone)
+    // console.log('CLONE CLONE CLONE CLONE', 'uniqueIngredient =>', uniqueIngredientsClone, 'Ustensiles => ', uniqueUstensilesClone, 'Appliance', uniqueAppliancesClone)
 })

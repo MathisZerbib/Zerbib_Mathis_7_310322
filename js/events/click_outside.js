@@ -2,7 +2,7 @@
 window.addEventListener('click', function(event) {
     const clickOnBloc = event.target.closest('.sub-search__bloc');
     if (!clickOnBloc) {
-        subsearchNames.forEach(element => {
+        subsearchNames.map(element => {
             let filtersbox = document.getElementById('sub-search__' + element);
             const currentSubSearchButton = filtersbox.querySelector('.sub-search__button');
             const inputField = filtersbox.querySelector('.sub-search__button input');

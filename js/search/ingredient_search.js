@@ -1,13 +1,15 @@
 // Ingredient match
 const ingredientMatch = (recipe, input, recipeMatchArray) => {
-    let ingredientMatch = recipe.ingredients.filter(el =>
+    let ingredientMatchRecipe =  recipe.ingredients.map(el => {
+    // Escape accents and Capital letters 
+    el.ingredient = cleanString(el.ingredient);
+    input = cleanString(input);
 
-        // Escape accents and Capital letters 
-        el.ingredient.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").includes(input.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")))
-    if (ingredientMatch.length !== 0) {
-        console.log(ingredientMatch, 'INGREDIENT SEARCH MATCH')
+    
+    if (el.ingredient.includes(input)) {
             // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
         recipeMatchArray.push(recipe)
         return recipeMatchArray
-    }
+        }
+})
 }

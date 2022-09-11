@@ -1,4 +1,9 @@
-const buildTagArrayDOM = (inputField, tags, id) => {
+const buildTagArray = (inputField, tags, id) => {
+    // if(tags.length ===0) {
+    //     console.log(tags, 'TAGS')
+    // }
+
+
     for (let i = 0; ulLength(tags) > i; i++) {
         let liTag = document.createElement('li');
         let cleanTagName = ''
@@ -41,7 +46,7 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                 liTag.classList.add('dropdown-item', 'bg-primary');
                 liTag.addEventListener('click', () => {
                     allIngredients = allIngredients.filter(e => e !== cleanTagName)
-                    console.log('Litag', allIngredients, cleanTagName)
+                    // console.log('Litag', allIngredients, cleanTagName)
                     cleanTagListDOM(strIngredient)
 
                     allIngredients = [...new Set(allIngredients.map(element => {
@@ -72,7 +77,7 @@ const buildTagArrayDOM = (inputField, tags, id) => {
                     liTag.setAttribute('aria-selected', 'true');
 
                     uniqueAppliancesClone = uniqueAppliancesClone.filter(e => e !== tags[i])
-                    console.log('Tags ', tags)
+                    // console.log('Tags ', tags)
                     createTag(liTag, 'bg-green')
                     inputField.value = ''
 

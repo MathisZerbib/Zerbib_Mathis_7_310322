@@ -12,15 +12,15 @@ const defaultView = () => {
     console.log('Before Clean recipesDOM:', recipesDOM)
 
     cleanDOM()
-    displayData(recipes)
-    recipesDOM = recipes
+    displayData(getAllRecipes())
+    recipesDOM = getAllRecipes()
     console.log('AFTER Clean recipesDOM:', recipesDOM)
 
 }
 const tagFilters = document.querySelector('#tags-container');
 const searchInputSelector = document.getElementById("main-search");
 // if (searchInput.innerText == '' && tagFilters.innerText == '') {
-//     recipesDOM = recipes
+     recipesDOM = getAllRecipes()
 
 //     cleanDOM()
 //     displayData(recipes)

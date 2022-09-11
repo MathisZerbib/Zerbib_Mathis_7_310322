@@ -1,79 +1,50 @@
 function searchPrincipalInput(e) {
+    let final_words_from_input = []
     const input = searchInput.value;
     let searchMatchArray = [];
     let searchFromInput = [];
-    tagArrayToSearch = [...new Set(tagArrayToSearch)]
-
-    // TODO Match Multiple ingrédients recipe name and descritpion at the same time. 
-
-    // console.log('e Input ', e)
-    if (e.key == 8 && searchFromInput !== []) {
-        searchFromInput.pop()
-    }
-
     let arrayFromInputSearch;
 
-    arrayFromInputSearch = e.target.value
-
-    if (e.key == " " ||
-        e.code == "Space" ||
-        e.keyCode == 32
-    ) {
-
-
+    tagArrayToSearch = [...new Set(tagArrayToSearch)]
+    
+    if (e.key == 8 && searchFromInput !== []) {
+        searchFromInput.pop()
+        console.log("searchFromInput", searchFromInput)
     }
-    arrayFromInputSearch = arrayFromInputSearch.split(' ');
 
-    arrayFromInputSearch = arrayFromInputSearch.filter(function(el) {
+    arrayFromInputSearch =  e.target.value.split(' ').filter(function(el) {
         return el != '';
-    });
+    });;
 
-    console.log('arrayFromInputSearch', arrayFromInputSearch)
-        // searchFromInput = searchFromInput.split(/(\s+)/)
     searchFromInput = searchFromInput.push(arrayFromInputSearch)
-    var final_words_from_input = []
+
     final_words_from_input.push(searchFromInput[searchFromInput.length - 1]);
     final_words_from_input.pop()
 
     if (e.target.value.length >= 3) {
 
         if (arrayFromInputSearch.length > 1) {
-            multiTagSearch(arrayFromInputSearch)
+            affineGlobalSearch(final_words_from_input, searchMatchArray)
         }
     }
-    console.log('arrayFromInputSearch.length', arrayFromInputSearch.length)
+    // console.log('arrayFromInputSearch.length', arrayFromInputSearch.length)
 
+    // if the backward is hitted or the value is more than 3 and the arraySearch  is single
+    
+    
     if (e.target.value.length >= 3 && arrayFromInputSearch.length == 1 || e.target.value.length >= 3 && e.inputType === "deleteContentBackward") {
-
-        if (tagArrayToSearch.length >= 1) {
-            console.log("Search In recipes:", recipeMatchArray, "Tag not Empty", tagArrayToSearch), 'principal search', searchInput;
-
-            // Use "recipeMatchArray" if Multisearch with at least one tag
-            recipeMatchArray.forEach(recipe => {
-                recipeMatchName(input, searchMatchArray);
-                ingredientMatch(recipe, input, searchMatchArray);
-                descriptionMatch(input, searchMatchArray);
-
-            })
-
-        } else {
-            recipesDOM.forEach(recipe => {
-                recipeMatchName(input, searchMatchArray);
-                ingredientMatch(recipe, input, searchMatchArray);
-                descriptionMatch(input, searchMatchArray);
-
-            })
-        }
+    
+        globalSearch(input, searchMatchArray)
 
         searchMatchArray = [...new Set(searchMatchArray)];
-        console.log("Principal search Match ID:", searchMatchArray);
-
+        console.table('principalSearch, if the backward is hitted or .. displayData(searchMatchArray);', searchMatchArray);
 
         cleanDOM();
         displayData(searchMatchArray);
     }
     let recipesCardDOM = document.querySelectorAll('.recipe-card')
 
+    /* Case no match */
     if (searchMatchArray.length == 0 && recipesCardDOM.length == 0 && input.length >= 3) {
         if (isMatching = false && searchMatchArray.length == 0) {
             cleanDOM();
@@ -87,18 +58,15 @@ function searchPrincipalInput(e) {
         console.log(recipesCardDOM.length, 'ERROR DISPLAYED')
 
         console.log('Min char 3', input)
+        
+            /* Case no text in search */
     } else if (arrayFromInputSearch.length == 0) {
         if (searchMatchArray.length == 0 && tagArrayToSearch.length >= 1) {
-            // cleanDOM();
-
-            // tagArraySearch(tagArrayToSearch)
-
-            // displayData(searchMatchArray);
-
             hideError()
             console.log("searchMatchArray.length", searchMatchArray.length, 'tagArrayToSearch.length', tagArrayToSearch.length)
 
 
+            /* even if tag no match */
         } else if (searchMatchArray.length == 0) {
             console.log('searMatch Array', searchMatchArray.length)
             displayError()

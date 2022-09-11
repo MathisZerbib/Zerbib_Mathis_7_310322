@@ -13,7 +13,7 @@ const closeTag = (tag) => {
 
         console.log('Ingrédients after CLOSE', uniqueIngredientsClone)
 
-    } else if (uniqueUstensils.includes(tag.innerText) && !uniqueUstensilesClone.includes(tag.innerText)) {
+    } else if (uniqueUstensiles.includes(tag.innerText) && !uniqueUstensilesClone.includes(tag.innerText)) {
         console.log('On close  ustensils includes', tag.innerText)
         console.log('Ustensiles after CLOSE', uniqueUstensilesClone)
 
@@ -34,7 +34,7 @@ const closeTag = (tag) => {
         defaultView();
         // uniqueIngredientsClone = uniqueIngredients
         // uniqueAppliancesClone = uniqueAppliances
-        // uniqueUstensilesClone = uniqueUstensils
+        // uniqueUstensilesClone = uniqueUstensiles
         console.log('Tag Array emtpy', 'searchInput empty')
 
     } else {

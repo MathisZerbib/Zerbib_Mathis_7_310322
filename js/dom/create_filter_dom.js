@@ -1,7 +1,7 @@
 const createFiltersDOM = (filtersList) => {
     // <span class="tag btn btn-primary btn-sm mb-1">Coco <i class="far fa-times-circle"></i></span>
 
-    filtersList.forEach(el => {
+    filtersList.map(el => {
         let filtersbox = document.createElement('div');
         let filterDiv = document.createElement('div')
         let filterButton = document.createElement('input');
@@ -25,7 +25,7 @@ const createFiltersDOM = (filtersList) => {
         filterUl.className = 'sub-search__taglist w-100 mw-100 btn text-white border-0 rounded-bottom flex-wrap dropdown-menu ' + el;
         filterUl.setAttribute('role', 'listbox');
         filterUl.setAttribute('id', el + '__taglist');
-        // uniqueUstensils.forEach(el => {
+        // uniqueUstensiles.map(el => {
         //     filterUl.innerHTML += `<li><span class="tag btn btn-primary btn-sm mb-1">${el}<i class="far fa-times-circle"></i><span></li>`
         // });
 
@@ -69,14 +69,14 @@ const createFiltersDOM = (filtersList) => {
             cleanTagListDOM(strUstensil)
             cleanTagListDOM(strAppareil)
             if (tagFilters.innerText == '' && searchInputSelector.value == '') {
-                buildTagArrayDOM(inputField, uniqueIngredients, strIngredient);
-                buildTagArrayDOM(inputField, uniqueUstensils, strUstensil);
-                buildTagArrayDOM(inputField, uniqueAppliances, strAppareil);
+                buildTagArray(inputField, getAllIngredients(), strIngredient);
+                buildTagArray(inputField, getAllUstensils(), strUstensil);
+                buildTagArray(inputField, getAllAppliances(), strAppareil);
                 // console.log('TAGFILTERSS ============================ :§:;!:;!.:!;!:', tagFilters.innerText, searchInputSelector.value)
             } else {
-                buildTagArrayDOM(inputField, uniqueIngredientsClone, strIngredient);
-                buildTagArrayDOM(inputField, uniqueUstensilesClone, strUstensil);
-                buildTagArrayDOM(inputField, uniqueAppliancesClone, strAppareil);
+                buildTagArray(inputField, uniqueIngredientsClone, strIngredient);
+                buildTagArray(inputField, uniqueUstensilesClone, strUstensil);
+                buildTagArray(inputField, uniqueAppliancesClone, strAppareil);
             }
 
 
@@ -91,7 +91,7 @@ const createFiltersDOM = (filtersList) => {
                 removeOpen(el, filtersbox, inputField, currentSubSearchButton);
             } else {
                 // closed mode => add open class and transform input type in search
-                filtersList.forEach(element => {
+                filtersList.map(element => {
                     let filtersbox = document.getElementById('sub-search__' + element);
                     const currentSubSearchButton = filtersbox.querySelector('.sub-search__button');
                     const inputField = filtersbox.querySelector('.sub-search__button input');
