@@ -1,30 +1,34 @@
-const globalSearch = (filter, searchMatchArray) => {
+const globalSearch = (filter, recipeMatch) => {
     // filterArray
-    recipeMatchName(filter, searchMatchArray),
-    descriptionMatch( filter, searchMatchArray)
+    recipeMatchName(filter, recipeMatch)
+    descriptionMatch( filter, recipeMatch)
+    
 
 }
 
 
-const affineGlobalSearch = (filterArray, searchMatchArray) => {
+const affineSearch = (filterArray, oldArray, recipeMatch) => {
+  
+    console.log("filterArray", filterArray, "recipeMatch", recipeMatch,
+    'recipeMatchName(filter, recipeMatch) descriptionMatch( filter, recipeMatch)',
+    recipeMatchName(filterArray[0], recipeMatch),
+        descriptionMatch( filterArray[0], recipeMatch)
+    )
     // filterArray
-    filterArray.filter( filter => {
-   
-        const results = searchMatchArray.filter(recipe => {
-            // 👇️ using AND (&&) operator
-            return recipeMatchName(filter, recipe) && descriptionMatch( filter, recipe)
-          });
-          console.log("results" , results)
-          return results
-    })
-}
 
-function affineSearch(currentMatchArray, filter ) {
-    currentMatchArray.map((recipe) => {
-        ingredientMatch( filterValue, currentMatchArray, recipe)
-        applianceMatch( filterValue, currentMatchArray, recipe)
-        ustensileMatch( filterValue, currentMatchArray, recipe)
-    })
-    searchMatchArray = currentMatchArray;
+//     let result = filterArray.map( filter => {
+        
+        
+// });
+// return result
 
 }
+// function affineSearch(currentMatchArray, filter ) {
+//     currentMatchArray.map((recipe) => {
+//         ingredientMatch( filterValue, currentMatchArray, recipe)
+//         applianceMatch( filterValue, currentMatchArray, recipe)
+//         ustensileMatch( filterValue, currentMatchArray, recipe)
+//     })
+//     recipeMatch = currentMatchArray;
+
+// }

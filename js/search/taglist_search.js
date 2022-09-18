@@ -1,4 +1,5 @@
 const tagListSearch = (e, ul, inputField) => {
+  
   if (e.key == 8 && searchTagListFromInput !== []) {
     searchTagListFromInput.pop();
   } else if (e.key == 8 && searchTagListFromInput == []) {

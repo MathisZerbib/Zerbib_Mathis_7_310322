@@ -1,7 +1,8 @@
 // Appliance Match 
-const applianceMatch = (recipe, input, recipeArray) => {
+const applianceMatch = (recipe, input, recipeMatchArray) => {
+
     if (cleanString(recipe.appliance).includes(cleanString(input))) {
-        recipeArray.push(recipe)
-        console.log(recipeArray, 'Appliance MATCH')
+        recipeMatchArray.push(recipe)
+        console.log(recipeMatchArray, 'Appliance MATCH')
     }
 }

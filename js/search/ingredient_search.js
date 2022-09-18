@@ -1,6 +1,6 @@
 // Ingredient match
 const ingredientMatch = (recipe, input, recipeMatchArray) => {
-    let ingredientMatchRecipe =  recipe.ingredients.map(el => {
+    recipe.ingredients.map(el => {
     // Escape accents and Capital letters 
     el.ingredient = cleanString(el.ingredient);
     input = cleanString(input);

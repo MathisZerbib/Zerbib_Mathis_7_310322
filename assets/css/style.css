@@ -19,6 +19,10 @@
     min-height: 370px;
 }
 
+.ingredient-container > p, .description {
+    font-size: small;
+}
+
 .recipe-card {
     background-color: #f8f9fb;
     border-radius: 10px;

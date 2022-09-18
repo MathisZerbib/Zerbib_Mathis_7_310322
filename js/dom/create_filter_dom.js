@@ -115,3 +115,10 @@ const createFiltersDOM = (filtersList) => {
         });
     });
 }
+
+//Create sub search button & list
+let subsearchNames = ["Ingrédient", "Appareils", "Ustensiles"];
+createFiltersDOM(subsearchNames);
+
+// Add Tag to Tag Array Search
+let tagArrayToSearch = [];
