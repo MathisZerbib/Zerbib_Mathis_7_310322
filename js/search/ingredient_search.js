@@ -9,6 +9,7 @@ const ingredientMatch = (recipe, input, recipeMatchArray) => {
     if (el.ingredient.includes(input)) {
             // console.log('LENGHT ingredientMatch', ingredientMatch, "ID:", recipe.id)
         recipeMatchArray.push(recipe)
+        console.log(el.ingredient, 'Ingredient MATCH')
         return recipeMatchArray
         }
 })

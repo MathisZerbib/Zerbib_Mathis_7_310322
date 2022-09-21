@@ -21,7 +21,7 @@ const tagArraySearch = (tagArrayToSearch) => {
                 if (uniqueIngredients.includes(tag)) {
                     ingredientMatch(recipe, tag, recipeMatchArray);
                 } else if (uniqueUstensiles.includes(tag)) {
-                    ustensileMatch(recipe, tag, recipeMatchArray);
+                    ustensilsMatch(recipe, tag, recipeMatchArray);
                 } else if (uniqueAppliances.includes(tag)) {
                     applianceMatch(recipe, tag, recipeMatchArray);
                 } else if (tagArrayToSearch.length == 1 && searchInput.value.length >= 3) {

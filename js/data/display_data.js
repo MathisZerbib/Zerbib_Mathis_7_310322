@@ -18,4 +18,6 @@ const displayData = (recipes) => {
         const getRecipeCardDOM = recipeModel.buildRecipeCardDOM();
         recipesSection.appendChild(getRecipeCardDOM);
     });
+
+    setCurrentRecipes(recipes)
 };

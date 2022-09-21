@@ -1,6 +1,7 @@
 
 
     let recipes = [];
+    let currentRecipes = [];
     let allIngredients = [];
     let allAppliances = [];
     let allUstensils = [];
@@ -83,6 +84,17 @@
     const getAllRecipes = () => {
         return recipes;
     }
+
+    const setCurrentRecipes = (data) => {
+        data = [...new Set(data)]
+        currentRecipes = data
+    }
+
+    const getCurrentRecipes = () => {
+        return currentRecipes
+    }
+
+    
 
     /**
      * Récupère une recette avec son id

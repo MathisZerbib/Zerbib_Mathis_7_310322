@@ -1,6 +1,5 @@
 function searchPrincipalInput(e) {
 
-
     // Init words array 
 
     let newRecipeMatch = [];
@@ -8,7 +7,7 @@ function searchPrincipalInput(e) {
     let words;
 
     tagArrayToSearch = [...new Set(tagArrayToSearch)]
-    console.log("searchInput:", searchInput.value, 'tagArrayToSearch:', tagArrayToSearch)
+    // console.log("searchInput:", searchInput.value, 'tagArrayToSearch:', tagArrayToSearch)
 
     // si l'utilisateur appuie sur la touche retour
     if (e.key == 8 && inputSearch !== []) {
@@ -38,52 +37,59 @@ function searchPrincipalInput(e) {
 
     if (words.toString().length >= 3) {
         if (words.length > 1) {
-            console.log('affine Search')
+            console.log('affine Search');
 
-            let results = [];
-            affineSearch(words, newRecipeMatch, results)
-            console.log('old', newRecipeMatch, 'new array:', results)
-            results = [...new Set(results)];
+            globalSearch(searchInput.value, newRecipeMatch)
 
+            newRecipeMatch = [...new Set(newRecipeMatch)];
+    
             cleanDOM();
-            displayData(results);
+            displayData(newRecipeMatch);
+            console.log("globalSearch", newRecipeMatch)
+
+            // affineSearch(words, getCurrentRecipes())
+            // console.log('old', newRecipeMatch)
+            // newRecipeMatch = [...new Set(newRecipeMatch)];
+
+            // cleanDOM();
+            // displayData(newRecipeMatch);
         }
     }
 
-    // let recipesCardDOM = document.querySelectorAll('.recipe-card')
+    // let getCurrentRecipes() = document.querySelectorAll('.recipe-card')
 
-    // /* Case no match */
-    // if (newRecipeMatch.length == 0 && recipesCardDOM.length == 0 && searchInput.value.length >= 3) {
-    //     if (isMatching = false && newRecipeMatch.length == 0) {
-    //         cleanDOM();
-    //         defaultViewDOM();
-    //         displayError();
-    //         console.log(recipesCardDOM.length, 'ERROR DISPLAYED')
-    //     }
-    //     cleanDOM();
-    //     defaultViewDOM();
-    //     displayError()
-    //     console.log(recipesCardDOM.length, 'ERROR DISPLAYED')
+    /* Case no match */
+    if (newRecipeMatch.length == 0 && getCurrentRecipes().length == 0 && searchInput.value.length >= 3) {
+        if (newRecipeMatch.length == 0) {
+            cleanDOM();
+            defaultViewDOM();
+            displayError();
+            console.log(getCurrentRecipes().length, 'ERROR DISPLAYED')
+        }
+        cleanDOM();
+        defaultViewDOM();
+        displayError()
+        console.log(getCurrentRecipes().length, 'ERROR DISPLAYED')
 
-    //     console.log('Min char 3', searchInput.value)
+        console.log('Min char 3', searchInput.value)
 
-    //         /* Case no text in search */
-    // } else if (words.length == 0) {
-    //     if (newRecipeMatch.length == 0 && tagArrayToSearch.length >= 1) {
-    //         hideError()
-    //         console.log("newRecipeMatch.length", newRecipeMatch.length, 'tagArrayToSearch.length', tagArrayToSearch.length)
+            /* Case no text in search */
+    } else if (words.length == 0) {
+        if (newRecipeMatch.length == 0 && tagArrayToSearch.length >= 1) {
+            hideError()
+            console.log("newRecipeMatch.length", newRecipeMatch.length, 'tagArrayToSearch.length', tagArrayToSearch.length)
 
 
-    //         /* even if tag no match */
-    //     } else if (newRecipeMatch.length == 0) {
-    //         console.log('searMatch Array', newRecipeMatch.length)
-    //         displayError()
-    //         cleanDOM();
-    //         defaultView()
-    //     }
+            /* even if tag no match */
+        } else if (newRecipeMatch.length == 0) {
+            console.log('searMatch Array', newRecipeMatch.length)
+            displayError()
+            cleanDOM();
+            defaultView()
+        }
 
-    // } else {
-    //     console.log('Else End principalSearch')
-    //         // hideError()
-    // }
+    } else {
+        console.log('Else End principalSearch')
+            // hideError()
+    }
 }
