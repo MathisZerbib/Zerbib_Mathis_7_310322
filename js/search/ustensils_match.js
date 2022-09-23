@@ -1,11 +1,27 @@
 // Ustensils match
 
-const ustensilsMatch = (recipe, input, recipeMatchArray) => {
-    let ustensMatch = recipe.ustensils.filter(ustensil => cleanString(ustensil).includes(cleanString(input)))
+const ustensilsMatch = (input, recipeMatchArray) => {
 
-    if (ustensMatch.length !== 0) {
-        recipeMatchArray.push(recipe)
-        console.log(ustensMatch, 'Ustens MATCH')
-    }
+    if(recipeMatchArray.length === 0  || undefined  ||   [] ){
+        getAllRecipes().map((recipe) => { 
+        let ustensMatch = recipe.ustensils.filter(ustensil => cleanString(ustensil).includes(cleanString(input)))
+ 
+     if (ustensMatch.length !== 0) {
+         recipeMatchArray.push(recipe)
+         console.log(ustensMatch, 'Ustens MATCH')
+     }     
+     })
+    }else{   
+        recipeMatchArray.map((recipe) => { 
+            let ustensMatch = recipe.ustensils.filter(ustensil => cleanString(ustensil).includes(cleanString(input)))
+     
+         if (ustensMatch.length !== 0) {
+             recipeMatchArray.push(recipe)
+             console.log(ustensMatch, 'Ustens MATCH')
+         }     
+         })
+    } 
+    
     return recipeMatchArray
+
 }

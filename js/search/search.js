@@ -1,15 +1,22 @@
 const globalSearch = (filter, recipeMatch) => {
   // filterArray
+
+  // if the filter parameter is an arrray 
   if (filter.constructor !== Array) {
     recipeMatchName(filter, recipeMatch)
     descriptionMatch(filter, recipeMatch)
 
+
+    ingredientMatch(filter, recipeMatch)
+    ustensilsMatch(filter, recipeMatch)
+    applianceMatch(filter, recipeMatch)
+
+
+
     recipeMatch.map((recipe) => {
-      ingredientMatch(recipe, filter, recipeMatch)
-      ustensilsMatch(recipe, filter, recipeMatch)
+
     })
   }else {
-
     const results = recipeMatch.filter(recipe => {
       // 👇️ using OR (||) operator
       return recipe.name.includes(filter) || recipe.description.includes(filter);
