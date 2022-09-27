@@ -10,8 +10,9 @@
     /**
      * Simule une connection à une base de donnée avec un fichier json
      */
+    
     const init = async () => {
-        const req = await fetch('http://localhost:5500/public/recipes.json');
+        const req = await fetch('./public/recipes.json');
         if (!req.ok) {
             throw "Données momentanément indisponible";
         }
