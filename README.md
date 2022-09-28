@@ -72,3 +72,32 @@ SEARCH
 DOM 
 
 Events
+
+
+Event
+[ Pate ]
+
+Output : 
+
+Tarte aux pommes ect .. 
+
+
+Event 
+Add tag oignon
+[ Pate ]
+    [oignon]
+
+    Output: 
+
+    autres recettes 
+
+
+- Faire recherche sémantique ( écrire dans la barre de recherche ) clairement 
+
+- Relancer une fonction qui return les resultats filtrés par les trois résultats de sous recherche  
+
+- resultat des trois:  concatenés au tableau des résultats de recette 
+
+- supprimer les doublons par rapport à l'id de la recette
+
+- supprimer les doublons des tags

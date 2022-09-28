@@ -52,8 +52,8 @@ const closeTag = (tag) => {
     }
     tagArraySearch(tagArrayToSearch)
 
-    if (tagFilters.innerText == '') {
-        recipeMatchArray = []
-    }
+    // if (tagFilters.innerText == '') {
+    //     recipeMatchArray = []
+    // }
 
 }

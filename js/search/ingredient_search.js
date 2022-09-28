@@ -1,5 +1,7 @@
 // Ingredient match
 const ingredientMatch = (input, recipeMatchArray) => {
+
+
     if (recipeMatchArray.length === 0 || undefined || []) {
         getAllRecipes().map((recipe) => {
             recipe.ingredients.map(el => {
@@ -16,7 +18,10 @@ const ingredientMatch = (input, recipeMatchArray) => {
             })
         })
     } else {
-        recipeMatchArray.map((recipe) => {
+
+
+
+        getCurrentRecipes().map((recipe) => {
             recipe.ingredients.map(el => {
                 // Escape accents and Capital letters 
                 el.ingredient = cleanString(el.ingredient);

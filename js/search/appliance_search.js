@@ -10,7 +10,7 @@ const applianceMatch = (input, recipeMatchArray) => {
             }
             })
     }else{
-        recipeMatchArray.map((recipe) => { 
+        getCurrentRecipes().map((recipe) => { 
 
             if (cleanString(recipe.appliance).includes(cleanString(input))) {
                 recipeMatchArray.push(recipe)

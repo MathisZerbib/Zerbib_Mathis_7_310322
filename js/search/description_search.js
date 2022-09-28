@@ -12,7 +12,7 @@ const descriptionMatch = (input, recipeMatchArray) => {
                 }   
         }else{
 
-                let descriptionMatch = recipeMatchArray.filter(recipe => cleanString(recipe.description).includes(cleanString(input)))
+                let descriptionMatch = getCurrentRecipes().filter(recipe => cleanString(recipe.description).includes(cleanString(input)))
                 if (descriptionMatch.length !== 0) {
                     descriptionMatch.map(el => {
                         recipeMatchArray.push(el)

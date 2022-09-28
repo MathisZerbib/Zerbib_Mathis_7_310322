@@ -1,10 +1,9 @@
 function searchPrincipalInput(e) {
-
     // Init words array 
 
     let newRecipeMatch = [];
     let inputSearch = [];
-    let words;
+    let words = [];
 
     tagArrayToSearch = [...new Set(tagArrayToSearch)]
     // console.log("searchInput:", searchInput.value, 'tagArrayToSearch:', tagArrayToSearch)
@@ -18,7 +17,18 @@ function searchPrincipalInput(e) {
         return el != '';
     });;
 
-    console.log("words", words, 'inputSearch', inputSearch)
+    console.log('============WORDS==============', words)
+
+    // for (let i=0; words.length !== 0; i++) {
+    //     console.log('============INSIDE==============', words[i])
+
+    //     tagArrayToSearch.push(words[i])
+    //     tagArraySearch(tagArrayToSearch);
+    //     console.log('tagArrayToSearch', tagArrayToSearch)
+    // }
+
+    
+    console.log("words", words.toString().length >= 3, 'inputSearch', inputSearch)
 
     // console.log('words.length', words.length)
 
@@ -31,32 +41,24 @@ function searchPrincipalInput(e) {
         cleanDOM();
         displayData(newRecipeMatch);
         console.log("globalSearch", newRecipeMatch)
-
     }
 
 
-    if (words.toString().length >= 3) {
-        if (words.length > 1) {
-            console.log('affine Search');
+    // if (words.toString().length >= 3) {
+    //     if (words.length > 1) {
+    //         console.log('affine Search');
 
-            globalSearch(searchInput.value, newRecipeMatch)
+    //         globalSearch(searchInput.value, newRecipeMatch)
 
-            newRecipeMatch = [...new Set(newRecipeMatch)];
+    //         newRecipeMatch = [...new Set(newRecipeMatch)];
     
-            cleanDOM();
-            displayData(newRecipeMatch);
-            console.log("globalSearch", newRecipeMatch)
+    //         cleanDOM();
+    //         displayData(newRecipeMatch);
+    //         console.log("globalSearch", newRecipeMatch)
+    //     }
+    // }
 
-            // affineSearch(words, getCurrentRecipes())
-            // console.log('old', newRecipeMatch)
-            // newRecipeMatch = [...new Set(newRecipeMatch)];
-
-            // cleanDOM();
-            // displayData(newRecipeMatch);
-        }
-    }
-
-    // let getCurrentRecipes() = document.querySelectorAll('.recipe-card')
+    // // let getCurrentRecipes() = document.querySelectorAll('.recipe-card')
 
     /* Case no match */
     if (newRecipeMatch.length == 0 && getCurrentRecipes().length == 0 && searchInput.value.length >= 3) {

@@ -15,24 +15,23 @@ const createTag = (el, color) => {
     tagClose.addEventListener('click', () => {
         closeTag(tag)
     })
+
+
+
     addTagToTagArray(tag, color)
     tagArraySearch(tagArrayToSearch)
 
-    tagArrayToSearch.map(el => {
-        removeElementFromArray(el, uniqueIngredientsClone)
-        removeElementFromArray(el, uniqueUstensilesClone)
-        removeElementFromArray(el, uniqueAppliancesClone)
-    })
-    if (uniqueIngredientsClone.includes(tag.innerText) == -1) {
-        // console.log("Unique ingredient", uniqueIngredientsClone.includes(tag.innerText), 'dont match', tag.innerText, 'HEEEEEEEEEEEEEEEEEEEEEEEEEERE')
+    // tagArrayToSearch.map(el => {
+    //     removeElementFromArray(el, uniqueIngredientsClone)
+    //     removeElementFromArray(el, uniqueUstensilesClone)
+    //     removeElementFromArray(el, uniqueAppliancesClone)
+    // })
+    // if (uniqueIngredientsClone.includes(tag.innerText) == -1) {
+    //     // console.log("Unique ingredient", uniqueIngredientsClone.includes(tag.innerText), 'dont match', tag.innerText, 'HEEEEEEEEEEEEEEEEEEEEEEEEEERE')
 
-    }
+    // }
 }
 
 const addTagToTagArray = (tag) => {
     tagArrayToSearch.push(tag.innerText)
-
-
-
-
 }

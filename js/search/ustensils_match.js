@@ -12,7 +12,7 @@ const ustensilsMatch = (input, recipeMatchArray) => {
      }     
      })
     }else{   
-        recipeMatchArray.map((recipe) => { 
+        getCurrentRecipes().map((recipe) => { 
             let ustensMatch = recipe.ustensils.filter(ustensil => cleanString(ustensil).includes(cleanString(input)))
      
          if (ustensMatch.length !== 0) {
