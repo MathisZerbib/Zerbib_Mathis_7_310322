@@ -1,9 +1,9 @@
 function searchPrincipalInput(e) {
     // Init words array 
 
-    let newRecipeMatch = [];
     let inputSearch = [];
     let words = [];
+    newRecipeMatch = [];
 
     tagArrayToSearch = [...new Set(tagArrayToSearch)]
     // console.log("searchInput:", searchInput.value, 'tagArrayToSearch:', tagArrayToSearch)
@@ -13,6 +13,8 @@ function searchPrincipalInput(e) {
         inputSearch.pop()
     }
 
+
+    // split input words in array
     words = e.target.value.split(' ').filter(function (el) {
         return el != '';
     });;
@@ -33,14 +35,37 @@ function searchPrincipalInput(e) {
     // console.log('words.length', words.length)
 
     // if the backward is hitted or the value is more than 3 and the arraySearch  is single
-    if (words.toString().length >= 3 && words.length == 1) {
+    if (words.length == 1 && searchInput.value.length >=3) {
         globalSearch(searchInput.value, newRecipeMatch)
 
         newRecipeMatch = [...new Set(newRecipeMatch)];
 
         cleanDOM();
         displayData(newRecipeMatch);
-        console.log("globalSearch", newRecipeMatch)
+        // console.log("globalSearch", newRecipeMatch)
+    }
+
+    if (words.length >= 2){
+        let pass = []
+        for (let i=0; words.length !== i; i++) {
+            console.log('words[i]', words[i])
+            if(words[i].length >=3) {
+                pass.push(true)
+            }else {
+                pass.push(false)
+            }
+        }
+        if (!pass.includes(false)) {
+            globalSearch(words, newRecipeMatch)
+            
+            newRecipeMatch = [...new Set(newRecipeMatch)];
+    
+            cleanDOM();
+            displayData(newRecipeMatch);
+            // console.log("globalSearch", newRecipeMatch)
+    
+        }
+     
     }
 
 

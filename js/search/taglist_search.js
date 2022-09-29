@@ -18,7 +18,7 @@ const tagListSearch = (e, ul, inputField) => {
   let parentInput = ul.closest("div").id;
   let idDiv = parentInput.replace("sub-search__", "");
 
-  if (buffer.length >= 3) {
+  if (buffer) {
     switch (idDiv) {
       case "Ingrédient":
         for (let i = 0; final_words.length > i; i++) {

@@ -68,15 +68,16 @@ const createFiltersDOM = (filtersList) => {
             cleanTagListDOM(strIngredient)
             cleanTagListDOM(strUstensil)
             cleanTagListDOM(strAppareil)
+
             if (tagFilters.innerText == '' && searchInputSelector.value == '') {
                 buildTagArray(inputField, getAllIngredients(), strIngredient);
                 buildTagArray(inputField, getAllUstensils(), strUstensil);
                 buildTagArray(inputField, getAllAppliances(), strAppareil);
                 // console.log('TAGFILTERSS ============================ :§:;!:;!.:!;!:', tagFilters.innerText, searchInputSelector.value)
             } else {
-                buildTagArray(inputField, uniqueIngredientsClone, strIngredient);
-                buildTagArray(inputField, uniqueUstensilesClone, strUstensil);
-                buildTagArray(inputField, uniqueAppliancesClone, strAppareil);
+                buildTagArray(inputField, getCurrentIngredients(), strIngredient);
+                buildTagArray(inputField, getCurrentUstensils(), strUstensil);
+                buildTagArray(inputField, getAllAppliances(), strAppareil);
             }
 
 

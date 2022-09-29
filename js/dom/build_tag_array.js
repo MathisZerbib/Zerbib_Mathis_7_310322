@@ -11,7 +11,7 @@ const buildTagArray = (inputField, tags, id) => {
         }else {
             cleanTagName = tags[i]
         }
-        console.log('Track tag[i] error',cleanTagName)
+        console.log('BuildArray',cleanTagName)
 
         liTag.id = cleanTagName
 
