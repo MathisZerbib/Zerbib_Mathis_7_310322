@@ -35,7 +35,7 @@ function searchPrincipalInput(e) {
     // console.log('words.length', words.length)
 
     // if the backward is hitted or the value is more than 3 and the arraySearch  is single
-    if (words.length == 1 && searchInput.value.length >=3) {
+    if (words.length >= 1 && searchInput.value.length >=3) {
         globalSearch(searchInput.value, newRecipeMatch)
 
         newRecipeMatch = [...new Set(newRecipeMatch)];
@@ -45,28 +45,28 @@ function searchPrincipalInput(e) {
         // console.log("globalSearch", newRecipeMatch)
     }
 
-    if (words.length >= 2){
-        let pass = []
-        for (let i=0; words.length !== i; i++) {
-            console.log('words[i]', words[i])
-            if(words[i].length >=3) {
-                pass.push(true)
-            }else {
-                pass.push(false)
-            }
-        }
-        if (!pass.includes(false)) {
-            globalSearch(words, newRecipeMatch)
+    // if (words.length >= 2){
+    //     let pass = []
+    //     for (let i=0; words.length !== i; i++) {
+    //         console.log('words[i]', words[i])
+    //         if(words[i].length >=3) {
+    //             pass.push(true)
+    //         }else {
+    //             pass.push(false)
+    //         }
+    //     }
+    //     if (!pass.includes(false)) {
+    //         globalSearch(words, newRecipeMatch)
             
-            newRecipeMatch = [...new Set(newRecipeMatch)];
+    //         newRecipeMatch = [...new Set(newRecipeMatch)];
     
-            cleanDOM();
-            displayData(newRecipeMatch);
-            // console.log("globalSearch", newRecipeMatch)
+    //         cleanDOM();
+    //         displayData(newRecipeMatch);
+    //         // console.log("globalSearch", newRecipeMatch)
     
-        }
+    //     }
      
-    }
+    // }
 
 
     // if (words.toString().length >= 3) {

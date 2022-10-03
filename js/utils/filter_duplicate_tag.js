@@ -1,4 +1,4 @@
-// Filter duplicate tags 
+// // Filter duplicate tags 
 // let uniqueIngredients = [...new Set(getAllIngredients().map(element => {
 //     element = element.replace('.', '')
 // }))];

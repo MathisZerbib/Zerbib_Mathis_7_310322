@@ -1,60 +1,94 @@
-const tagArraySearch = (tagArrayToSearch) => {
-        cleanDOM()
+const tagArraySearch = (tag, filter) => {
+  // console.log('tagArrayToSearch', tagArrayToSearch, 'lenght:', tagArrayToSearch.length)
 
-        // console.log('tagArrayToSearch', tagArrayToSearch, 'lenght:', tagArrayToSearch.length)
+//   if (recipeMatchArray.length !== 0) {
+//     switch (filter) {
+//       case "ingredients":
+//         ingredientMatch(tag, currentMatchArray);
+//         break;
 
-        if (recipeMatchArray.length !== 0) {
-            tagArrayToSearch.map(tag => {
-                affineWithTag(tag, recipeMatchArray)
-            })
-       recipeMatchArray = [...new Set(recipeMatchArray)];
-        displayData(recipeMatchArray);
-        }else{
-            tagArrayToSearch.map(tag => {
-                affineWithTag(tag, newRecipeMatch || newRecipeMatch)
-            })
-       newRecipeMatch = [...new Set(newRecipeMatch)];
+//       case "appliances":
+//         applianceMatch(tag, currentMatchArray);
+
+//         break;
+
+//       case "ustensils":
+//         ustensilsMatch(tag, currentMatchArray);
+
+//         break;
+//       default:
+//         break;
+//     }
+
+//     // affineWithTag(tag, currentMatchArray, filter)
+
+//     currentMatchArray = [...new Set(currentMatchArray)];
+//     displayData(currentMatchArray);
+//   } else {
+    switch (filter) {
+      case "ingredients":
+        ingredientMatch(tag, newRecipeMatch);
+        newRecipeMatch = [...new Set(newRecipeMatch)];
+
+        cleanDOM();
         displayData(newRecipeMatch);
-        }
 
+        break;
 
-    // if (tagArrayToSearch.length == 1 && searchInput.value.length >= 3) {
-    //     // tagArrayToSearch.push(searchInput.value)
-    //     console.log('tagArrayToSearch', tagArrayToSearch, 'lenght is', tagArrayToSearch.length, 'Search Input value', searchInput.value)
-    //     multiTagSearch(tagArrayToSearch)
-    //     // displayData(recipeMatchArray);
-    // }
+      case "appliances":
+        applianceMatch(tag, newRecipeMatch);
+        newRecipeMatch = [...new Set(newRecipeMatch)];
+        cleanDOM();
+        displayData(newRecipeMatch);
 
-    // if (tagArrayToSearch.length === 0 && searchInput.value.length <= 2) {
-    //     console.log('default View');
-    //     defaultView();
+        break;
 
-    // }
-    // if (searchInput.value.length >= 3 && tagArrayToSearch.length === 0) {
-    //     cleanDOM();
+      case "ustensils":
+        ustensilsMatch(tag, newRecipeMatch);
+        newRecipeMatch = [...new Set(newRecipeMatch)];
+        cleanDOM();
+        displayData(newRecipeMatch);
 
-    //     let searchMatchArray = []
-    //     if (searchInput.value.includes(' ')) {
-    //         console.log('Going to multimatch', searchInput.value.split(' '))
-    //         arrayFromInputSearch = searchInput.value.split(' ')
-    //         multiTagSearch(arrayFromInputSearch)
+        break;
+      default:
+        break;
+    }
+    // displayData(newRecipeMatch);
+  }
 
-    //     } else {
-    //         for (let i = 0; recipes.length > i; i++) {
-    //             recipeMatchName(searchInput.value, searchMatchArray);
-    //             ingredientMatch(recipes[i], searchInput.value, searchMatchArray);
-    //             descriptionMatch(searchInput.value, searchMatchArray);
-    //         }
-    //         searchMatchArray = [...new Set(searchMatchArray)];
-    //         console.table(searchMatchArray);
+  // if (tagArrayToSearch.length == 1 && searchInput.value.length >= 3) {
+  //     // tagArrayToSearch.push(searchInput.value)
+  //     console.log('tagArrayToSearch', tagArrayToSearch, 'lenght is', tagArrayToSearch.length, 'Search Input value', searchInput.value)
+  //     multiTagSearch(tagArrayToSearch)
+  //     // displayData(recipeMatchArray);
+  // }
 
+  // if (tagArrayToSearch.length === 0 && searchInput.value.length <= 2) {
+  //     console.log('default View');
+  //     defaultView();
 
-    //         cleanDOM();
-    //         displayData(searchMatchArray);
-    //     }
+  // }
+  // if (searchInput.value.length >= 3 && tagArrayToSearch.length === 0) {
+  //     cleanDOM();
 
+  //     let searchMatchArray = []
+  //     if (searchInput.value.includes(' ')) {
+  //         console.log('Going to multimatch', searchInput.value.split(' '))
+  //         arrayFromInputSearch = searchInput.value.split(' ')
+  //         multiTagSearch(arrayFromInputSearch)
 
+  //     } else {
+  //         for (let i = 0; recipes.length > i; i++) {
+  //             recipeMatchName(searchInput.value, searchMatchArray);
+  //             ingredientMatch(recipes[i], searchInput.value, searchMatchArray);
+  //             descriptionMatch(searchInput.value, searchMatchArray);
+  //         }
+  //         searchMatchArray = [...new Set(searchMatchArray)];
+  //         console.table(searchMatchArray);
 
+  //         cleanDOM();
+  //         displayData(searchMatchArray);
+  //     }
 
-    // }
-}
+  // }
+// };

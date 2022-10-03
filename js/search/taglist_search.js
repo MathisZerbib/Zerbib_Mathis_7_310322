@@ -1,11 +1,7 @@
 const tagListSearch = (e, ul, inputField) => {
-  
-  if (e.key == 8 && searchTagListFromInput !== []) {
-    searchTagListFromInput.pop();
-  } else if (e.key == 8 && searchTagListFromInput == []) {
-    console.log("Afficheles bon ingrédients MERDE !");
-  }
-  if (e.key >= 65 && e.key <= 90) var buffer;
+
+  if (e.key >= 65 && e.key <= 90)
+  var buffer;
   buffer = inputField.value;
   searchTagListFromInput.push(buffer);
   // console.log(searchTagListFromInput);
@@ -17,8 +13,88 @@ const tagListSearch = (e, ul, inputField) => {
   let newArrayAppareils = [];
   let parentInput = ul.closest("div").id;
   let idDiv = parentInput.replace("sub-search__", "");
+  if (e.key == 8 && searchTagListFromInput !== []) {
+    searchTagListFromInput.pop();
+  }
 
-  if (buffer) {
+  if (buffer.length <= 2) {
+    switch (idDiv) {
+      case "Ingrédient":
+        // console.log("New Array from ingredient:", newArrayIngredients)
+        for (let i = 0; final_words.length > i; i++) {
+          let searchTagIngredient = getCurrentIngredients().filter(
+            (ingredient) =>
+              ingredient
+                .toLocaleLowerCase()
+                .includes(final_words[i].toLocaleLowerCase())
+          );
+
+          console.log('searchTagIngredient', searchTagIngredient)
+          // newArrayIngredients = [...new Set(searchTagIngredient)];
+          cleanTagListDOM(idDiv);
+          newArrayIngredients = [
+            ...new Set(
+              searchTagIngredient.map((element) => {
+                return element.toLowerCase();
+              })
+            ),
+          ];
+
+          // console.log(newArrayIngredients, 'newArrayIngredients')
+        }
+        buildTagArray(inputField, newArrayIngredients, idDiv);
+
+        break;
+      case "Appareils":
+        for (let j = 0; final_words.length > j; j++) {
+          let searchTagAppareils = getCurrentAppliances().filter((appliance) =>
+            appliance
+              .toLocaleLowerCase()
+              .includes(final_words[j].toLocaleLowerCase())
+          );
+          newArrayAppareils = [...new Set(searchTagAppareils)];
+          cleanTagListDOM(idDiv);
+
+          newArrayAppareils = [
+            ...new Set(
+              newArrayAppareils.map((element) => {
+                return element.toLowerCase();
+              })
+            ),
+          ];
+        }
+
+        buildTagArray(inputField, newArrayAppareils, idDiv);
+
+        // console.log("New Array from appareils :", newArrayAppareils)
+        break;
+      case "Ustensiles":
+        for (let k = 0; final_words.length > k; k++) {
+          let searchTagUstensils = getCurrentUstensils().filter((ustensil) =>
+            ustensil
+              .toLocaleLowerCase()
+              .includes(final_words[k].toLocaleLowerCase())
+          );
+          newArrayUstensils = [...new Set(searchTagUstensils)];
+          // console.log("Search trought ingredients", searchTagIngredient)
+          cleanTagListDOM(idDiv);
+          newArrayUstensils = [
+            ...new Set(
+              newArrayUstensils.map((element) => {
+                return element.toLowerCase();
+              })
+            ),
+          ];
+        }
+
+        buildTagArray(inputField, newArrayUstensils, idDiv);
+
+        // console.log("New Array from ustensils:", newArrayUstensils)
+        break;
+    }
+  } 
+  /*If user input more than 3 char */
+  if (buffer.length >= 3) {
     switch (idDiv) {
       case "Ingrédient":
         for (let i = 0; final_words.length > i; i++) {
@@ -29,6 +105,7 @@ const tagListSearch = (e, ul, inputField) => {
                 .includes(final_words[i].toLocaleLowerCase())
           );
 
+          console.log('searchTagIngredient', searchTagIngredient)
           // newArrayIngredients = [...new Set(searchTagIngredient)];
           cleanTagListDOM(idDiv);
           newArrayIngredients = [

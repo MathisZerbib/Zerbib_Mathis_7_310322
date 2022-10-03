@@ -6,12 +6,12 @@ const buildTagArray = (inputField, tags, id) => {
         liTag.setAttribute('role', 'option');
         liTag.innerHTML = tags[i];
         console.log(tags[i])
+
         if (tags[i].includes('_')) {
             cleanTagName = tags[i].replace(/\s/g, '_')
         }else {
             cleanTagName = tags[i]
         }
-        console.log('BuildArray',cleanTagName)
 
         liTag.id = cleanTagName
 
@@ -47,18 +47,17 @@ const buildTagArray = (inputField, tags, id) => {
             case 'Ingrédient':
                 liTag.classList.add('dropdown-item', 'bg-primary');
                 liTag.addEventListener('click', () => {
-                    allIngredients = allIngredients.filter(e => e !== cleanTagName)
                     // console.log('Litag', allIngredients, cleanTagName)
                     cleanTagListDOM(strIngredient)
+                    let uniqueIngredientsClone = currentIngredients.filter(e => e !== cleanTagName)
 
-                    allIngredients = [...new Set(allIngredients.map(element => {
-                        return element.toLowerCase();
-                    }))]
+                    // uniqueIngredientsClone = [...new Set(uniqueIngredientsClone.map(element => {
+                    //     return element.toLowerCase();
+                    // }))]
+                    console.log("uniqueIngredientsClone", uniqueIngredientsClone)
 
                     // console.log('UNIQUE INGREDIENT', allIngredients)
                     liTag.setAttribute('aria-selected', 'true');
-
-                    allIngredients = allIngredients.filter(e => e !== tags[i])
                         // console.log('Tags ', tags)
                     createTag(liTag, 'bg-primary')
                     inputField.value = ''
@@ -68,7 +67,7 @@ const buildTagArray = (inputField, tags, id) => {
             case 'Appareils':
                 liTag.classList.add('dropdown-item', 'bg-green');
                 liTag.addEventListener('click', () => {
-                    uniqueAppliancesClone = uniqueAppliancesClone.filter(e => e !== cleanTagName)
+                    let uniqueAppliancesClone = currentAppliances.filter(e => e !== cleanTagName)
                     cleanTagListDOM(strAppareil)
 
                     uniqueAppliancesClone = [...new Set(uniqueAppliancesClone.map(element => {
@@ -79,6 +78,7 @@ const buildTagArray = (inputField, tags, id) => {
                     liTag.setAttribute('aria-selected', 'true');
 
                     uniqueAppliancesClone = uniqueAppliancesClone.filter(e => e !== tags[i])
+
                     // console.log('Tags ', tags)
                     createTag(liTag, 'bg-green')
                     inputField.value = ''
@@ -92,7 +92,7 @@ const buildTagArray = (inputField, tags, id) => {
                 liTag.classList.add('dropdown-item', 'bg-red');
                 liTag.addEventListener('click', () => {
 
-                    uniqueUstensilesClone = uniqueUstensilesClone.filter(e => e !== cleanTagName)
+                    let uniqueUstensilesClone = currentUstensils.filter(e => e !== cleanTagName)
 
                     cleanTagListDOM(strUstensil)
 
@@ -113,7 +113,19 @@ const buildTagArray = (inputField, tags, id) => {
 
         }
 
+        
 
-        document.getElementById(id + '__taglist').append(liTag);
+        // remove tag from dom if exist in list 
+        if(tagArrayToSearch !== [] ) {
+            if (tagArrayToSearch.includes(cleanTagName)) {
+                console.log('==================================================')
+                console.log('BuildArray',cleanTagName)
+            }else {
+                document.getElementById(id + '__taglist').append(liTag);
+            }
+        }else {
+            document.getElementById(id + '__taglist').append(liTag);
+        }
+
     };
 }

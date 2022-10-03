@@ -14,22 +14,47 @@ const createTag = (el, color) => {
     tag.appendChild(tagClose)
     tagClose.addEventListener('click', () => {
         closeTag(tag)
+        triggerSearch(color)
     })
+    triggerSearch(color)
 
+function triggerSearch(color){
+    switch (color) {
+        case 'bg-primary':
+            console.log('bg-primary')
+            addTagToTagArray(tag, color)
+            cleanDOM()
+            tagArraySearch(tag.innerText, 'ingredients')
+        break;
 
+        case 'bg-green':
+            console.log('bg-green')
+            addTagToTagArray(tag, color)
+            cleanDOM()
+            tagArraySearch(tag.innerText, 'appliances')
 
-    addTagToTagArray(tag, color)
-    tagArraySearch(tagArrayToSearch)
+        break;
 
-    // tagArrayToSearch.map(el => {
-    //     removeElementFromArray(el, uniqueIngredientsClone)
-    //     removeElementFromArray(el, uniqueUstensilesClone)
-    //     removeElementFromArray(el, uniqueAppliancesClone)
-    // })
-    // if (uniqueIngredientsClone.includes(tag.innerText) == -1) {
-    //     // console.log("Unique ingredient", uniqueIngredientsClone.includes(tag.innerText), 'dont match', tag.innerText, 'HEEEEEEEEEEEEEEEEEEEEEEEEEERE')
+        case 'bg-red':
+            console.log('bg-red')
+            addTagToTagArray(tag, color)
+            cleanDOM()
+            tagArraySearch(tag.innerText, 'ustensils')
 
-    // }
+            break;
+        default:
+            break;
+    }
+    
+}
+
+    
+
+    tagArrayToSearch.map(el => {
+        removeElementFromArray(el, getCurrentIngredients())
+        removeElementFromArray(el, getCurrentUstensils())
+        removeElementFromArray(el, getCurrentAppliances())
+    })
 }
 
 const addTagToTagArray = (tag) => {
