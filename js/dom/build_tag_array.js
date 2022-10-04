@@ -1,4 +1,8 @@
 const buildTagArray = (inputField, tags, id) => {
+
+
+
+    
     for (let i = 0; ulLength(tags) > i; i++) {
         let liTag = document.createElement('li');
         let cleanTagName = ''
@@ -49,14 +53,6 @@ const buildTagArray = (inputField, tags, id) => {
                 liTag.addEventListener('click', () => {
                     // console.log('Litag', allIngredients, cleanTagName)
                     cleanTagListDOM(strIngredient)
-                    let uniqueIngredientsClone = currentIngredients.filter(e => e !== cleanTagName)
-
-                    // uniqueIngredientsClone = [...new Set(uniqueIngredientsClone.map(element => {
-                    //     return element.toLowerCase();
-                    // }))]
-                    console.log("uniqueIngredientsClone", uniqueIngredientsClone)
-
-                    // console.log('UNIQUE INGREDIENT', allIngredients)
                     liTag.setAttribute('aria-selected', 'true');
                         // console.log('Tags ', tags)
                     createTag(liTag, 'bg-primary')
@@ -67,18 +63,9 @@ const buildTagArray = (inputField, tags, id) => {
             case 'Appareils':
                 liTag.classList.add('dropdown-item', 'bg-green');
                 liTag.addEventListener('click', () => {
-                    let uniqueAppliancesClone = currentAppliances.filter(e => e !== cleanTagName)
                     cleanTagListDOM(strAppareil)
-
-                    uniqueAppliancesClone = [...new Set(uniqueAppliancesClone.map(element => {
-                        return element.toLowerCase();
-                    }))]
-
                     // console.log('UNIQUE APPLIANCE', uniqueAppliancesClone)
                     liTag.setAttribute('aria-selected', 'true');
-
-                    uniqueAppliancesClone = uniqueAppliancesClone.filter(e => e !== tags[i])
-
                     // console.log('Tags ', tags)
                     createTag(liTag, 'bg-green')
                     inputField.value = ''
@@ -91,20 +78,8 @@ const buildTagArray = (inputField, tags, id) => {
             case 'Ustensiles':
                 liTag.classList.add('dropdown-item', 'bg-red');
                 liTag.addEventListener('click', () => {
-
-                    let uniqueUstensilesClone = currentUstensils.filter(e => e !== cleanTagName)
-
                     cleanTagListDOM(strUstensil)
-
-                    uniqueUstensilesClone = [...new Set(uniqueUstensilesClone.map(element => {
-                        return element.toLowerCase();
-                    }))]
-
-                    // console.log('UNIQUE USTENSILES', uniqueUstensilesClone)
                     liTag.setAttribute('aria-selected', 'true');
-
-                    uniqueUstensilesClone = uniqueUstensilesClone.filter(e => e !== tags[i])
-                    console.log('Tags ', tags)
                     createTag(liTag, 'bg-red')
                     inputField.value = ''
                 })
@@ -113,17 +88,20 @@ const buildTagArray = (inputField, tags, id) => {
 
         }
 
-        
-
         // remove tag from dom if exist in list 
-        if(tagArrayToSearch !== [] ) {
-            if (tagArrayToSearch.includes(cleanTagName)) {
-                console.log('==================================================')
-                console.log('BuildArray',cleanTagName)
-            }else {
-                document.getElementById(id + '__taglist').append(liTag);
+        if(tagArrayToSearch.length !== 0 ) {
+
+            for(let y = 0; tagArrayToSearch.length !== y; y++) {
+                
+                if (tagArrayToSearch[y].text.toLowerCase().includes(cleanTagName.toLowerCase())) {
+                    console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.length, tagArrayToSearch[y], y)
+                }else {
+                    document.getElementById(id + '__taglist').append(liTag);
+                }
             }
-        }else {
+
+        }
+        else if (tagArrayToSearch.length == 0) {
             document.getElementById(id + '__taglist').append(liTag);
         }
 

@@ -1,17 +1,8 @@
 function searchPrincipalInput(e) {
     // Init words array 
-
-    let inputSearch = [];
-    let words = [];
-    recipeMatchArray = [];
-
     tagArrayToSearch = [...new Set(tagArrayToSearch)]
-    // console.log("searchInput:", searchInput.value, 'tagArrayToSearch:', tagArrayToSearch)
-
-    // si l'utilisateur appuie sur la touche retour
-    // if (e.keyCode == 8 && inputSearch !== []) {
-    //     inputSearch.pop()
-    // }
+    let words = [];
+    let recipeMatchArray = [];
 
 
     // split input words in array
@@ -34,9 +25,18 @@ function searchPrincipalInput(e) {
 
  
     // console.log('words.length', words.length)
+    
 
     // if the backward is hitted or the value is more than 3 and the arraySearch  is single
-    if (words.length >= 1 && searchInput.value.length >=3) {
+    if (words.length >= 1 
+        && searchInput.value.length >=3 
+       ) {
+        if ( e.keyCode == 8 ) {
+            cleanDOM()
+            defaultView()
+            globalSearch(searchInput.value, recipeMatchArray)    
+        }
+        cleanDOM()
         globalSearch(searchInput.value, recipeMatchArray)
 
         recipeMatchArray = [...new Set(recipeMatchArray)];
@@ -45,65 +45,19 @@ function searchPrincipalInput(e) {
         // console.log("globalSearch", recipeMatchArray)
     }
 
-
-    if (words.toString().length <= 2 ) {
+        // If not enough char lenght display current Recipes
+    if (words.toString().length <= 2 && e.keyCode == 8 ) {
         cleanDOM();
-        defaultView()
+        defaultView();
     }
 
 
-    // if (words.length >= 2){
-    //     let pass = []
-    //     for (let i=0; words.length !== i; i++) {
-    //         console.log('words[i]', words[i])
-    //         if(words[i].length >=3) {
-    //             pass.push(true)
-    //         }else {
-    //             pass.push(false)
-    //         }
-    //     }
-    //     if (!pass.includes(false)) {
-    //         globalSearch(words, recipeMatchArray)
-            
-    //         recipeMatchArray = [...new Set(recipeMatchArray)];
-    
-    //         cleanDOM();
-    //         displayData(recipeMatchArray);
-    //         // console.log("globalSearch", recipeMatchArray)
-    
-    //     }
-     
-    // }
-
-
-    // if (words.toString().length >= 3) {
-    //     if (words.length > 1) {
-    //         console.log('affine Search');
-
-    //         globalSearch(searchInput.value, recipeMatchArray)
-
-    //         recipeMatchArray = [...new Set(recipeMatchArray)];
-    
-    //         cleanDOM();
-    //         displayData(recipeMatchArray);
-    //         console.log("globalSearch", recipeMatchArray)
-    //     }
-    // }
-
-    // // let getCurrentRecipes() = document.querySelectorAll('.recipe-card')
-
+ 
     /* Case no match */
-    if (recipeMatchArray.length == 0 && getCurrentRecipes().length == 0 && searchInput.value.length >= 3) {
-        if (recipeMatchArray.length == 0) {
-            cleanDOM();
-            defaultViewDOM();
-            displayError();
-            console.log(getCurrentRecipes().length, 'ERROR DISPLAYED')
-        }
+    if (getCurrentRecipes().length == 0 && searchInput.value.length >= 3) {
         cleanDOM();
-        defaultViewDOM();
+        defaultView();
         displayError()
-        console.log(getCurrentRecipes().length, 'ERROR DISPLAYED')
 
         console.log('Min char 3', searchInput.value)
 

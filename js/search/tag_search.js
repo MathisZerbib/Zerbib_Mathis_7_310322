@@ -5,6 +5,7 @@ const tagArraySearch = (tag, filter) => {
   switch (filter) {
     case 'ingredients':
       ingredientMatch(tag, newRecipeMatch);
+      currentIngredients = currentIngredients.filter(el => el !== tag )
       break;
 
     case 'appliances':

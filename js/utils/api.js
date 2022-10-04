@@ -9,9 +9,6 @@ let allAppliances = [];
 let allUstensils = [];
 let newRecipeMatch = [];
 
-
-
-
 /**
  * Simule une connection à une base de donnée avec un fichier json
  */
@@ -82,21 +79,42 @@ const getAllUstensils = () => {
 };
 
 /**
- * Récupère toutes les recettes existantes
+ * Récupère une recette avec son id
+ * @returns {object} Objet contenant toutes les recettes
  */
+
 const getAllRecipes = () => {
   return recipes;
 };
 
+/**
+ * Set la valeur des recettes actuelles
+ * @param {object} data
+ * @returns {object} Objet contenant toutes les recettes
+ */
 const setCurrentRecipes = (data) => {
   data = [...new Set(data)];
   currentRecipes = data;
+
+  // setCurrentIngredients()
+  // setCurrentAppliances()
+  // setCurrentUstensils()
+
+  return currentRecipes;
 };
 
+/**
+ * Recupère la valeur des recettes actuelles
+ * @returns {object} Objet contenant toutes les recettes actuelles
+ */
 const getCurrentRecipes = () => {
   return currentRecipes;
 };
 
+/**
+ * Récupère la valeur des ingrédients des recettes actuelles
+ * @returns {object} Objet contenant toutes les ingredients actuels
+ */
 const getCurrentIngredients = () => {
   if (currentIngredients.length === 0) {
     currentRecipes.map((recipe) => {
@@ -116,37 +134,43 @@ const getCurrentIngredients = () => {
   return currentIngredients.sort((a, b) => a.localeCompare(b));
 };
 
-
-
-
+/**
+ * Récupère la valeur des appliances des recettes actuelles
+ * @returns {object} Objet contenant toutes les appliances actuels
+ */
 const getCurrentAppliances = () => {
-    if (currentAppliances.length === 0) {
-        currentRecipes.map((recipe) => {
-          if (!currentAppliances.includes(recipe.appliance.toLowerCase())) {
-            currentAppliances = [...currentAppliances, recipe.appliance.toLowerCase()];
-          }
-        });
+  if (currentAppliances.length === 0) {
+    currentRecipes.map((recipe) => {
+      if (!currentAppliances.includes(recipe.appliance.toLowerCase())) {
+        currentAppliances = [
+          ...currentAppliances,
+          recipe.appliance.toLowerCase(),
+        ];
       }
-    
-      return currentAppliances.sort((a, b) => a.localeCompare(b));
-    };
+    });
+  }
 
+  return currentAppliances.sort((a, b) => a.localeCompare(b));
+};
 
-
-    const getCurrentUstensils = () => {
-        if (currentUstensils.length === 0) {
-            currentRecipes.map((recipe) => {
-            recipe.ustensils.map((ustensile) => {
-              if (!currentUstensils.includes(ustensile.toLowerCase())) {
-                currentUstensils = [...currentUstensils, ustensile.toLowerCase()];
-              }
-            });
-          });
+/**
+ * Récupère la valeur des ustensils des recettes actuelles
+ * @returns {object} Objet contenant toutes les ustensils actuels
+ */
+const getCurrentUstensils = () => {
+  if (currentUstensils.length === 0) {
+    currentRecipes.map((recipe) => {
+      recipe.ustensils.map((ustensile) => {
+        if (!currentUstensils.includes(ustensile.toLowerCase())) {
+          currentUstensils = [...currentUstensils, ustensile.toLowerCase()];
         }
-      
-        return currentUstensils.sort((a, b) => a.localeCompare(b));
-      };
-      
+      });
+    });
+  }
+
+  return currentUstensils.sort((a, b) => a.localeCompare(b));
+};
+
 /**
  * Récupère une recette avec son id
  * @param {number} id
@@ -161,11 +185,3 @@ const getRecipe = (id) => {
   }
   return recipe[0];
 };
-
-
-
-// document.addEventListener('change', () => {
-//   getCurrentIngredients();
-//   getCurrentAppliances();
-//   getCurrentUstensils();
-// })

@@ -1,3 +1,4 @@
+
 const globalSearch = (filter, recipeMatch) => {
   // filterArray
   // if the filter parameter is an arrray

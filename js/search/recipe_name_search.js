@@ -8,8 +8,6 @@ const recipeMatchName = (input, recipeMatchArray) => {
   if (recipeMatch.length !== 0) {
     recipeMatch.map((el) => {
       recipeMatchArray.push(el);
-      console.log("NAME SEARCH MATCH", el);
-
     });
   }
 
