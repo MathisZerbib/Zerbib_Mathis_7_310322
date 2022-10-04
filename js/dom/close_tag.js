@@ -5,7 +5,8 @@ const closeTag = (tag) => {
     // add removed tag to respective Tag Array
 
     tag.remove()
-    tagArrayToSearch = tagArrayToSearch.filter(e => e !== tag.innerText)
+    console.log(tag.innerText,  '=======================')
+    tagArrayToSearch.filter(e => e !== tag.innerText)
 
     // if (uniqueIngredients.includes(tag.innerText) && !uniqueIngredientsClone.includes(tag.innerText)) {
     //     console.log('Dont contains On close ingrédient', tag.innerText)
@@ -30,17 +31,19 @@ const closeTag = (tag) => {
     tag.classList.remove('tag-posted');
     tag = '';
     console.log('tagArrayToSearch', tagArrayToSearch.length)
-    if (tagArrayToSearch.length !== 0) {
-        cleanDOM()
-        tagArraySearch(tagArrayToSearch)
 
-        console.log('Tag Array emtpy', 'searchInput empty')
+    // if (tagArrayToSearch.length !== 0) {
+    //     cleanDOM()
+    // tagArrayToSearch.map(el=>tagArraySearch(el.text, el.color) )
+        
 
-    } else {
-        console.log('Default TAGGGG', tagArrayToSearch, 'searchInput', searchInput.value)
-        cleanDOM();
-        displayData(getAllRecipes())
-    }
+    //     console.log('Tag Array emtpy', 'searchInput empty')
+
+    // } else {
+    //     console.log('Default TAGGGG', tagArrayToSearch, 'searchInput', searchInput.value)
+    //     cleanDOM();
+    //     displayData(getAllRecipes())
+    // }
     
     // else {
     //     cleanDOM()

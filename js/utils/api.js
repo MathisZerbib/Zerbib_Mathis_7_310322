@@ -161,3 +161,11 @@ const getRecipe = (id) => {
   }
   return recipe[0];
 };
+
+
+
+// document.addEventListener('change', () => {
+//   getCurrentIngredients();
+//   getCurrentAppliances();
+//   getCurrentUstensils();
+// })

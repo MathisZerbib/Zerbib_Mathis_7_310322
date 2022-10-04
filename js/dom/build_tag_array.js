@@ -5,7 +5,7 @@ const buildTagArray = (inputField, tags, id) => {
         liTag.setAttribute('aria-selected', 'false');
         liTag.setAttribute('role', 'option');
         liTag.innerHTML = tags[i];
-        console.log(tags[i])
+        // console.log(tags[i])
 
         if (tags[i].includes('_')) {
             cleanTagName = tags[i].replace(/\s/g, '_')

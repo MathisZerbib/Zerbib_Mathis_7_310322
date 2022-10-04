@@ -1,94 +1,64 @@
 const tagArraySearch = (tag, filter) => {
-  // console.log('tagArrayToSearch', tagArrayToSearch, 'lenght:', tagArrayToSearch.length)
+  console.log("tagArrayToSearch", tag, "lenght:", tag.length);
+  cleanDOM()
 
-//   if (recipeMatchArray.length !== 0) {
-//     switch (filter) {
-//       case "ingredients":
-//         ingredientMatch(tag, currentMatchArray);
-//         break;
+  switch (filter) {
+    case 'ingredients':
+      ingredientMatch(tag, newRecipeMatch);
+      break;
 
-//       case "appliances":
-//         applianceMatch(tag, currentMatchArray);
+    case 'appliances':
+      applianceMatch(tag, newRecipeMatch);
+      break;
 
-//         break;
-
-//       case "ustensils":
-//         ustensilsMatch(tag, currentMatchArray);
-
-//         break;
-//       default:
-//         break;
-//     }
-
-//     // affineWithTag(tag, currentMatchArray, filter)
-
-//     currentMatchArray = [...new Set(currentMatchArray)];
-//     displayData(currentMatchArray);
-//   } else {
-    switch (filter) {
-      case "ingredients":
-        ingredientMatch(tag, newRecipeMatch);
-        newRecipeMatch = [...new Set(newRecipeMatch)];
-
-        cleanDOM();
-        displayData(newRecipeMatch);
-
-        break;
-
-      case "appliances":
-        applianceMatch(tag, newRecipeMatch);
-        newRecipeMatch = [...new Set(newRecipeMatch)];
-        cleanDOM();
-        displayData(newRecipeMatch);
-
-        break;
-
-      case "ustensils":
-        ustensilsMatch(tag, newRecipeMatch);
-        newRecipeMatch = [...new Set(newRecipeMatch)];
-        cleanDOM();
-        displayData(newRecipeMatch);
-
-        break;
-      default:
-        break;
-    }
-    // displayData(newRecipeMatch);
+    case 'ustensils':
+      ustensilsMatch(tag, newRecipeMatch);
+      break;
+    default:
+      break;
   }
 
-  // if (tagArrayToSearch.length == 1 && searchInput.value.length >= 3) {
-  //     // tagArrayToSearch.push(searchInput.value)
-  //     console.log('tagArrayToSearch', tagArrayToSearch, 'lenght is', tagArrayToSearch.length, 'Search Input value', searchInput.value)
-  //     multiTagSearch(tagArrayToSearch)
-  //     // displayData(recipeMatchArray);
-  // }
+   var recipesIds = newRecipeMatch.map(function(recipe){ return recipe.id });
 
-  // if (tagArrayToSearch.length === 0 && searchInput.value.length <= 2) {
-  //     console.log('default View');
-  //     defaultView();
+  const findDuplicates = (arr) => {
+    let sorted_arr = arr.slice().sort();
+    let results = [];
+    for (let i = 0; i < sorted_arr.length - 1; i++) {
+      if (sorted_arr[i + 1] == sorted_arr[i]) {
+        results.push(sorted_arr[i]);
+      }
+    }
+    return results;
+  }
+  
 
-  // }
-  // if (searchInput.value.length >= 3 && tagArrayToSearch.length === 0) {
-  //     cleanDOM();
+  console.log(`The duplicates in ${recipesIds} are ${findDuplicates(recipesIds)}`);
 
-  //     let searchMatchArray = []
-  //     if (searchInput.value.includes(' ')) {
-  //         console.log('Going to multimatch', searchInput.value.split(' '))
-  //         arrayFromInputSearch = searchInput.value.split(' ')
-  //         multiTagSearch(arrayFromInputSearch)
+  let number = findDuplicates(recipesIds);
+  
+  console.log('number', number);
+// findDuplicates(duplicatedArray)
+newRecipeMatch = [...new Set(newRecipeMatch)];
+if (number.length == 0){
+    displayData(newRecipeMatch) 
+}
 
-  //     } else {
-  //         for (let i = 0; recipes.length > i; i++) {
-  //             recipeMatchName(searchInput.value, searchMatchArray);
-  //             ingredientMatch(recipes[i], searchInput.value, searchMatchArray);
-  //             descriptionMatch(searchInput.value, searchMatchArray);
-  //         }
-  //         searchMatchArray = [...new Set(searchMatchArray)];
-  //         console.table(searchMatchArray);
+else {
+    let finalResults = []
+    for(let i=0; number.length !== i; i++) {
+        let singleMatch = newRecipeMatch.filter((recipe) => recipe.id === number[i]);
+        finalResults.push(singleMatch)
+    }
+    console.log('finam', finalResults)
 
-  //         cleanDOM();
-  //         displayData(searchMatchArray);
-  //     }
+    finalResults.map(recipe=> displayData(recipe))
+    // ==displayData(finalResults);
+// if(finalResults == []) {
+//     displayError()
+// }
 
-  // }
-// };
+}
+//   displayData();
+};
+
+

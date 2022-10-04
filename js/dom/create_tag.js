@@ -21,25 +21,31 @@ const createTag = (el, color) => {
 function triggerSearch(color){
     switch (color) {
         case 'bg-primary':
-            console.log('bg-primary')
+            // console.log('bg-primary')
             addTagToTagArray(tag, color)
             cleanDOM()
             tagArraySearch(tag.innerText, 'ingredients')
+            console.log('currentIngredients.filter(e => e !== tag.innerText);', tag.innerText)
+            currentIngredients.filter(e => e !== tag.innerText);
         break;
 
         case 'bg-green':
-            console.log('bg-green')
+            // console.log('bg-green')
             addTagToTagArray(tag, color)
             cleanDOM()
             tagArraySearch(tag.innerText, 'appliances')
+            removeElementFromArray(tag.innerText, currentAppliances)
+
 
         break;
 
         case 'bg-red':
-            console.log('bg-red')
+            // console.log('bg-red')
             addTagToTagArray(tag, color)
             cleanDOM()
             tagArraySearch(tag.innerText, 'ustensils')
+            removeElementFromArray(tag.innerText, currentUstensils)
+
 
             break;
         default:
@@ -47,16 +53,15 @@ function triggerSearch(color){
     }
     
 }
+// tagArrayToSearch.map(el => {
+//     removeElementFromArray(el, getCurrentIngredients())
+//     removeElementFromArray(el, getCurrentUstensils())
+//     removeElementFromArray(el, getCurrentAppliances())
+// })
 
-    
-
-    tagArrayToSearch.map(el => {
-        removeElementFromArray(el, getCurrentIngredients())
-        removeElementFromArray(el, getCurrentUstensils())
-        removeElementFromArray(el, getCurrentAppliances())
-    })
 }
 
-const addTagToTagArray = (tag) => {
-    tagArrayToSearch.push(tag.innerText)
+const addTagToTagArray = (tag, color) => {
+    let text = tag.innerText
+    tagArrayToSearch.push({text, color})
 }

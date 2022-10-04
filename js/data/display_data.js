@@ -2,6 +2,7 @@ let textEmpty = document.querySelector('.title-empty');
 
 // Hydrate DOM
 const displayData = (recipes) => {
+    cleanDOM();
     matchArray = recipes
     matchArray = [...new Set(matchArray)]
 
