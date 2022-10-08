@@ -4,14 +4,18 @@ function filterElements(letters ,elements) {
         for(i=0; elements.length > i; i++) {
             if(cleanString(elements[i].textContent).includes(cleanString(letters))) {
                 elements[i].style.display = 'block';
+                // console.log(elements[i].childNodes[1].innerText)
+                if(!elements[i].className.includes('filtered')) {
+                    elements[i].classList.add('filtered');
+                }
                 isError.push(false);
             }else{
                 elements[i].style.display = 'none';
+                elements[i].classList.remove('filtered');
                 isError.push(true);
             }
         }
         if(isError.includes(true) && !isError.includes(false)) {
-            console.log('isError.includes(true) && !isError.includes(false)',isError.indexOf(true) && !isError.indexOf(false))
                 displayError()
         }else {
             hideError()

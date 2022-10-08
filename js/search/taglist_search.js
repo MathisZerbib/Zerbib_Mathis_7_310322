@@ -26,9 +26,8 @@ const tagListSearch = (e, ul, inputField) => {
         for (let i = 0; final_words.length > i; i++) {
           let searchTagIngredient = getCurrentIngredients().filter(
             (ingredient) =>
-              ingredient
-                .toLocaleLowerCase()
-                .includes(final_words[i].toLocaleLowerCase())
+              cleanString(ingredient)
+                .includes(cleanString(final_words[i]))
           );
 
           console.log('searchTagIngredient', searchTagIngredient)
@@ -37,7 +36,7 @@ const tagListSearch = (e, ul, inputField) => {
           newArrayIngredients = [
             ...new Set(
               searchTagIngredient.map((element) => {
-                return element.toLowerCase();
+                return cleanString(element)
               })
             ),
           ];
@@ -50,9 +49,8 @@ const tagListSearch = (e, ul, inputField) => {
       case "Appareils":
         for (let j = 0; final_words.length > j; j++) {
           let searchTagAppareils = getCurrentAppliances().filter((appliance) =>
-            appliance
-              .toLocaleLowerCase()
-              .includes(final_words[j].toLocaleLowerCase())
+          cleanString(appliance)
+              .includes(cleanString(final_words[j]))
           );
           newArrayAppareils = [...new Set(searchTagAppareils)];
           cleanTagListDOM(idDiv);
@@ -60,7 +58,7 @@ const tagListSearch = (e, ul, inputField) => {
           newArrayAppareils = [
             ...new Set(
               newArrayAppareils.map((element) => {
-                return element.toLowerCase();
+                return cleanString(element);
               })
             ),
           ];
@@ -73,9 +71,8 @@ const tagListSearch = (e, ul, inputField) => {
       case "Ustensiles":
         for (let k = 0; final_words.length > k; k++) {
           let searchTagUstensils = getCurrentUstensils().filter((ustensil) =>
-            ustensil
-              .toLocaleLowerCase()
-              .includes(final_words[k].toLocaleLowerCase())
+          cleanString(ustensil)
+              .includes(cleanString(final_words[k]))
           );
           newArrayUstensils = [...new Set(searchTagUstensils)];
           // console.log("Search trought ingredients", searchTagIngredient)
@@ -83,7 +80,7 @@ const tagListSearch = (e, ul, inputField) => {
           newArrayUstensils = [
             ...new Set(
               newArrayUstensils.map((element) => {
-                return element.toLowerCase();
+                return cleanString(element);
               })
             ),
           ];

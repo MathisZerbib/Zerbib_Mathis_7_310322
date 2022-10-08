@@ -26,15 +26,21 @@ const createTag = (el, color) => {
 
 // array = [2, 9]   
     })
+
+const addTagToTagArray = (tag, color) => {
+    let text = tag.innerText
+    tagArrayToSearch.push({text, color})
+};
     triggerSearch(color)
 
 function triggerSearch(color){
     switch (color) {
         case 'bg-primary':
             // console.log('bg-primary')
+            const cards = document.querySelectorAll(".filtered");
             addTagToTagArray(tag, color)
-            cleanDOM()
-            tagArraySearch(tag.innerText, 'ingredients')
+            tagArraySearch(tag.innerText, 'ingredients', cards)
+
             
             console.log('currentIngredients.filter(e => e !== tag.innerText);', tag.innerText)
         
@@ -43,7 +49,6 @@ function triggerSearch(color){
         case 'bg-green':
             // console.log('bg-green')
             addTagToTagArray(tag, color)
-            cleanDOM()
             tagArraySearch(tag.innerText, 'appliances')
             removeElementFromArray(tag.innerText, currentAppliances)
 
@@ -53,7 +58,6 @@ function triggerSearch(color){
         case 'bg-red':
             // console.log('bg-red')
             addTagToTagArray(tag, color)
-            cleanDOM()
             tagArraySearch(tag.innerText, 'ustensils')
             removeElementFromArray(tag.innerText, currentUstensils)
 
@@ -72,7 +76,3 @@ function triggerSearch(color){
 
 }
 
-const addTagToTagArray = (tag, color) => {
-    let text = tag.innerText
-    tagArrayToSearch.push({text, color})
-}
