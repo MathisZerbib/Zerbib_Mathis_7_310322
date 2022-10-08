@@ -19,7 +19,7 @@ const tagListSearch = (e, ul, inputField) => {
     searchTagListFromInput.pop();
   }
 
-  if (buffer.length <= 2) {
+  if (buffer.length >= 3) {
     switch (idDiv) {
       case "Ingrédient":
         // console.log("New Array from ingredient:", newArrayIngredients)

@@ -1,8 +1,4 @@
 const buildTagArray = (inputField, tags, id) => {
-
-
-
-    
     for (let i = 0; ulLength(tags) > i; i++) {
         let liTag = document.createElement('li');
         let cleanTagName = ''

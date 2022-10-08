@@ -13,8 +13,18 @@ const createTag = (el, color) => {
     tagArea.appendChild(tag);
     tag.appendChild(tagClose)
     tagClose.addEventListener('click', () => {
-        closeTag(tag)
-        triggerSearch(color)
+        closeTag(tag, color)
+        console.log("tagArrayToSearch", tagArrayToSearch)
+        for(let i =0;tagArrayToSearch.length > i; i++) {
+            const index = tagArrayToSearch[i].text.indexOf(tag.innerText);
+            if (index > -1) { // only splice array when item is found
+                tagArrayToSearch.splice(index, 1); // 2nd parameter means remove one item only
+            }
+    
+        }
+
+
+// array = [2, 9]   
     })
     triggerSearch(color)
 
@@ -25,8 +35,9 @@ function triggerSearch(color){
             addTagToTagArray(tag, color)
             cleanDOM()
             tagArraySearch(tag.innerText, 'ingredients')
+            
             console.log('currentIngredients.filter(e => e !== tag.innerText);', tag.innerText)
-            currentIngredients.filter(e => e !== tag.innerText);
+        
         break;
 
         case 'bg-green':

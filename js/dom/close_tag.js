@@ -6,8 +6,6 @@ const closeTag = (tag) => {
 
     tag.remove()
     console.log(tag.innerText,  '=======================')
-    tagArrayToSearch.filter(e => e !== tag.innerText)
-
     tag.classList.remove('tag-posted');
     tag = '';
     console.log('tagArrayToSearch', tagArrayToSearch.length)

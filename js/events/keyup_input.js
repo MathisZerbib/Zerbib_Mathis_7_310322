@@ -1,6 +1,7 @@
-/* Event Key principal Search Algo A */
-let searchInput = document.getElementById("main-search");
-function setKeyupOnSelector (selector) {
-    selector.addEventListener('keyup', (e) => { searchPrincipalInput(e) });
-}
-setKeyupOnSelector(searchInput)
+const searchBar = document.querySelector("#main-search");
+
+searchBar.addEventListener("keyup" , (e) => {
+const searchedLetters = e.target.value;
+const cards = document.querySelectorAll(".card");
+filterElements(searchedLetters, cards);
+});
