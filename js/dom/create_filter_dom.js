@@ -123,4 +123,8 @@ let subsearchNames = ["Ingrédient", "Appareils", "Ustensiles"];
 createFiltersDOM(subsearchNames);
 
 // Add Tag to Tag Array Search
-let tagArrayToSearch = [];
+let tagArrayToSearch = {
+    ingredient: [],
+    appliance: [],
+    ustensil: []
+};

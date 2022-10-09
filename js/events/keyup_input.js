@@ -4,5 +4,5 @@ searchBar.addEventListener("keyup" , (e) => {
 const searchedLetters = e.target.value;
 const cards = document.querySelectorAll(".card");
 
-filterElements(searchedLetters, cards);
+filterElements(searchedLetters, getAllRecipes());
 });

@@ -85,21 +85,23 @@ const buildTagArray = (inputField, tags, id) => {
         }
 
         // remove tag from dom if exist in list 
-        if(tagArrayToSearch.length !== 0 ) {
+        // if(tagArrayToSearch.length !== 0 ) {
 
-            for(let y = 0; tagArrayToSearch.length !== y; y++) {
+        //     for(let y = 0; tagArrayToSearch.length !== y; y++) {
                 
-                if (tagArrayToSearch[y].text.toLowerCase().includes(cleanTagName.toLowerCase())) {
-                    console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.length, tagArrayToSearch[y], y)
-                }else {
-                    document.getElementById(id + '__taglist').append(liTag);
-                }
-            }
+        //         if (cleanString((tagArrayToSearch[y].text)).includes(cleanString(cleanTagName))) {
+        //             console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.length, tagArrayToSearch[y], y)
+        //         }else {
+        //             document.getElementById(id + '__taglist').append(liTag);
+        //         }
+        //     }
 
-        }
-        else if (tagArrayToSearch.length == 0) {
+        // }
+        //else 
+        
+        // if (tagArrayToSearch.length == 0) {
             document.getElementById(id + '__taglist').append(liTag);
-        }
+        //}
 
     };
 }

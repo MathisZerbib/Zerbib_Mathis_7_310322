@@ -8,6 +8,7 @@ let allIngredients = [];
 let allAppliances = [];
 let allUstensils = [];
 let newRecipeMatch = [];
+let filteredRecipes = []
 
 /**
  * Simule une connection à une base de donnée avec un fichier json
@@ -21,6 +22,7 @@ const init = async () => {
   const data = await req.json();
   // console.log(data)
   recipes = data;
+  filteredRecipes = [...data]
   displayData(recipes);
 };
 

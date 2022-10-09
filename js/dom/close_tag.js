@@ -9,7 +9,8 @@ const closeTag = (tag) => {
     tag.classList.remove('tag-posted');
     tag = '';
     console.log('tagArrayToSearch', tagArrayToSearch.length)
-
+    
+    reloadSearch()
     // if (tagArrayToSearch.length !== 0) {
     //     cleanDOM()
     // tagArrayToSearch.map(el=>tagArraySearch(el.text, el.color) )
