@@ -1,6 +1,7 @@
 // Close, remove tag from DOM
 
 const closeTag = (tag) => {
+    const searchBar = document.querySelector("#main-search");
 
     // add removed tag to respective Tag Array
 
@@ -10,39 +11,14 @@ const closeTag = (tag) => {
     tag = '';
     console.log('tagArrayToSearch', tagArrayToSearch.length)
     
-    reloadSearch()
-    // if (tagArrayToSearch.length !== 0) {
-    //     cleanDOM()
-    // tagArrayToSearch.map(el=>tagArraySearch(el.text, el.color) )
-        
+        reloadSearch(searchBar.value, tagArrayToSearch, filteredRecipes)
 
-    //     console.log('Tag Array emtpy', 'searchInput empty')
+}
 
-    // } else {
-    //     console.log('Default TAGGGG', tagArrayToSearch, 'searchInput', searchInput.value)
-    //     cleanDOM();
-    //     displayData(getAllRecipes())
-    // }
-    
-    // else {
-    //     cleanDOM()
-    //     console.log('On close tag tagArrayToSearch', tagArrayToSearch)
-    //     tagArraySearch(tagArrayToSearch)
-    //         // console.log('IF TAGGGG', tagArrayToSearch)
-    // }
+const reloadSearch = (search, tagArrayToSearch, filteredRecipes) => {
+    if (search.length)
+    filterElements(search, filteredRecipes);
 
-
-    // if (tagArrayToSearch == [] && searchInput.value !== '') {
-    //     // cleanDOM();
-    //     // defaultView();
-    //     console.log('TODO AFFICHER LA RECHERCHE PRINCIPALE')
-    // } else if(tagArrayToSearch ==! []) {
-    //     // cleanDOM();
-    //     // defaultView();
-
-    // }
-
-    // if (tagFilters.innerText == '') {
-    // }
-
+    if(tagArrayToSearch.length)
+    tagArraySearch(tagArrayToSearch, filteredRecipes);
 }

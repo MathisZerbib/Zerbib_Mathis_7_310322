@@ -1,40 +1,36 @@
-const tagArraySearch = (searchedTags, filteredRecipes) => {
+const tagArraySearch = (searchedTags, data) => {
   // console.log(searchedTags)
 
-  // console.log(searchedTags)
+  console.log(searchedTags.ingredient.length, "length");
+
+  let finalLength =
+    searchedTags.ingredient.length +
+    searchedTags.appliance.length +
+    searchedTags.ustensil.length;
 
 
-
-  for (i = 0; searchedTags.ingredient.length !== i; i++) {
-
-    if(searchedTags.ingredient[i]) {
-      console.log("filteredRecipes", filteredRecipes, searchedTags.ingredient[i].toLocaleLowerCase());
-
-      filteredRecipes = filteredRecipes.filter(
+    for (i = 0; finalLength !== i; i++) {
+      filteredRecipes = data.filter(
         (recipe) =>
-          !searchedTags.ingredient[i].length ||
+          !searchedTags.ingredient.length ||
           (recipe.ingredients.find((ingredient) =>
-            ingredient.ingredient.toLocaleLowerCase()
-              .includes(searchedTags.ingredient[i].toLocaleLowerCase())
-          ) 
-          
-          // &&
-          //   (!searchedTags[i].length ||
-          //     recipe.appliance
-          //       .toLocaleLowerCase()
-          //       .includes(searchedTags[i].toLocaleLowerCase())) &&
-          //   (!searchedTags[i].length ||
-          //     recipe.ustensils.map((ustensil) =>
-          //       ustensil
-          //         .toLocaleLowerCase()
-          //         .includes(searchedTags[i].toLocaleLowerCase())
-          //     ))
+            ingredient.ingredient
+              .toLocaleLowerCase()
+              .includes(searchedTags.ingredient[i].toLocaleLowerCase())) &&
               
-              )
+            (!searchedTags.appliance.length ||
+              recipe.appliance
+                .toLocaleLowerCase()
+                .includes(searchedTags.appliance[i].toLocaleLowerCase())) &&
+                
+            (!searchedTags.ustensil.length ||
+              recipe.ustensils.find((ustensil) =>
+                ustensil
+                  .toLocaleLowerCase()
+                  .includes(searchedTags.ustensil[i].toLocaleLowerCase())
+              )))
       );
-    }
-
-
+      console.log("filteredRecipes", filteredRecipes, searchedTags);
   }
   displayData(filteredRecipes);
 };

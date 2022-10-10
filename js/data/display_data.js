@@ -9,5 +9,5 @@ const displayData = (recipes) => {
         recipesSection.appendChild(getRecipeCardDOM);
     });
 
-    setCurrentRecipes(recipes)
+    setfilteredRecipes(recipes)
 };

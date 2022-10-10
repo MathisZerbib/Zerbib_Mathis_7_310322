@@ -1,5 +1,5 @@
 let recipes = [];
-let currentRecipes = [];
+let filteredRecipes = [];
 let currentIngredients = [];
 let currentAppliances = [];
 let currentUstensils = [];
@@ -7,8 +7,6 @@ let currentUstensils = [];
 let allIngredients = [];
 let allAppliances = [];
 let allUstensils = [];
-let newRecipeMatch = [];
-let filteredRecipes = []
 
 /**
  * Simule une connection à une base de donnée avec un fichier json
@@ -22,7 +20,7 @@ const init = async () => {
   const data = await req.json();
   // console.log(data)
   recipes = data;
-  filteredRecipes = [...data]
+  filteredRecipes = [...data];
   displayData(recipes);
 };
 
@@ -35,7 +33,6 @@ const getAllIngredients = () => {
     recipes.map((recipe) => {
       recipe.ingredients.map((ingredients) => {
         const ingredient = ingredients.ingredient;
-
         if (!allIngredients.includes(ingredient.toLowerCase())) {
           allIngredients = [...allIngredients, ingredient.toLowerCase()];
         }
@@ -94,23 +91,23 @@ const getAllRecipes = () => {
  * @param {object} data
  * @returns {object} Objet contenant toutes les recettes
  */
-const setCurrentRecipes = (data) => {
+const setfilteredRecipes = (data) => {
   data = [...new Set(data)];
-  currentRecipes = data;
+  filteredRecipes = data;
 
   // setCurrentIngredients()
   // setCurrentAppliances()
   // setCurrentUstensils()
 
-  return currentRecipes;
+  return filteredRecipes;
 };
 
 /**
  * Recupère la valeur des recettes actuelles
  * @returns {object} Objet contenant toutes les recettes actuelles
  */
-const getCurrentRecipes = () => {
-  return currentRecipes;
+const getfilteredRecipes = () => {
+  return filteredRecipes;
 };
 
 /**
@@ -119,7 +116,7 @@ const getCurrentRecipes = () => {
  */
 const getCurrentIngredients = () => {
   if (currentIngredients.length === 0) {
-    currentRecipes.map((recipe) => {
+    filteredRecipes.map((recipe) => {
       recipe.ingredients.map((ingredients) => {
         const ingredient = ingredients.ingredient;
 
@@ -142,7 +139,7 @@ const getCurrentIngredients = () => {
  */
 const getCurrentAppliances = () => {
   if (currentAppliances.length === 0) {
-    currentRecipes.map((recipe) => {
+    filteredRecipes.map((recipe) => {
       if (!currentAppliances.includes(recipe.appliance.toLowerCase())) {
         currentAppliances = [
           ...currentAppliances,
@@ -161,7 +158,7 @@ const getCurrentAppliances = () => {
  */
 const getCurrentUstensils = () => {
   if (currentUstensils.length === 0) {
-    currentRecipes.map((recipe) => {
+    filteredRecipes.map((recipe) => {
       recipe.ustensils.map((ustensile) => {
         if (!currentUstensils.includes(ustensile.toLowerCase())) {
           currentUstensils = [...currentUstensils, ustensile.toLowerCase()];
