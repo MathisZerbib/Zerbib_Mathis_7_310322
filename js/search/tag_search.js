@@ -31,8 +31,10 @@ let tempArray = data;
               )))
       );
       console.log("filteredRecipes", filteredRecipes, searchedTags);
-      if(filteredRecipes&&filteredRecipes.length !==0) {
+      if(filteredRecipes&&filteredRecipes.length !==0 && searchBar.value.length > 2 || tempArray == undefined ) {
+        console.log('temp array', tempArray)
         tempArray = filteredRecipes
+        console.log('temp array', tempArray)
       }
   }
   displayData(filteredRecipes);

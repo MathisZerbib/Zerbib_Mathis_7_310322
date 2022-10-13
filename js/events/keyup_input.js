@@ -9,9 +9,13 @@ if (filteredRecipes.length || tagArrayToSearch.length >0) {
 }
     // if its not the first time search
 
-if(isFirstSearch == false && searchedLetters.length > 2 ) {
-    let resultFromFirstSearch = filterElements(searchedLetters, getAllRecipes()) 
-    tagArraySearch(tagArrayToSearch, resultFromFirstSearch)
+if(isFirstSearch == false || searchedLetters.length > 2 ) {
+    let resultFromFirstSearch = filterElements(searchedLetters, getAllRecipes())
+    if (resultFromFirstSearch == undefined) {
+        return showError()
+    }else {
+        tagArraySearch(tagArrayToSearch, resultFromFirstSearch)
+    }
 }
 
     // if first time search and input 3 characters
@@ -20,7 +24,7 @@ if(isFirstSearch==true && searchedLetters.length >= 3){
     filterElements(searchedLetters, getAllRecipes());
 }
 
-    // if its filter time and tag array is filled
+    // if affine principal search is filled with tags 
 if((tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length|| tagArrayToSearch.ustensil.length )  && isFirstSearch ==true && searchedLetters.length >2) {
     let resultFromFirstSearch = filterElements(searchedLetters, getAllRecipes()) 
     tagArraySearch(tagArrayToSearch, resultFromFirstSearch)

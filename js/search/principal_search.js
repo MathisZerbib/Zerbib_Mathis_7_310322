@@ -21,7 +21,7 @@ function filterElements(search, data) {
     // Afficher l'erreur si la longueur du mot entré est plus grand que 2
     if(search.length >= 3){
       console.log("display error");
-      displayError();
+      showError();
     }else {
       hideError();
       // displayData(getAllRecipes())
@@ -33,7 +33,7 @@ function filterElements(search, data) {
   else {
     if(search.length > 2){
       console.log("display error");
-      displayError();
+      showError();
 
     }else {
       hideError();
