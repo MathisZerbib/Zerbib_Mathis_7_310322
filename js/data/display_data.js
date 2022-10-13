@@ -8,6 +8,8 @@ const displayData = (recipes) => {
         const getRecipeCardDOM = recipeModel.buildRecipeCardDOM();
         recipesSection.appendChild(getRecipeCardDOM);
     });
-
+if (recipes.length !== 0 ) {
+    hideError() 
+}
     setfilteredRecipes(recipes)
 };

@@ -1,6 +1,6 @@
 function filterElements(search, data) {
   let resultRecipe = data
-  if (search.length < 2) {
+  if (search.length < 2 && tagArrayToSearch.length == 0) {
     hideError();
     displayData(data);
     return data
@@ -17,13 +17,14 @@ function filterElements(search, data) {
   }
   
   // Si il n'y a pas de recettes filtrés 
-  if (!filteredRecipes.length) {
+  if (filteredRecipes && !filteredRecipes.length) {
     // Afficher l'erreur si la longueur du mot entré est plus grand que 2
     if(search.length >= 3){
       console.log("display error");
       displayError();
     }else {
       hideError();
+      // displayData(getAllRecipes())
       console.log('yooooo hide error display all')
     }
 

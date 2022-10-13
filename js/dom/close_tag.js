@@ -38,12 +38,3 @@ const closeTag = (tag, color, text) => {
 
 }
 
-const reloadSearch = (search, tagArrayToSearch) => {
-
-    let resultFromFirstSearch = filterElements(search, getAllRecipes()) 
-    console.log(resultFromFirstSearch, "resultFromFirstSearch")
-    if(search.length > 2 && (tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length || tagArrayToSearch.ustensil.length) ){
-        tagArraySearch(tagArrayToSearch, resultFromFirstSearch);
-    }else if(!filteredRecipes.length && (tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length || tagArrayToSearch.ustensil.length))
-    tagArraySearch(tagArrayToSearch, getAllRecipes())
-}
