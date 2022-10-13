@@ -7,6 +7,7 @@ let currentUstensils = [];
 let allIngredients = [];
 let allAppliances = [];
 let allUstensils = [];
+let isFirstSearch = true;
 
 /**
  * Simule une connection à une base de donnée avec un fichier json
