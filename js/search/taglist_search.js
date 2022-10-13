@@ -24,7 +24,8 @@ const tagListSearch = (e, ul, inputField) => {
       case "Ingrédient":
         // console.log("New Array from ingredient:", newArrayIngredients)
         for (let i = 0; final_words.length > i; i++) {
-          let searchTagIngredient = getCurrentIngredients().filter(
+          let searchTagIngredient = getCurrentIngredients()
+          searchTagIngredient = searchTagIngredient.filter(
             (ingredient) =>
               cleanString(ingredient)
                 .includes(cleanString(final_words[i]))
@@ -48,7 +49,9 @@ const tagListSearch = (e, ul, inputField) => {
         break;
       case "Appareils":
         for (let j = 0; final_words.length > j; j++) {
-          let searchTagAppareils = getCurrentAppliances().filter((appliance) =>
+          let searchTagAppareils = getCurrentAppliances();
+          
+          searchTagAppareils = searchTagAppareils.filter((appliance) =>
           cleanString(appliance)
               .includes(cleanString(final_words[j]))
           );
@@ -70,7 +73,8 @@ const tagListSearch = (e, ul, inputField) => {
         break;
       case "Ustensiles":
         for (let k = 0; final_words.length > k; k++) {
-          let searchTagUstensils = getCurrentUstensils().filter((ustensil) =>
+          let searchTagUstensils = getCurrentUstensils()
+          searchTagUstensils = searchTagUstensils.filter((ustensil) =>
           cleanString(ustensil)
               .includes(cleanString(final_words[k]))
           );

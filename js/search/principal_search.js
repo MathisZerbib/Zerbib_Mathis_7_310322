@@ -1,6 +1,8 @@
 function filterElements(search, data) {
+  let resultRecipe = data
+
     if (search.length > 2) {
-      filteredRecipes = data.filter(
+      filteredRecipes = resultRecipe.filter(
         (recipe) =>
           cleanString(recipe.name).includes(cleanString(search)) ||
           recipe.ingredients.find((ing) =>

@@ -16,9 +16,23 @@ const closeTag = (tag) => {
 }
 
 const reloadSearch = (search, tagArrayToSearch, filteredRecipes) => {
-    if (search.length)
-    filterElements(search, filteredRecipes);
 
-    if(tagArrayToSearch.length)
+    if(tagArrayToSearch.length){
+        isFirstSearch = false;
     tagArraySearch(tagArrayToSearch, filteredRecipes);
+    
+    }else if(searchBar.value > 2 && tagArrayToSearch.length) {
+        isFirstSearch = true;
+        filterElements(search, filteredRecipes);
+    }else {
+        filterElements(search, getAllRecipes());
+    
+    }
+
+
+    // if (search.length)
+    // filterElements(search, filteredRecipes);
+
+    // if(tagArrayToSearch.length)
+    // tagArraySearch(tagArrayToSearch, filteredRecipes);
 }

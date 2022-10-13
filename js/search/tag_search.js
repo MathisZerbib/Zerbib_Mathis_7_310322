@@ -1,6 +1,6 @@
 const tagArraySearch = (searchedTags, data) => {
   // console.log(searchedTags)
-
+let tempArray = data;
   console.log(searchedTags.ingredient.length, "length");
 
   let finalLength =
@@ -10,13 +10,13 @@ const tagArraySearch = (searchedTags, data) => {
 
 
     for (i = 0; finalLength !== i; i++) {
-      filteredRecipes = data.filter(
+      filteredRecipes = tempArray.filter(
         (recipe) =>
           !searchedTags.ingredient.length ||
           (recipe.ingredients.find((ingredient) =>
             ingredient.ingredient
               .toLocaleLowerCase()
-              .includes(searchedTags.ingredient[i].toLocaleLowerCase())) &&
+              .includes(searchedTags.ingredient[i].toLocaleLowerCase()))  &&
               
             (!searchedTags.appliance.length ||
               recipe.appliance
