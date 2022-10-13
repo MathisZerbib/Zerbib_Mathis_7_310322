@@ -33,4 +33,5 @@ let tempArray = data;
       console.log("filteredRecipes", filteredRecipes, searchedTags);
   }
   displayData(filteredRecipes);
+  return filteredRecipes
 };

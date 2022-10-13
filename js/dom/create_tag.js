@@ -13,7 +13,7 @@ const createTag = (el, color) => {
   tagArea.appendChild(tag);
   tag.appendChild(tagClose);
   tagClose.addEventListener("click", () => {
-    closeTag(tag, color);
+    closeTag(tag, color, tag.innerText);
     console.log("tagArrayToSearch", tagArrayToSearch);
     for (let i = 0; tagArrayToSearch.length > i; i++) {
       const index = tagArrayToSearch[i].text.indexOf(tag.innerText);
@@ -57,10 +57,9 @@ const createTag = (el, color) => {
       default:
         break;
     }
-    if(!filteredRecipes.length) {
-        return tagArraySearch(tagArrayToSearch,getAllRecipes());
-    }else {
+
+
+      console.log("FILTER PRINCIPAL SEARCH ===> ")
         tagArraySearch(tagArrayToSearch, filteredRecipes);
-    }
   }
 };

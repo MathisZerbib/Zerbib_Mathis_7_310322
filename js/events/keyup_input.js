@@ -5,7 +5,7 @@ if(tagArrayToSearch.length){
     isFirstSearch = false;
 }else if(!isFirstSearch) {
     filterElements(searchedLetters, filteredRecipes);
-}else if (isFirstSearch) {
+}else{
     filterElements(searchedLetters, getAllRecipes());
 }
 if(tagArrayToSearch.length && filteredRecipes.length) {

@@ -1,6 +1,10 @@
 function filterElements(search, data) {
   let resultRecipe = data
-
+  if (search.length < 2) {
+    hideError();
+    displayData(data);
+    return data
+}
     if (search.length > 2) {
       filteredRecipes = resultRecipe.filter(
         (recipe) =>
@@ -36,9 +40,9 @@ function filterElements(search, data) {
     }
     displayData(filteredRecipes);
     hideError();
+    return filteredRecipes
   }
 
-  if (search.length < 2) {
-      displayData(data);
-  }
+
+  
 }
