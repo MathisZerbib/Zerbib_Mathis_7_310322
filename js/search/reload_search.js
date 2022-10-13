@@ -8,14 +8,14 @@ let resultFromFirstSearch;
         tagArraySearch(tagArrayToSearch, resultFromFirstSearch);
     }
     
-    if(!filteredRecipes.length && (tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length || tagArrayToSearch.ustensil.length) || search.length < 2 && (tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length || tagArrayToSearch.ustensil.length)) {
+    if(!filteredRecipes.length && (tagArrayToSearch.ingredient.length >0 || tagArrayToSearch.appliance.length>0 || tagArrayToSearch.ustensil.length>0) || search.length < 2 && (tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length || tagArrayToSearch.ustensil.length)) {
         tagArraySearch(tagArrayToSearch, getAllRecipes())
     }
     if (true) {
         console.log('coupocu')
     }
 
-    if ( search.length == 0 && (!tagArrayToSearch.ingredient.length || !tagArrayToSearch.appliance.length || !tagArrayToSearch.ustensil.length)) {
+    if ( search.length == 0 && tagArrayToSearch.ingredient.length == 0 && tagArrayToSearch.appliance.length == 0 && tagArrayToSearch.ustensil.length == 0) {
         displayData(getAllRecipes())
     }
 }

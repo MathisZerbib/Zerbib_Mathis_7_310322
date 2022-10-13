@@ -31,8 +31,9 @@ let tempArray = data;
               )))
       );
       console.log("filteredRecipes", filteredRecipes, searchedTags);
-      if(filteredRecipes.length !==0)
-      tempArray = filteredRecipes
+      if(filteredRecipes&&filteredRecipes.length !==0) {
+        tempArray = filteredRecipes
+      }
   }
   displayData(filteredRecipes);
   return filteredRecipes
