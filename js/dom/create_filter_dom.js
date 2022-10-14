@@ -77,9 +77,11 @@ const createFiltersDOM = (filtersList) => {
             } 
             else {
                 let currentIngredients = getCurrentIngredients()
+                let currentAppliances = getCurrentAppliances()
+                let currentUstensils = getCurrentUstensils()
                 buildTagArray(inputField, currentIngredients, strIngredient);
-                buildTagArray(inputField, getCurrentUstensils(), strUstensil);
-                buildTagArray(inputField, getAllAppliances(), strAppareil);
+                buildTagArray(inputField, currentUstensils, strUstensil);
+                buildTagArray(inputField, currentAppliances, strAppareil);
             }
 
 
