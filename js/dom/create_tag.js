@@ -39,20 +39,28 @@ const createTag = (el, color) => {
 
           
         tagArrayToSearch.ingredient.push(tag.innerText);
+
+        for(let i =0; tagArrayToSearch.ingredient.length !== i; i++) {
+          currentIngredients = currentIngredients.filter(e=> e!== tagArrayToSearch.ingredient[i])
+      }
         break;
 
       case "bg-green":
         // console.log('bg-green')
         tagArrayToSearch.appliance.push(tag.innerText);
         // removeElementFromArray(tagArrayToSearch, currentAppliances);
-
+        for(let i =0; tagArrayToSearch.appliance.length !== i; i++) {
+          currentAppliances = currentAppliances.filter(e=> e!== tagArrayToSearch.appliance[i])
+      }
         break;
 
       case "bg-red":
         // console.log('bg-red')
         tagArrayToSearch.ustensil.push(tag.innerText);
         // removeElementFromArray(tagArrayToSearch, currentUstensils);
-
+        for(let i =0; tagArrayToSearch.ustensil.length !== i; i++) {
+          currentUstensils = currentUstensils.filter(e=> e!== tagArrayToSearch.ustensil[i])
+      }
         break;
       default:
         break;

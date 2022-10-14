@@ -34,8 +34,8 @@ const getAllIngredients = () => {
     recipes.map((recipe) => {
       recipe.ingredients.map((ingredients) => {
         const ingredient = ingredients.ingredient;
-        if (!allIngredients.includes(ingredient.toLowerCase())) {
-          allIngredients = [...allIngredients, ingredient.toLowerCase()];
+        if (!allIngredients.includes(cleanString(ingredient))) {
+          allIngredients = [...allIngredients, cleanString(ingredient)];
         }
       });
     });
@@ -51,8 +51,8 @@ const getAllIngredients = () => {
 const getAllAppliances = () => {
   if (allAppliances.length === 0) {
     recipes.map((recipe) => {
-      if (!allAppliances.includes(recipe.appliance.toLowerCase())) {
-        allAppliances = [...allAppliances, recipe.appliance.toLowerCase()];
+      if (!allAppliances.includes(cleanString(recipe.appliance))) {
+        allAppliances = [...allAppliances, cleanString(recipe.appliance)];
       }
     });
   }
@@ -68,8 +68,8 @@ const getAllUstensils = () => {
   if (allUstensils.length === 0) {
     recipes.map((recipe) => {
       recipe.ustensils.map((ustensile) => {
-        if (!allUstensils.includes(ustensile.toLowerCase())) {
-          allUstensils = [...allUstensils, ustensile.toLowerCase()];
+        if (!allUstensils.includes(cleanString(ustensile))) {
+          allUstensils = [...allUstensils, cleanString(ustensile)];
         }
       });
     });
@@ -121,10 +121,11 @@ const getCurrentIngredients = () => {
       recipe.ingredients.map((ingredients) => {
         const ingredient = ingredients.ingredient;
 
-        if (!currentIngredients.includes(ingredient.toLowerCase())) {
+        if (!currentIngredients.includes(cleanString(ingredient))) {
           currentIngredients = [
             ...currentIngredients,
-            ingredient.toLowerCase(),
+            cleanString(
+            ingredient),
           ];
         }
       });
@@ -141,10 +142,11 @@ const getCurrentIngredients = () => {
 const getCurrentAppliances = () => {
   if (currentAppliances.length === 0) {
     filteredRecipes.map((recipe) => {
-      if (!currentAppliances.includes(recipe.appliance.toLowerCase())) {
+      if (!currentAppliances.includes(cleanString(recipe.appliance))) {
         currentAppliances = [
           ...currentAppliances,
-          recipe.appliance.toLowerCase(),
+          cleanString(
+          recipe.appliance),
         ];
       }
     });
@@ -161,8 +163,8 @@ const getCurrentUstensils = () => {
   if (currentUstensils.length === 0) {
     filteredRecipes.map((recipe) => {
       recipe.ustensils.map((ustensile) => {
-        if (!currentUstensils.includes(ustensile.toLowerCase())) {
-          currentUstensils = [...currentUstensils, ustensile.toLowerCase()];
+        if (!currentUstensils.includes(cleanString(ustensile))) {
+          currentUstensils = [...currentUstensils, cleanString(ustensile)];
         }
       });
     });

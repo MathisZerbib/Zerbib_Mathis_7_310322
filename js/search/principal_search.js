@@ -17,7 +17,7 @@ function filterElements(search, data) {
   }
   
   // Si il n'y a pas de recettes filtrés 
-  if (filteredRecipes && !filteredRecipes.length) {
+  if (filteredRecipes && filteredRecipes.length == 0) {
     // Afficher l'erreur si la longueur du mot entré est plus grand que 2
     if(search.length >= 3){
       console.log("display error");

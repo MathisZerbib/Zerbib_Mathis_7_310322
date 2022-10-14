@@ -76,7 +76,8 @@ const createFiltersDOM = (filtersList) => {
                 // console.log('TAGFILTERSS ============================ :§:;!:;!.:!;!:', tagFilters.innerText, searchInputSelector.value)
             } 
             else {
-                buildTagArray(inputField, getCurrentIngredients(), strIngredient);
+                let currentIngredients = getCurrentIngredients()
+                buildTagArray(inputField, currentIngredients, strIngredient);
                 buildTagArray(inputField, getCurrentUstensils(), strUstensil);
                 buildTagArray(inputField, getAllAppliances(), strAppareil);
             }

@@ -42,18 +42,18 @@ const buildTagArray = (inputField, tags, id) => {
         let parentInputAppliance = ulAppliance.closest('div').id
         let strAppareil = parentInputAppliance.replace('sub-search__', '');
 
-
-        switch (id) {
+        switch (id) {   
             case 'Ingrédient':
                 liTag.classList.add('dropdown-item', 'bg-primary');
                 liTag.addEventListener('click', () => {
                     // console.log('Litag', allIngredients, cleanTagName)
                     cleanTagListDOM(strIngredient)
                     liTag.setAttribute('aria-selected', 'true');
-                        // console.log('Tags ', tags)
+                    console.log('Tags ', liTag.innerText)
                     createTag(liTag, 'bg-primary')
                     inputField.value = ''
                 })
+
                 break;
 
             case 'Appareils':
@@ -87,21 +87,51 @@ const buildTagArray = (inputField, tags, id) => {
         // remove tag from dom if exist in list 
         // if(tagArrayToSearch.length !== 0 ) {
 
-        //     for(let y = 0; tagArrayToSearch.length !== y; y++) {
-                
-        //         if (cleanString((tagArrayToSearch[y].text)).includes(cleanString(cleanTagName))) {
-        //             console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.length, tagArrayToSearch[y], y)
-        //         }else {
-        //             document.getElementById(id + '__taglist').append(liTag);
-        //         }
-        //     }
+            let finalLength =
+            tagArrayToSearch.ingredient.length +
+            tagArrayToSearch.appliance.length +
+            tagArrayToSearch.ustensil.length;
 
-        // }
-        //else 
+            
+            for(let y = 0; tagArrayToSearch.ingredient.length !== y; y++) {
+                
+                if (cleanString((tagArrayToSearch.ingredient[y])).includes(cleanString(liTag.innerText))) {
+                    console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.ingredient[y], liTag.innerText)
+                }else {
+                    document.getElementById(id + '__taglist').append(liTag);
+                }
+            }
+
+                        
+            for(let y = 0; tagArrayToSearch.appliance.length !== y; y++) {
+                
+                if (cleanString((tagArrayToSearch.appliance[y])).includes(cleanString(liTag.innerText))) {
+                    // console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.length, tagArrayToSearch[y], y)
+                }else {
+                    document.getElementById(id + '__taglist').append(liTag);
+                }
+            }
+
+
+                        
+            for(let y = 0; tagArrayToSearch.ustensil.length !== y; y++) {
+                
+                if (cleanString((tagArrayToSearch.ustensil[y])).includes(cleanString(liTag.innerText))) {
+                    // console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.length, tagArrayToSearch[y], y)
+                }else {
+                    document.getElementById(id + '__taglist').append(liTag);
+                }
+            }
+
+            if(!finalLength)
+            document.getElementById(id + '__taglist').append(liTag);
+
+            // }
+        // else 
         
         // if (tagArrayToSearch.length == 0) {
-            document.getElementById(id + '__taglist').append(liTag);
-        //}
+        //     document.getElementById(id + '__taglist').append(liTag);
+        // }
 
     };
 }
