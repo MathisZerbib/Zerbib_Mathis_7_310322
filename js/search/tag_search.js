@@ -30,6 +30,7 @@ const tagArraySearch = (searchedTags, data) => {
     );
 
     console.log("filteredRecipes", filteredRecipes, searchedTags);
+
     if (
       (filteredRecipes &&
         filteredRecipes.length !== 0 &&
@@ -43,5 +44,9 @@ const tagArraySearch = (searchedTags, data) => {
     }
   }
   displayData(filteredRecipes);
+  if (filteredRecipes.length ==  0) {
+      showError()
+  }
   return filteredRecipes;
+
 };
