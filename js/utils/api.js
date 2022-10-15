@@ -9,6 +9,10 @@ let allAppliances = [];
 let allUstensils = [];
 let isFirstSearch = true;
 
+
+let textEmpty = document.querySelector(".title-empty");
+
+
 /**
  * Simule une connection à une base de donnée avec un fichier json
  */
@@ -18,11 +22,14 @@ const init = async () => {
   if (!req.ok) {
     throw "Données momentanément indisponible";
   }
+  
   const data = await req.json();
   // console.log(data)
   recipes = data;
   filteredRecipes = [...data];
   displayData(recipes);
+
+ 
 };
 
 /**

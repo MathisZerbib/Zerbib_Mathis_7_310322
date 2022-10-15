@@ -172,3 +172,8 @@
 .fa-solid {
     cursor: pointer;
 }
+
+.title-empty {
+    display: none;
+    opacity: 0;
+}

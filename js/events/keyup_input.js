@@ -12,7 +12,7 @@ if (filteredRecipes.length || tagArrayToSearch.length >0) {
 if(isFirstSearch == false || searchedLetters.length > 2 ) {
     let resultFromFirstSearch = filterElements(searchedLetters, getAllRecipes())
     if (resultFromFirstSearch == undefined) {
-        return showError()
+        showError()
     }else {
         tagArraySearch(tagArrayToSearch, resultFromFirstSearch)
     }

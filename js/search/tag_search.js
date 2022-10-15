@@ -16,18 +16,21 @@ const tagArraySearch = (searchedTags, data) => {
           cleanString(ingredient.ingredient).includes(
             cleanString(searchedTags.ingredient[i])
           )
-        ) &&
-          (!searchedTags.appliance.length ||
-            cleanString(recipe.appliance).includes(
-              cleanString(searchedTags.appliance[i])
-            )) &&
-          (!searchedTags.ustensil.length ||
-            recipe.ustensils.find((ustensil) => {
-              cleanString(ustensil).includes(
-                cleanString(searchedTags.ustensil[i])
-              );
-            })))
-    );
+        ) 
+        
+        
+        // &&
+        //   (!searchedTags.appliance.length ||
+        //     cleanString(recipe.appliance).includes(
+        //       cleanString(searchedTags.appliance[i])
+        //     )) &&
+        //   (!searchedTags.ustensil.length ||
+        //     recipe.ustensils.find((ustensil) => {
+        //       cleanString(ustensil).includes(
+        //         cleanString(searchedTags.ustensil[i])
+        //       );
+        //     })))
+    ));
 
     console.log("filteredRecipes", filteredRecipes, searchedTags);
 
@@ -44,9 +47,6 @@ const tagArraySearch = (searchedTags, data) => {
     }
   }
   displayData(filteredRecipes);
-  if (filteredRecipes.length ==  0) {
-      showError()
-  }
-  return filteredRecipes;
 
+  return filteredRecipes;
 };
