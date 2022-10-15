@@ -41,17 +41,17 @@ const tagArraySearch = (searchedTags, data) => {
     );
   }
 
-    if (
-      (filteredRecipes &&
-        filteredRecipes.length !== 0 &&
-        searchBar.value.length > 2 &&
-        tempArray == undefined) ||
-      filteredRecipes == []
-    ) {
-      console.log("temp array", tempArray);
-      tempArray = filteredRecipes;
-      console.log("temp array", tempArray);
-    }
+    // if (
+    //   (filteredRecipes &&
+    //     filteredRecipes.length !== 0 &&
+    //     searchBar.value.length > 2 &&
+    //     tempArray == undefined) ||
+    //   filteredRecipes == []
+    // ) {
+    //   console.log("temp array", tempArray);
+    //   tempArray = filteredRecipes;
+    //   console.log("temp array", tempArray);
+    // }
   displayData(filteredRecipes);
   if (filteredRecipes.length == 0) {
     showError();
