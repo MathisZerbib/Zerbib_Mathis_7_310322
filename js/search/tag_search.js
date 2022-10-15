@@ -3,10 +3,10 @@ const tagArraySearch = (searchedTags, data) => {
   let tempArray = data;
   console.log(searchedTags.ingredient.length, "length");
 
-  let finalLength =
-    searchedTags.ingredient.length +
-    searchedTags.appliance.length +
-    searchedTags.ustensil.length;
+  // let finalLength =
+  //   searchedTags.ingredient.length +
+  //   searchedTags.appliance.length +
+  //   searchedTags.ustensil.length;
 
   for (i = 0; searchedTags.ingredient.length !== i; i++) {
     filteredRecipes = tempArray.filter(
@@ -35,9 +35,9 @@ const tagArraySearch = (searchedTags, data) => {
     filteredRecipes = tempArray.filter(
       (recipe) =>
         !searchedTags.ustensil[i] ||
-        recipe.ustensils.find((ustensil) => {
-          cleanString(ustensil).includes(cleanString(searchedTags.ustensil[i]));
-        })
+        recipe.ustensils.find((ustensil) =>
+          cleanString(ustensil).includes(cleanString(searchedTags.ustensil[i]))
+        )
     );
   }
 
