@@ -12,7 +12,7 @@ let resultFromFirstSearch;
         tagArraySearch(tagArrayToSearch, getAllRecipes())
     }
     if (true) {
-        console.log('coupocu')
+        console.log('reloading time')
     }
 
     if ( search.length == 0 && tagArrayToSearch.ingredient.length == 0 && tagArrayToSearch.appliance.length == 0 && tagArrayToSearch.ustensil.length == 0) {
