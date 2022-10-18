@@ -40,7 +40,7 @@ const tagListSearch = (e, ul, inputField) => {
                   .includes(cleanString(final_words[i]))
             );
   
-            console.log('searchTagIngredient', searchTagIngredient)
+            console.log('==================searchTagIngredient', searchTagIngredient)
             newArrayIngredients = [...new Set(searchTagIngredient)];
             cleanTagListDOM(idDiv);
             newArrayIngredients = [
