@@ -81,6 +81,9 @@ const createFiltersDOM = (filtersList) => {
                 let currentUstensils = getCurrentUstensils()
 
                 currentIngredients = currentIngredients.filter(el => el !== searchInputSelector.value)
+                currentAppliances = currentAppliances.filter(el => el !== searchInputSelector.value)
+                currentUstensils = currentUstensils.filter(el => el !== searchInputSelector.value)
+
                 buildTagArray(inputField, currentIngredients, strIngredient);
                 buildTagArray(inputField, currentUstensils, strUstensil);
                 buildTagArray(inputField, currentAppliances, strAppareil);
