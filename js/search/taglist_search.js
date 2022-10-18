@@ -20,35 +20,53 @@ const tagListSearch = (e, ul, inputField) => {
   }
 
 
-  if (buffer.length >= 3) {
+
     switch (idDiv) {
       case "Ingrédient":
         // console.log("New Array from ingredient:", newArrayIngredients)
-        for (let i = 0; final_words.length > i; i++) {
-          let searchTagIngredient = getCurrentIngredients()
-          searchTagIngredient = searchTagIngredient.filter(
-            (ingredient) =>
-              cleanString(ingredient)
-                .includes(cleanString(final_words[i]))
-          );
 
-          console.log('searchTagIngredient', searchTagIngredient)
-          newArrayIngredients = [...new Set(searchTagIngredient)];
-          cleanTagListDOM(idDiv);
-          newArrayIngredients = [
-            ...new Set(
-              searchTagIngredient.map((element) => {
-                return cleanString(element)
-              })
-            ),
-          ];
+        if (buffer.length <= 2 && isFirstSearch ==true) {
+          let searchTagIngredient = getCurrentIngredients();
+          cleanTagListDOM(idDiv)
+          buildTagArray(inputField, searchTagIngredient, idDiv);
 
-          // console.log(newArrayIngredients, 'newArrayIngredients')
+        }else {
+          let searchTagIngredient = getCurrentIngredients();
+
+          for (let i = 0; final_words.length > i; i++) {
+            searchTagIngredient = searchTagIngredient.filter(
+              (ingredient) =>
+                cleanString(ingredient)
+                  .includes(cleanString(final_words[i]))
+            );
+  
+            console.log('searchTagIngredient', searchTagIngredient)
+            newArrayIngredients = [...new Set(searchTagIngredient)];
+            cleanTagListDOM(idDiv);
+            newArrayIngredients = [
+              ...new Set(
+                searchTagIngredient.map((element) => {
+                  return cleanString(element)
+                })
+              ),
+            ];
+  
+            // console.log(newArrayIngredients, 'newArrayIngredients')
+          }
+          buildTagArray(inputField, newArrayIngredients, idDiv);
         }
-        buildTagArray(inputField, newArrayIngredients, idDiv);
 
         break;
       case "Appareils":
+
+        if (buffer.length <= 2) {
+          let searchTagAppareils = getCurrentAppliances();
+          cleanTagListDOM(idDiv)
+          buildTagArray(inputField, searchTagAppareils, idDiv);
+
+        }else {
+
+
         for (let j = 0; final_words.length > j; j++) {
           let searchTagAppareils = getCurrentAppliances();
           
@@ -69,10 +87,17 @@ const tagListSearch = (e, ul, inputField) => {
         }
 
         buildTagArray(inputField, newArrayAppareils, idDiv);
-
+      }
         // console.log("New Array from appareils :", newArrayAppareils)
         break;
       case "Ustensiles":
+        if (buffer.length <= 2) {
+          let searchTagUstensils = getCurrentUstensils()
+          cleanTagListDOM(idDiv)
+          buildTagArray(inputField, searchTagUstensils, idDiv);
+
+        }else {
+
         for (let k = 0; final_words.length > k; k++) {
           let searchTagUstensils = getCurrentUstensils()
           searchTagUstensils = searchTagUstensils.filter((ustensil) =>
@@ -92,10 +117,8 @@ const tagListSearch = (e, ul, inputField) => {
         }
 
         buildTagArray(inputField, newArrayUstensils, idDiv);
-
+      }
         // console.log("New Array from ustensils:", newArrayUstensils)
         break;
     }
   } 
-
-};

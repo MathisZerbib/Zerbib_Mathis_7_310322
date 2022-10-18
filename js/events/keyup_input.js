@@ -3,7 +3,11 @@ const searchBar = document.querySelector("#main-search");
 
 searchBar.addEventListener("keyup" , (e) => {
 const searchedLetters = e.target.value;
-isFirstSearch = true;   
+isFirstSearch = true;  
+
+
+
+
 if (filteredRecipes.length || tagArrayToSearch.length >0) {
     isFirstSearch = false;
 }

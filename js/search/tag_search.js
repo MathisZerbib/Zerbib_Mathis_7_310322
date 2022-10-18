@@ -52,50 +52,15 @@ const tagArraySearch = (searchedTags, data) => {
 
   }
 
+  // Remove empty in array  
   filteredRecipes = filteredRecipes.filter(n => n)
-
-
-
-
 
 console.log('filteredRecipes', filteredRecipes)
 
 const duplicates = filteredRecipes.filter((item, index) => index !== filteredRecipes.indexOf(item));
 
-console.log(duplicates);
+console.log("duplicates", duplicates);
 
-  // for (i = 0; searchedTags.ingredient.length !== i; i++) {
-  //   filteredRecipes = tempArray.filter(
-  //     (recipe) =>
-  //       !searchedTags.ingredient[i] ||
-  //       recipe.ingredients.find((ingredient) =>
-  //         cleanString(ingredient.ingredient).includes(
-  //           cleanString(searchedTags.ingredient[i])
-  //         )
-  //       )
-  //   );
-  //   console.log("filteredRecipes", filteredRecipes, searchedTags);
-  // }
-
-  // for (i = 0; searchedTags.appliance.length !== i; i++) {
-  //   filteredRecipes = tempArray.filter(
-  //     (recipe) =>
-  //       !searchedTags.appliance[i] ||
-  //       cleanString(recipe.appliance).includes(
-  //         cleanString(searchedTags.appliance[i])
-  //       )
-  //   );
-  // }
-
-  // for (i = 0; searchedTags.ustensil.length !== i; i++) {
-  //   filteredRecipes = tempArray.filter(
-  //     (recipe) =>
-  //       !searchedTags.ustensil[i] ||
-  //       recipe.ustensils.find((ustensil) =>
-  //         cleanString(ustensil).includes(cleanString(searchedTags.ustensil[i]))
-  //       )
-  //   );
-  // }
 
   // if (
   //   (filteredRecipes &&
@@ -111,8 +76,6 @@ console.log(duplicates);
 
 // sort by "id" in ascending, and then by their "default" where  `false` first, then `true` second
 
-
-  // displayData([...new Set(isIngIncluded, isAppIncluded, isUstensIncluded)]);
 
   if (duplicates.length !== 0 ) {
     displayData(duplicates)
