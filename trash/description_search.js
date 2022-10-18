@@ -7,8 +7,6 @@ const descriptionMatch = (input, recipeMatchArray) => {
     descriptionMatch.map((el) => {
       recipeMatchArray.push(el);
     });
-    console.log(recipeMatchArray, "DESCRIPTION SEARCH MATCH", descriptionMatch);
   }
   return recipeMatchArray;
-
 };

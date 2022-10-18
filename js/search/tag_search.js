@@ -1,7 +1,5 @@
 const tagArraySearch = (searchedTags, data) => {
-  // console.log(searchedTags)
   let tempArray = data;
-  console.log(searchedTags.ingredient.length, "length");
 
   // let finalLength =
   //   searchedTags.ingredient.length +
@@ -52,24 +50,8 @@ const tagArraySearch = (searchedTags, data) => {
   // Remove empty in array  
   filteredRecipes = filteredRecipes.filter(n => n)
 
-console.log('filteredRecipes', filteredRecipes)
 
 const duplicates = filteredRecipes.filter((item, index) => index !== filteredRecipes.indexOf(item));
-
-console.log("duplicates", duplicates);
-
-
-  // if (
-  //   (filteredRecipes &&
-  //     filteredRecipes.length !== 0 &&
-  //     searchBar.value.length > 2 &&
-  //     tempArray == undefined) ||
-  //   filteredRecipes == []
-  // ) {
-  //   console.log("temp array", tempArray);
-  //   tempArray = filteredRecipes;
-  //   console.log("temp array", tempArray);
-  // }
 
 // sort by "id" in ascending, and then by their "default" where  `false` first, then `true` second
 

@@ -5,10 +5,8 @@ const tagListSearch = (e, ul, inputField) => {
   let searchTagListFromInput = [];
   buffer = inputField.value;
   searchTagListFromInput.push(buffer);
-  // console.log(searchTagListFromInput);
   var final_words = [];
   final_words.push(searchTagListFromInput[searchTagListFromInput.length - 1]);
-  // console.log(final_words);
   
   let newArrayIngredients = [];
   let newArrayUstensils = [];
@@ -23,7 +21,6 @@ const tagListSearch = (e, ul, inputField) => {
 
     switch (idDiv) {
       case "Ingrédient":
-        // console.log("New Array from ingredient:", newArrayIngredients)
 
         if (buffer.length <= 2 && isFirstSearch ==true) {
           let searchTagIngredient = getCurrentIngredients();
@@ -40,7 +37,6 @@ const tagListSearch = (e, ul, inputField) => {
                   .includes(cleanString(final_words[i]))
             );
   
-            console.log('==================searchTagIngredient', searchTagIngredient)
             newArrayIngredients = [...new Set(searchTagIngredient)];
             cleanTagListDOM(idDiv);
             newArrayIngredients = [
@@ -50,8 +46,6 @@ const tagListSearch = (e, ul, inputField) => {
                 })
               ),
             ];
-  
-            // console.log(newArrayIngredients, 'newArrayIngredients')
           }
           buildTagArray(inputField, newArrayIngredients, idDiv);
         }
@@ -88,7 +82,6 @@ const tagListSearch = (e, ul, inputField) => {
 
         buildTagArray(inputField, newArrayAppareils, idDiv);
       }
-        // console.log("New Array from appareils :", newArrayAppareils)
         break;
       case "Ustensiles":
         if (buffer.length <= 2) {
@@ -105,7 +98,6 @@ const tagListSearch = (e, ul, inputField) => {
               .includes(cleanString(final_words[k]))
           );
           newArrayUstensils = [...new Set(searchTagUstensils)];
-          // console.log("Search trought ingredients", searchTagIngredient)
           cleanTagListDOM(idDiv);
           newArrayUstensils = [
             ...new Set(
@@ -118,7 +110,6 @@ const tagListSearch = (e, ul, inputField) => {
 
         buildTagArray(inputField, newArrayUstensils, idDiv);
       }
-        // console.log("New Array from ustensils:", newArrayUstensils)
         break;
     }
   } 

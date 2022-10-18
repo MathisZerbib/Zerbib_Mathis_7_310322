@@ -61,7 +61,6 @@ function recipeFactory(data) {
 
             listIngredients.appendChild(p);
         });
-        // console.log("Ingredients,", ingredients)
 
 
         headerContainerCard.className = 'header-container-card d-flex justify-content-between mt-3 px-3 align-items-center';
