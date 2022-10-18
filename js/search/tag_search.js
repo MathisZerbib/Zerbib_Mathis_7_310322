@@ -21,7 +21,6 @@ const tagArraySearch = (searchedTags, data) => {
         )
       )
     );
-    console.log("isIngIncluded", isIngIncluded);
   }
 
   for (i = 0; searchedTags.appliance.length !== i; i++) {
@@ -30,7 +29,6 @@ const tagArraySearch = (searchedTags, data) => {
         cleanString(searchedTags.appliance[i])
       )
     );
-    console.log("isAppIncluded", isAppIncluded);
   }
 
   for (i = 0; searchedTags.ustensil.length !== i; i++) {
@@ -39,7 +37,6 @@ const tagArraySearch = (searchedTags, data) => {
         cleanString(ustensil).includes(cleanString(searchedTags.ustensil[i]))
       )
     );
-    console.log("isUstensIncluded", isUstensIncluded);
   }
 
   if (isIngIncluded) {
@@ -79,6 +76,8 @@ console.log("duplicates", duplicates);
 
   if (duplicates.length !== 0 ) {
     displayData(duplicates)
+    return duplicates;
+
   }else {
     displayData(filteredRecipes)
   }

@@ -85,6 +85,8 @@ const getAllUstensils = () => {
   return allUstensils.sort((a, b) => a.localeCompare(b));
 };
 
+
+
 /**
  * Récupère une recette avec son id
  * @returns {object} Objet contenant toutes les recettes
