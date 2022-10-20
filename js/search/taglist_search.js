@@ -25,7 +25,7 @@ const tagListSearch = (e, ul, inputField) => {
       case "Ingrédient":
         // console.log("New Array from ingredient:", newArrayIngredients)
 
-        if (buffer.length <= 2 && isFirstSearch ==true) {
+        if (buffer.length <= 2 && isFirstSearch == true) {
           let searchTagIngredient = getCurrentIngredients();
           cleanTagListDOM(idDiv)
           buildTagArray(inputField, searchTagIngredient, idDiv);
@@ -40,7 +40,6 @@ const tagListSearch = (e, ul, inputField) => {
                   .includes(cleanString(final_words[i]))
             );
   
-            console.log('==================searchTagIngredient', searchTagIngredient)
             newArrayIngredients = [...new Set(searchTagIngredient)];
             cleanTagListDOM(idDiv);
             newArrayIngredients = [
@@ -51,7 +50,6 @@ const tagListSearch = (e, ul, inputField) => {
               ),
             ];
   
-            // console.log(newArrayIngredients, 'newArrayIngredients')
           }
           buildTagArray(inputField, newArrayIngredients, idDiv);
         }
