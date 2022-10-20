@@ -1,5 +1,4 @@
 const createFiltersDOM = (filtersList) => {
-    // <span class="tag btn btn-primary btn-sm mb-1">Coco <i class="far fa-times-circle"></i></span>
 
     filtersList.map(el => {
         let filtersbox = document.createElement('div');
@@ -25,9 +24,6 @@ const createFiltersDOM = (filtersList) => {
         filterUl.className = 'sub-search__taglist w-100 mw-100 btn text-white border-0 rounded-bottom flex-wrap dropdown-menu ' + el;
         filterUl.setAttribute('role', 'listbox');
         filterUl.setAttribute('id', el + '__taglist');
-        // uniqueUstensiles.map(el => {
-        //     filterUl.innerHTML += `<li><span class="tag btn btn-primary btn-sm mb-1">${el}<i class="far fa-times-circle"></i><span></li>`
-        // });
 
 
         document.getElementById('sub-searchs').append(filtersbox);
@@ -38,7 +34,7 @@ const createFiltersDOM = (filtersList) => {
 
 
         document.getElementById('sub-searchs').append(filtersbox)
-            // Show tag list in sub searchs and transform the button into search input field
+        // Show tag list in sub searchs and transform the button into search input field
         const currentSubSearchButton = filtersbox.querySelector('.sub-search__button');
         let inputField = filtersbox.querySelector('.sub-search__button input');
         let ul = filtersbox.querySelector('.sub-search__taglist')
@@ -76,7 +72,6 @@ const createFiltersDOM = (filtersList) => {
                 buildTagArray(inputField, getAllIngredients(), strIngredient);
                 buildTagArray(inputField, getAllUstensils(), strUstensil);
                 buildTagArray(inputField, getAllAppliances(), strAppareil);
-                // console.log('TAGFILTERSS ============================ :§:;!:;!.:!;!:', tagFilters.innerText, searchInputSelector.value)
             } 
             else {
 

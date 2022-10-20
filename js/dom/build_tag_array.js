@@ -5,7 +5,6 @@ const buildTagArray = (inputField, tags, id) => {
     liTag.setAttribute("aria-selected", "false");
     liTag.setAttribute("role", "option");
     liTag.innerHTML = tags[i];
-    // console.log(tags[i])
 
     if (tags[i].includes("_")) {
       cleanTagName = tags[i].replace(/\s/g, "_");
@@ -44,10 +43,8 @@ const buildTagArray = (inputField, tags, id) => {
       function isIngredient() {
         liTag.classList.add("dropdown-item", "bg-primary");
         liTag.addEventListener("click", () => {
-          // console.log('Litag', allIngredients, cleanTagName)
           cleanTagListDOM(strIngredient);
           liTag.setAttribute("aria-selected", "true");
-          console.log("Tags ", liTag.innerText);
           createTag(liTag, "bg-primary");
           inputField.value = "";
         });
@@ -56,9 +53,7 @@ const buildTagArray = (inputField, tags, id) => {
         liTag.classList.add("dropdown-item", "bg-green");
         liTag.addEventListener("click", () => {
           cleanTagListDOM(strAppareil);
-          // console.log('UNIQUE APPLIANCE', uniqueAppliancesClone)
           liTag.setAttribute("aria-selected", "true");
-          // console.log('Tags ', tags)
           createTag(liTag, "bg-green");
           inputField.value = "";
         });
@@ -93,12 +88,7 @@ const buildTagArray = (inputField, tags, id) => {
           cleanString(liTag.innerText)
         )
       ) {
-        console.log(
-          "Include dont build",
-          "tagArrayToSearch",
-          tagArrayToSearch.ingredient[y],
-          liTag.innerText
-        );
+
       } else {
         document.getElementById(id + "__taglist").append(liTag);
       }
@@ -127,12 +117,5 @@ const buildTagArray = (inputField, tags, id) => {
     }
 
     if (!finalLength) document.getElementById(id + "__taglist").append(liTag);
-
-    // }
-    // else
-
-    // if (tagArrayToSearch.length == 0) {
-    //     document.getElementById(id + '__taglist').append(liTag);
-    // }
   }
 };

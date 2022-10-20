@@ -1,7 +1,6 @@
 function filterElements(search, data) {
   let resultRecipe = data
   if (search.length < 2 && tagArrayToSearch.length == 0) {
-    // hideError();
     displayData(data);
     return data
 }
@@ -16,10 +15,6 @@ function filterElements(search, data) {
       );
   }
     displayData(filteredRecipes);
-    // hideError();
     return filteredRecipes
   }
 
-
-  
-// }

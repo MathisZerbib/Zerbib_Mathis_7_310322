@@ -8,7 +8,6 @@ const ustensilsMatch = (input, recipeMatchArray) => {
 
     if (ustensMatch.length !== 0) {
       recipeMatchArray.push(recipe);
-      console.log(ustensMatch, "Ustens MATCH");
     }
   });
 

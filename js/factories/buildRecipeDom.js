@@ -26,42 +26,10 @@ function recipeFactory(data) {
         ingredients.map(element => {
             var p = document.createElement('p')
             p.className = 'mb-0';
-
-            // switch (element.unit) {
-            //     case 'cuillère à soupe':
-            //         element.unit = 'Càs'
-            //         break;
-            //     case 'cuillères à soupe':
-            //         element.unit = 'Càs'
-            //         break
-            //     case undefined:
-            //         element.unit = 'undefined'
-
-            //         break;
-
-            //     case '':
-            //         element.unit = ''
-
-            //         break;
-            //     case 'grammes':
-            //         element.unit = 'g'
-
-            //         break;
-
-            //     default:
-
-            //         break;
-            // }
-            // if (element.quantity == undefined || element.quantity == '') {
-            //     element.quantity = ''
-            //     element.unit = ''
-            // }
             p.innerHTML = `<span class="font-weight-bold">${element.ingredient}</span> <span>${element.quantity==undefined ? '1': element.quantity }</span><span>${element.unit == 'grammes' ?'g' : element.unit== 'cl'? element.unit:  element.unit== 'ml'? element.unit:  element.unit == 'cuillère à soupe'? ' Càs': element.unit == 'cuillères à soupe'? ' Càs': '' }</span>`
-                //p.innerHTML = ` <span class="font-weight-bold">${element.ingredient}</span> <span>${element.quantity}</span><span>${element.unit}</span>`
 
             listIngredients.appendChild(p);
         });
-        // console.log("Ingredients,", ingredients)
 
 
         headerContainerCard.className = 'header-container-card d-flex justify-content-between mt-3 px-3 align-items-center';

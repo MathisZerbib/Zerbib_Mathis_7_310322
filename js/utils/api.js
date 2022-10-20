@@ -24,7 +24,6 @@ const init = async () => {
   }
   
   const data = await req.json();
-  // console.log(data)
   recipes = data;
   filteredRecipes = [...data];
   displayData(recipes);
@@ -183,18 +182,5 @@ const getCurrentUstensils = () => {
  */
 const getRecipe = (id) => {
   const recipe = recipes.filter((recipe) => recipe.id === id);
-
-  if (recipe.length !== 1) {
-    console.error("Recette introuvable.");
-    return;
-  }
   return recipe[0];
 };
-
-
-// document.querySelector('body').addEventListener('click', ()=> {
-//     setfilteredRecipes(filteredRecipes)
-//     currentIngredients = getCurrentIngredients()
-//     currentAppliances = getCurrentAppliances()
-//     currentUstensils = getCurrentUstensils()
-// })

@@ -14,7 +14,6 @@ const createTag = (el, color) => {
   tag.appendChild(tagClose);
   tagClose.addEventListener("click", () => {
     closeTag(tag, color, tag.innerText);
-    console.log("tagArrayToSearch", tagArrayToSearch);
     for (let i = 0; tagArrayToSearch.length > i; i++) {
       const index = tagArrayToSearch[i].text.indexOf(tag.innerText);
       if (index > -1) {
