@@ -78,10 +78,18 @@ const createFiltersDOM = (filtersList) => {
                 let currentIngredients = getCurrentIngredients()
                 let currentAppliances = getCurrentAppliances()
                 let currentUstensils = getCurrentUstensils()
+                
+                let tags_list = document.querySelectorAll('.tag.btn')
+                let tags_list_array = []
+                for (let i =0 ; tags_list.length !== i; i++) {
+                    tags_list_array.push(tags_list[i].innerText)
+                }
+                
 
-                currentIngredients = currentIngredients.filter(el => el !== searchInputSelector.value)
-                currentAppliances = currentAppliances.filter(el => el !== searchInputSelector.value)
-                currentUstensils = currentUstensils.filter(el => el !== searchInputSelector.value)
+                currentIngredients = currentIngredients.filter(el => el !== searchInputSelector.value || tags_list_array.indexOf(el) !== -1 )
+                currentAppliances = currentAppliances.filter(el => el !== searchInputSelector.value || tags_list_array.indexOf(el) !== -1 )
+                currentUstensils = currentUstensils.filter(el => el !== searchInputSelector.value || tags_list_array.indexOf(el) !== -1 )
+
 
                 buildTagArray(inputField, currentIngredients, strIngredient);
                 buildTagArray(inputField, currentUstensils, strUstensil);
