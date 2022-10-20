@@ -43,9 +43,6 @@ if ((tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length|| t
     tagArraySearch(tagArrayToSearch, getAllRecipes())
 }
 
-// if ((!tagArrayToSearch.ingredient.length || !tagArrayToSearch.appliance.length || !tagArrayToSearch.ustensil.length) || search.length < 2 && (!tagArrayToSearch.ingredient.length || !tagArrayToSearch.appliance.length || !tagArrayToSearch.ustensil.length)) {
-//     displayData(getAllRecipes())
-// }
 });
 
 searchBar.addEventListener('input', (e)=> {

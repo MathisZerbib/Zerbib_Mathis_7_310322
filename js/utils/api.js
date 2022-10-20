@@ -103,11 +103,6 @@ const getAllRecipes = () => {
 const setfilteredRecipes = (data) => {
   data = [...new Set(data)];
   filteredRecipes = data;
-
-  // setCurrentIngredients()
-  // setCurrentAppliances()
-  // setCurrentUstensils()
-
   return filteredRecipes;
 };
 

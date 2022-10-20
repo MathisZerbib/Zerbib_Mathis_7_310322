@@ -117,12 +117,5 @@ const buildTagArray = (inputField, tags, id) => {
     }
 
     if (!finalLength) document.getElementById(id + "__taglist").append(liTag);
-
-    // }
-    // else
-
-    // if (tagArrayToSearch.length == 0) {
-    //     document.getElementById(id + '__taglist').append(liTag);
-    // }
   }
 };
