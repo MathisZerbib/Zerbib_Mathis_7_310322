@@ -7,6 +7,9 @@ const displayData = (recipes) => {
   } else {
     showError();
   }
+
+  recipes = [...new Set(recipes)]
+
   recipes.map((recipe) => {
     const recipeModel = recipeFactory(recipe);
     const getRecipeCardDOM = recipeModel.buildRecipeCardDOM();
