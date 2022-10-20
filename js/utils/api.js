@@ -104,11 +104,7 @@ const getAllRecipes = () => {
 const setfilteredRecipes = (data) => {
   data = [...new Set(data)];
   filteredRecipes = data;
-
-  // setCurrentIngredients()
-  // setCurrentAppliances()
-  // setCurrentUstensils()
-
+  
   return filteredRecipes;
 };
 
@@ -125,7 +121,8 @@ const getfilteredRecipes = () => {
  * @returns {object} Objet contenant toutes les ingredients actuels
  */
 const getCurrentIngredients = () => {
-  if (currentIngredients.length === 0) {
+  currentIngredients = [];
+
     filteredRecipes.map((recipe) => {
       recipe.ingredients.map((ingredients) => {
         const ingredient = ingredients.ingredient;
@@ -139,7 +136,6 @@ const getCurrentIngredients = () => {
         }
       });
     });
-  }
 
   return currentIngredients.sort((a, b) => a.localeCompare(b));
 };
@@ -149,7 +145,8 @@ const getCurrentIngredients = () => {
  * @returns {object} Objet contenant toutes les appliances actuels
  */
 const getCurrentAppliances = () => {
-  if (currentAppliances.length === 0) {
+
+  currentAppliances = [];
     filteredRecipes.map((recipe) => {
       if (!currentAppliances.includes(cleanString(recipe.appliance))) {
         currentAppliances = [
@@ -159,8 +156,6 @@ const getCurrentAppliances = () => {
         ];
       }
     });
-  }
-
   return currentAppliances.sort((a, b) => a.localeCompare(b));
 };
 
@@ -169,7 +164,7 @@ const getCurrentAppliances = () => {
  * @returns {object} Objet contenant toutes les ustensils actuels
  */
 const getCurrentUstensils = () => {
-  if (currentUstensils.length === 0) {
+  currentUstensils = []
     filteredRecipes.map((recipe) => {
       recipe.ustensils.map((ustensile) => {
         if (!currentUstensils.includes(cleanString(ustensile))) {
@@ -177,7 +172,6 @@ const getCurrentUstensils = () => {
         }
       });
     });
-  }
 
   return currentUstensils.sort((a, b) => a.localeCompare(b));
 };
@@ -198,3 +192,9 @@ const getRecipe = (id) => {
 };
 
 
+// document.querySelector('body').addEventListener('click', ()=> {
+//     setfilteredRecipes(filteredRecipes)
+//     currentIngredients = getCurrentIngredients()
+//     currentAppliances = getCurrentAppliances()
+//     currentUstensils = getCurrentUstensils()
+// })

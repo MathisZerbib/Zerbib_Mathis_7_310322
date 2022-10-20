@@ -76,7 +76,8 @@ console.log("duplicates", duplicates);
 
   if (duplicates.length !== 0 ) {
     displayData(duplicates)
-    return duplicates;
+    filteredRecipes = duplicates
+    return filteredRecipes;
 
   }else {
     displayData(filteredRecipes)
