@@ -1,7 +1,7 @@
 const tagArraySearch = (searchedTags, data) => {
   // console.log(searchedTags)
   let tempArray = data;
-  console.log(searchedTags.ingredient.length, "length");
+  console.log(searchedTags, data);
 
   // let finalLength =
   //   searchedTags.ingredient.length +
@@ -13,51 +13,80 @@ const tagArraySearch = (searchedTags, data) => {
   let isAppIncluded;
   let isUstensIncluded;
 
-  for (i = 0; searchedTags.ingredient.length !== i; i++) {
-    isIngIncluded = tempArray.filter((recipe) =>
-      recipe.ingredients.find((ingredient) =>
-        cleanString(ingredient.ingredient).includes(
-          cleanString(searchedTags.ingredient[i])
-        )
+  // for (i = 0; searchedTags.ingredient.length !== i; i++) {
+  //   isIngIncluded = tempArray.filter((recipe) =>
+  //     recipe.ingredients.find((ingredient) =>
+  //       cleanString(ingredient.ingredient).includes(
+  //         cleanString(searchedTags.ingredient[i])
+  //       )
+  //     )
+  //   );
+  // }
+
+  // for (i = 0; searchedTags.appliance.length !== i; i++) {
+  //   isAppIncluded = tempArray.filter((recipe) =>
+  //     cleanString(recipe.appliance).includes(
+  //       cleanString(searchedTags.appliance[i])
+  //     )
+  //   );
+  // }
+
+  // for (i = 0; searchedTags.ustensil.length !== i; i++) {
+  //   isUstensIncluded = tempArray.filter((recipe) =>
+  //     recipe.ustensils.find((ustensil) =>
+  //       cleanString(ustensil).includes(cleanString(searchedTags.ustensil[i]))
+  //     )
+  //   );
+  // }
+
+  // if (isIngIncluded) {
+  //   filteredRecipes = isIngIncluded.concat(isAppIncluded, isUstensIncluded);
+  // }else if(isAppIncluded) {
+  //   filteredRecipes = isAppIncluded.concat(isIngIncluded, isUstensIncluded);
+
+  // }else if( isUstensIncluded) {
+  //   filteredRecipes = isUstensIncluded.concat(isIngIncluded, isAppIncluded);
+
+  // }
+
+  // filteredRecipes = isIngIncluded
+  //                     .filter(value => isAppIncluded.includes(value))
+  //                     .filter(value => isUstensIncluded.includes(value));
+
+  isIngIncluded = tempArray.filter((recipe) =>
+    searchedTags.ingredient.every((tagIng) =>
+      recipe.ingredients.some(
+        (recipeIng) => cleanString(tagIng) === cleanString(recipeIng.ingredient)
       )
-    );
-  }
+    )
+  );
 
-  for (i = 0; searchedTags.appliance.length !== i; i++) {
-    isAppIncluded = tempArray.filter((recipe) =>
-      cleanString(recipe.appliance).includes(
-        cleanString(searchedTags.appliance[i])
+  isAppIncluded = tempArray.filter((recipe) =>
+    searchedTags.appliance.every(
+      (tagApp) => cleanString(recipe.appliance) === cleanString(tagApp)
+    )
+  );
+
+  isUstensIncluded = tempArray.filter((recipe) =>
+    searchedTags.ustensil.every((tagUst) =>
+      recipe.ustensils.some(
+        (ustensil) => cleanString(ustensil) === cleanString(tagUst)
       )
-    );
-  }
+    )
+  );
 
-  for (i = 0; searchedTags.ustensil.length !== i; i++) {
-    isUstensIncluded = tempArray.filter((recipe) =>
-      recipe.ustensils.find((ustensil) =>
-        cleanString(ustensil).includes(cleanString(searchedTags.ustensil[i]))
-      )
-    );
-  }
+  filteredRecipes = isIngIncluded
+    .filter((value) => isAppIncluded.includes(value))
+    .filter((value) => isUstensIncluded.includes(value));
 
-  if (isIngIncluded) {
-    filteredRecipes = isIngIncluded.concat(isAppIncluded, isUstensIncluded);
-  }else if(isAppIncluded) {
-    filteredRecipes = isAppIncluded.concat(isIngIncluded, isUstensIncluded);
+  //   // Remove empty in array
+  //   filteredRecipes = filteredRecipes.filter(n => n)
 
-  }else if( isUstensIncluded) {
-    filteredRecipes = isUstensIncluded.concat(isIngIncluded, isAppIncluded);
+  // console.log('filteredRecipes', filteredRecipes)
 
-  }
+  // const duplicates = filteredRecipes.filter((item, index) => index !== filteredRecipes.indexOf(item));
 
-  // Remove empty in array  
-  filteredRecipes = filteredRecipes.filter(n => n)
-
-console.log('filteredRecipes', filteredRecipes)
-
-const duplicates = filteredRecipes.filter((item, index) => index !== filteredRecipes.indexOf(item));
-
-console.log("duplicates", duplicates);
-
+  // console.log("duplicates", duplicates);
 
   // if (
   //   (filteredRecipes &&
@@ -71,17 +100,16 @@ console.log("duplicates", duplicates);
   //   console.log("temp array", tempArray);
   // }
 
-// sort by "id" in ascending, and then by their "default" where  `false` first, then `true` second
+  // sort by "id" in ascending, and then by their "default" where  `false` first, then `true` second
 
+  // if (duplicates.length !== 0 ) {
+  //   displayData(duplicates)
+  //   filteredRecipes = duplicates
+  //   return filteredRecipes;
 
-  if (duplicates.length !== 0 ) {
-    displayData(duplicates)
-    filteredRecipes = duplicates
-    return filteredRecipes;
+  // }
 
-  }else {
-    displayData(filteredRecipes)
-  }
+  displayData(filteredRecipes);
   if (filteredRecipes.length == 0) {
     showError();
   }

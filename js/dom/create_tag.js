@@ -18,12 +18,9 @@ const createTag = (el, color) => {
     for (let i = 0; tagArrayToSearch.length > i; i++) {
       const index = tagArrayToSearch[i].text.indexOf(tag.innerText);
       if (index > -1) {
-        // only splice array when item is found
-        tagArrayToSearch.splice(index, 1); // 2nd parameter means remove one item only
+        tagArrayToSearch.splice(index, 1);
       }
     }
-
-    // array = [2, 9]
   });
 
   triggerSearch(color);
@@ -31,43 +28,35 @@ const createTag = (el, color) => {
   function triggerSearch(color) {
     switch (color) {
       case "bg-primary":
-        // console.log('bg-primary')
-        console.log(
-            "currentIngredients.filter(e => e !== tagArrayToSearch);",
-            tagArrayToSearch
-          );
-
-          
         tagArrayToSearch.ingredient.push(tag.innerText);
 
-        for(let i =0; tagArrayToSearch.ingredient.length !== i; i++) {
-          currentIngredients = currentIngredients.filter(e=> e!== tagArrayToSearch.ingredient[i])
-      }
+        for (let i = 0; tagArrayToSearch.ingredient.length !== i; i++) {
+          currentIngredients = currentIngredients.filter(
+            (e) => e !== tagArrayToSearch.ingredient[i]
+          );
+        }
         break;
 
       case "bg-green":
-        // console.log('bg-green')
         tagArrayToSearch.appliance.push(tag.innerText);
-        // removeElementFromArray(tagArrayToSearch, currentAppliances);
-        for(let i =0; tagArrayToSearch.appliance.length !== i; i++) {
-          currentAppliances = currentAppliances.filter(e=> e!== tagArrayToSearch.appliance[i])
-      }
+        for (let i = 0; tagArrayToSearch.appliance.length !== i; i++) {
+          currentAppliances = currentAppliances.filter(
+            (e) => e !== tagArrayToSearch.appliance[i]
+          );
+        }
         break;
 
       case "bg-red":
-        // console.log('bg-red')
         tagArrayToSearch.ustensil.push(tag.innerText);
-        // removeElementFromArray(tagArrayToSearch, currentUstensils);
-        for(let i =0; tagArrayToSearch.ustensil.length !== i; i++) {
-          currentUstensils = currentUstensils.filter(e=> e!== tagArrayToSearch.ustensil[i])
-      }
+        for (let i = 0; tagArrayToSearch.ustensil.length !== i; i++) {
+          currentUstensils = currentUstensils.filter(
+            (e) => e !== tagArrayToSearch.ustensil[i]
+          );
+        }
         break;
       default:
         break;
     }
-
-
-      console.log("FILTER PRINCIPAL SEARCH ===> ")
-        tagArraySearch(tagArrayToSearch, filteredRecipes);
+    tagArraySearch(tagArrayToSearch, filteredRecipes);
   }
 };
