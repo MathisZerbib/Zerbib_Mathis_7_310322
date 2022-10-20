@@ -69,6 +69,9 @@ const createFiltersDOM = (filtersList) => {
             cleanTagListDOM(strUstensil)
             cleanTagListDOM(strAppareil)
 
+
+
+
             if (tagFilters.innerText == '' && searchInputSelector.value == '') {
                 buildTagArray(inputField, getAllIngredients(), strIngredient);
                 buildTagArray(inputField, getAllUstensils(), strUstensil);
@@ -76,13 +79,24 @@ const createFiltersDOM = (filtersList) => {
                 // console.log('TAGFILTERSS ============================ :§:;!:;!.:!;!:', tagFilters.innerText, searchInputSelector.value)
             } 
             else {
+
+                    
+
+
                 let currentIngredients = getCurrentIngredients()
                 let currentAppliances = getCurrentAppliances()
                 let currentUstensils = getCurrentUstensils()
 
-                currentIngredients = currentIngredients.filter(el => el !== searchInputSelector.value)
-                currentAppliances = currentAppliances.filter(el => el !== searchInputSelector.value)
-                currentUstensils = currentUstensils.filter(el => el !== searchInputSelector.value)
+                let tags_list = document.querySelectorAll('.tag.btn')
+                let tags_list_array = []
+                for (let i =0 ; tags_list.length !== i; i++) {
+                    tags_list_array.push(tags_list[i].innerText)
+                }
+                
+
+                currentIngredients = currentIngredients.filter(el => el !== searchInputSelector.value || tags_list_array.indexOf(el) !== -1 )
+                currentAppliances = currentAppliances.filter(el => el !== searchInputSelector.value || tags_list_array.indexOf(el) !== -1 )
+                currentUstensils = currentUstensils.filter(el => el !== searchInputSelector.value || tags_list_array.indexOf(el) !== -1 )
 
                 buildTagArray(inputField, currentIngredients, strIngredient);
                 buildTagArray(inputField, currentUstensils, strUstensil);

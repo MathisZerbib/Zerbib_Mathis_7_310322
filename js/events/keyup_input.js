@@ -39,7 +39,7 @@ if ((tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length|| t
 }
 
 
-if ((tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length|| tagArrayToSearch.ustensil.length )&& searchedLetters.length < 2 )  {
+if ((tagArrayToSearch.ingredient.length || tagArrayToSearch.appliance.length|| tagArrayToSearch.ustensil.length ) && searchedLetters.length < 2 )  {
     tagArraySearch(tagArrayToSearch, getAllRecipes())
 }
 

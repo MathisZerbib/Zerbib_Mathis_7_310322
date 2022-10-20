@@ -110,7 +110,6 @@ const buildTagArray = (inputField, tags, id) => {
           cleanString(liTag.innerText)
         )
       ) {
-        // console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.length, tagArrayToSearch[y], y)
       } else {
         document.getElementById(id + "__taglist").append(liTag);
       }
@@ -122,7 +121,6 @@ const buildTagArray = (inputField, tags, id) => {
           cleanString(liTag.innerText)
         )
       ) {
-        // console.log('Include dont build', 'tagArrayToSearch',tagArrayToSearch.length, tagArrayToSearch[y], y)
       } else {
         document.getElementById(id + "__taglist").append(liTag);
       }
